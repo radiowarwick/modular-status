@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button Disabled 1`] = `
+<div
+  className="sc-bdVaJa dCbRfa"
+  disabled={true}
+  onClick={null}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "scale(1)",
+    }
+  }
+>
+  <div
+    className="sc-bwzfXH hzPIjt"
+  >
+    You Can't Click Me :(
+  </div>
+</div>
+`;
+
+exports[`Storyshots Button With Icon & Text 1`] = `
+<div
+  className="sc-bdVaJa idWUCk"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "scale(1)",
+    }
+  }
+>
+  <div
+    className="sc-bwzfXH hzPIjt"
+  >
+    Click Me!
+  </div>
+  <i
+    className="sc-htpNat bSQemG"
+  >
+    fingerprint
+  </i>
+</div>
+`;
+
+exports[`Storyshots Button With Icon 1`] = `
+<div
+  className="sc-bdVaJa idWUCk"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "scale(1)",
+    }
+  }
+>
+  <i
+    className="sc-htpNat bSQemG"
+  >
+    fingerprint
+  </i>
+</div>
+`;
+
+exports[`Storyshots Button With Text 1`] = `
+<div
+  className="sc-bdVaJa idWUCk"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "scale(1)",
+    }
+  }
+>
+  <div
+    className="sc-bwzfXH hzPIjt"
+  >
+    Click Me!
+  </div>
+</div>
+`;
+
+exports[`Storyshots Card With Image 1`] = `
+<div
+  className="sc-bxivhb hzeqbm"
+  style={
+    Object {
+      "margin": "0rem 1rem 1rem 1rem",
+    }
+  }
+>
+  <div
+    className="sc-ifAKCX hlQZem"
+  >
+    <img
+      className="sc-EHOje jjgCbs"
+      src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
+    />
+  </div>
+  <div
+    className="sc-bZQynM hcJNye"
+  >
+    <div
+      className="sc-htoDjs iJojS"
+    >
+      Psychademics
+    </div>
+    <div
+      className="sc-dnqmqq uAYIN"
+    >
+      20:00 - 21:00
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Card With Long Text 1`] = `
+<div
+  className="sc-bxivhb hzeqbm"
+  style={
+    Object {
+      "margin": "0rem 1rem 1rem 1rem",
+    }
+  }
+>
+  <div
+    className="sc-ifAKCX hlQZem"
+  >
+    <img
+      className="sc-EHOje jjgCbs"
+      src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
+    />
+  </div>
+  <div
+    className="sc-bZQynM hcJNye"
+  >
+    <div
+      className="sc-htoDjs iJojS"
+    >
+      Feels Like We Only Go Backwards (Special Edition)
+    </div>
+    <div
+      className="sc-dnqmqq uAYIN"
+    >
+      Tame Impala
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Card With Tag 1`] = `
+<div
+  className="sc-bxivhb hzeqbm"
+  style={
+    Object {
+      "margin": "0rem 1rem 1rem 1rem",
+    }
+  }
+>
+  <div
+    className="sc-ifAKCX hlQZem"
+  >
+    <div
+      className="sc-gzVnrw mUcpZ"
+    >
+      12X
+    </div>
+  </div>
+  <div
+    className="sc-bZQynM hcJNye"
+  >
+    <div
+      className="sc-htoDjs iJojS"
+    >
+      20:12
+    </div>
+    <div
+      className="sc-dnqmqq uAYIN"
+    >
+      Towards leamington
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Headline default 1`] = `
+<div
+  className="sc-iwsKbI hNbGPp"
+>
+  Big Important Text
+  <hr />
+</div>
+`;
+
+exports[`Storyshots TextInput default 1`] = `
+<div
+  className="sc-gZMcBi eJXtpq"
+>
+  <input
+    className="sc-gqjmRU kbUwpv"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Type Here"
+    type="text"
+    value=""
+  />
+  <div
+    className="sc-VigVT xlINY"
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  />
+</div>
+`;

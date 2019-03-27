@@ -1,12 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import Card from "./Card";
+import Card from "../components/Card";
 
 /**
  * A card with a tag only.
  */
-const cardTag = {
+const cardDefault = {
   key: "bus_1",
   data: {
     tag: "12X",
@@ -41,7 +41,8 @@ const cardLong = {
 };
 
 storiesOf("Card", module)
-  .add("With Tag", () => <Card key={cardTag.key} data={cardTag.data} />)
+  .addDecorator(story => <div style={{ marginTop: "1rem" }}>{story()}</div>)
+  .add("Default", () => <Card key={cardDefault.key} data={cardDefault.data} />)
   .add("With Image", () => <Card key={cardImage.key} data={cardImage.data} />)
   .add("With Long Text", () => (
     <Card key={cardLong.key} data={cardLong.data} />

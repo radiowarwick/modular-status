@@ -2,12 +2,12 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
-import Button from "./Button";
+import Button from "../components/Button";
 
 /**
  * An active button with some text.
  */
-export const buttonText = {
+export const buttonDefault = {
   value: "Click Me!"
 };
 
@@ -16,6 +16,13 @@ export const buttonText = {
  */
 export const buttonIcon = {
   icon: "fingerprint"
+};
+
+/**
+ * An active button with an icon.
+ */
+export const buttonLoading = {
+  loading: true
 };
 
 /**
@@ -34,23 +41,26 @@ export const actions = {
 };
 
 storiesOf("Button", module)
-  .add("With Text", () => (
-    <Button value={buttonText.value} handleClick={actions.handleClick} />
+  .add("Default", () => (
+    <Button value={buttonDefault.value} handleClick={actions.handleClick} />
   ))
-  .add("With Icon", () => (
-    <Button icon={buttonIcon.icon} handleClick={actions.handleClick} />
-  ))
-  .add("With Icon & Text", () => (
-    <Button
-      value={buttonText.value}
-      icon={buttonIcon.icon}
-      handleClick={actions.handleClick}
-    />
+  .add("Loading", () => (
+    <Button loading={buttonLoading.loading} handleClick={actions.handleClick} />
   ))
   .add("Disabled", () => (
     <Button
       value={buttonDisabled.value}
       handleClick={actions.handleClick}
       disabled={buttonDisabled.disabled}
+    />
+  ))
+  .add("With Icon", () => (
+    <Button icon={buttonIcon.icon} handleClick={actions.handleClick} />
+  ))
+  .add("With Icon & Text", () => (
+    <Button
+      value={buttonDefault.value}
+      icon={buttonIcon.icon}
+      handleClick={actions.handleClick}
     />
   ));

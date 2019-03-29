@@ -82,6 +82,8 @@ const Hero = styled.div`
  */
 const HeroImage = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 0.6em 0em 0em 0.6em;
 `;
 

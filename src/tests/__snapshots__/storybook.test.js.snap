@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button Default 1`] = `
+<div
+  className="sc-htpNat fzzpiM"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "translateY(0px)",
+    }
+  }
+>
+  <div
+    className="sc-bxivhb fTvRBV"
+  >
+    Click Me!
+  </div>
+</div>
+`;
+
+exports[`Storyshots Button Disabled 1`] = `
+<div
+  className="sc-htpNat hPitJA"
+  disabled={true}
+  onClick={null}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "translateY(0px)",
+    }
+  }
+>
+  <div
+    className="sc-bxivhb fTvRBV"
+  >
+    You Can't Click Me :(
+  </div>
+</div>
+`;
+
+exports[`Storyshots Button Loading 1`] = `
+<div
+  className="sc-htpNat fzzpiM"
+  onClick={null}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "translateY(0px)",
+    }
+  }
+>
+  <div
+    className="sc-bdVaJa bNlOCv"
+  >
+    <div
+      className="sc-bwzfXH hvXHaG"
+      size={0.5}
+    />
+    <div
+      className="sc-bwzfXH kmvLIw"
+      size={0.5}
+    />
+    <div
+      className="sc-bwzfXH ivnbRG"
+      size={0.5}
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Button With Icon & Text 1`] = `
+<div
+  className="sc-htpNat fzzpiM"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "translateY(0px)",
+    }
+  }
+>
+  <div
+    className="sc-bxivhb fTvRBV"
+  >
+    Click Me!
+  </div>
+  <i
+    className="sc-ifAKCX eQYFnI"
+  >
+    fingerprint
+  </i>
+</div>
+`;
+
+exports[`Storyshots Button With Icon 1`] = `
+<div
+  className="sc-htpNat fzzpiM"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  style={
+    Object {
+      "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+      "transform": "translateY(0px)",
+    }
+  }
+>
+  <i
+    className="sc-ifAKCX eQYFnI"
+  >
+    fingerprint
+  </i>
+</div>
+`;
+
+exports[`Storyshots Card Default 1`] = `
+<div
+  className="sc-EHOje iCXQpB"
+  style={
+    Object {
+      "margin": "0rem 1rem 1rem 1rem",
+    }
+  }
+>
+  <div
+    className="sc-bZQynM iQiZYL"
+  >
+    <div
+      className="sc-dnqmqq gxyUiT"
+    >
+      12X
+    </div>
+  </div>
+  <div
+    className="sc-htoDjs kcZHVL"
+  >
+    <div
+      className="sc-iwsKbI jzKbeF"
+    >
+      20:12
+    </div>
+    <div
+      className="sc-gZMcBi iWdOsy"
+    >
+      Towards leamington
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Card With Image 1`] = `
+<div
+  className="sc-EHOje iCXQpB"
+  style={
+    Object {
+      "margin": "0rem 1rem 1rem 1rem",
+    }
+  }
+>
+  <div
+    className="sc-bZQynM iQiZYL"
+  >
+    <img
+      className="sc-gzVnrw fBGXLH"
+      src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
+    />
+  </div>
+  <div
+    className="sc-htoDjs kcZHVL"
+  >
+    <div
+      className="sc-iwsKbI jzKbeF"
+    >
+      Psychademics
+    </div>
+    <div
+      className="sc-gZMcBi iWdOsy"
+    >
+      20:00 - 21:00
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Card With Long Text 1`] = `
+<div
+  className="sc-EHOje iCXQpB"
+  style={
+    Object {
+      "margin": "0rem 1rem 1rem 1rem",
+    }
+  }
+>
+  <div
+    className="sc-bZQynM iQiZYL"
+  >
+    <img
+      className="sc-gzVnrw fBGXLH"
+      src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
+    />
+  </div>
+  <div
+    className="sc-htoDjs kcZHVL"
+  >
+    <div
+      className="sc-iwsKbI jzKbeF"
+    >
+      Feels Like We Only Go Backwards (Special Edition)
+    </div>
+    <div
+      className="sc-gZMcBi iWdOsy"
+    >
+      Tame Impala
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Headline Default 1`] = `
+<div
+  className="sc-gqjmRU bpDAjE"
+>
+  Big Important Text
+  <hr />
+</div>
+`;
+
+exports[`Storyshots Loader Default 1`] = `
+<div
+  className="sc-bdVaJa bNlOCv"
+>
+  <div
+    className="sc-bwzfXH TkBhx"
+    size={1}
+  />
+  <div
+    className="sc-bwzfXH bJjpPE"
+    size={1}
+  />
+  <div
+    className="sc-bwzfXH ewJSIv"
+    size={1}
+  />
+</div>
+`;
+
+exports[`Storyshots TextInput Default 1`] = `
+<div
+  className="sc-VigVT lolsgd"
+>
+  <input
+    className="sc-jTzLTM hhZlSG"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Type Here"
+    type="text"
+    value=""
+  />
+  <div
+    className="sc-fjdhpX jjvfjG"
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  />
+</div>
+`;

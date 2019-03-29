@@ -1,8 +1,482 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Button Default 1`] = `
+exports[`Storyshots Composite/CardList Default 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU bpDAjE"
+  >
+    Default
+    <hr />
+  </div>
+  <div
+    className="sc-fjdhpX fzTUIl"
+    wrap={false}
+  >
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje eDefHi"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM dKkRuJ"
+        >
+          <div
+            className="sc-dnqmqq bYgTad"
+          >
+            12X
+          </div>
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            20:12
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            Towards leamington
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje eDefHi"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM dKkRuJ"
+        >
+          <img
+            className="sc-gzVnrw dlzYWP"
+            src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            Psychademics
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            20:00 - 21:00
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje eDefHi"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM dKkRuJ"
+        >
+          <img
+            className="sc-gzVnrw dlzYWP"
+            src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            Feels Like We Only Go Backwards (Special Edition)
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            Tame Impala
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Composite/CardList Empty 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU bpDAjE"
+  >
+    Empty
+    <hr />
+  </div>
+  <div
+    className="sc-VigVT cxTBom"
+  >
+    <div
+      className="sc-jTzLTM jxxEck"
+    >
+      Nothing To Show
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Composite/CardList Loading 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU bpDAjE"
+  >
+    Loading
+    <hr />
+  </div>
+  <div
+    className="sc-VigVT cxTBom"
+  >
+    <div
+      className="sc-bdVaJa bNlOCv"
+    >
+      <div
+        className="sc-bwzfXH TkBhx"
+        size={1}
+      />
+      <div
+        className="sc-bwzfXH bJjpPE"
+        size={1}
+      />
+      <div
+        className="sc-bwzfXH ewJSIv"
+        size={1}
+      />
+    </div>
+  </div>
+  <div
+    className="sc-fjdhpX fzTUIl"
+  />
+</div>
+`;
+
+exports[`Storyshots Composite/CardList Slim 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU bpDAjE"
+  >
+    Slim
+    <hr />
+  </div>
+  <div
+    className="sc-fjdhpX fzTUIl"
+  >
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje ekSoZY"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM kAjfNX"
+        >
+          <div
+            className="sc-dnqmqq kCsRWI"
+          >
+            U1
+          </div>
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            20:25
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            Towards Coventry
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje ekSoZY"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM kAjfNX"
+        >
+          <img
+            className="sc-gzVnrw dlzYWP"
+            src="https://media.radio.warwick.ac.uk/shows/5163.large.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            ReggaetÓN
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            19:00 - 20:00
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje ekSoZY"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM kAjfNX"
+        >
+          <img
+            className="sc-gzVnrw dlzYWP"
+            src="http://www.brooklynvegan.com/files/2019/03/tame-impala-patience.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            Patience
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            Tame Impala
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Composite/CardList Wrapped 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU bpDAjE"
+  >
+    Wrapped
+    <hr />
+  </div>
+  <div
+    className="sc-fjdhpX fyFBrl"
+    wrap={true}
+  >
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje eDefHi"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM dKkRuJ"
+        >
+          <div
+            className="sc-dnqmqq bYgTad"
+          >
+            12X
+          </div>
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            21:24
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            Towards Warwick Gates
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje eDefHi"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM dKkRuJ"
+        >
+          <img
+            className="sc-gzVnrw dlzYWP"
+            src="https://media.radio.warwick.ac.uk/shows/5206.large.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            SESH GREMLINS
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            21:00 - 22:00
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje eDefHi"
+        style={
+          Object {
+            "margin": "0rem 1rem 1rem 1rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM dKkRuJ"
+        >
+          <img
+            className="sc-gzVnrw dlzYWP"
+            src="https://lastfm-img2.akamaized.net/i/u/770x0/89e66477f71594ea32b0fe7d888360b1.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dcGnxj"
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            Fading
+          </div>
+          <div
+            className="sc-gZMcBi iWdOsy"
+          >
+            Toro Y Moi
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Simple/Button Default 1`] = `
 <div
   className="sc-htpNat fzzpiM"
+  disabled={false}
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
@@ -23,7 +497,7 @@ exports[`Storyshots Button Default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Button Disabled 1`] = `
+exports[`Storyshots Simple/Button Disabled 1`] = `
 <div
   className="sc-htpNat hPitJA"
   disabled={true}
@@ -47,7 +521,7 @@ exports[`Storyshots Button Disabled 1`] = `
 </div>
 `;
 
-exports[`Storyshots Button Loading 1`] = `
+exports[`Storyshots Simple/Button Loading 1`] = `
 <div
   className="sc-htpNat fzzpiM"
   onClick={null}
@@ -81,7 +555,7 @@ exports[`Storyshots Button Loading 1`] = `
 </div>
 `;
 
-exports[`Storyshots Button With Icon & Text 1`] = `
+exports[`Storyshots Simple/Button With Icon & Text 1`] = `
 <div
   className="sc-htpNat fzzpiM"
   onClick={[Function]}
@@ -109,7 +583,7 @@ exports[`Storyshots Button With Icon & Text 1`] = `
 </div>
 `;
 
-exports[`Storyshots Button With Icon 1`] = `
+exports[`Storyshots Simple/Button With Icon 1`] = `
 <div
   className="sc-htpNat fzzpiM"
   onClick={[Function]}
@@ -132,110 +606,210 @@ exports[`Storyshots Button With Icon 1`] = `
 </div>
 `;
 
-exports[`Storyshots Card Default 1`] = `
+exports[`Storyshots Simple/Card Default 1`] = `
 <div
-  className="sc-EHOje iCXQpB"
   style={
     Object {
-      "margin": "0rem 1rem 1rem 1rem",
+      "marginTop": "1rem",
     }
   }
 >
   <div
-    className="sc-bZQynM iQiZYL"
+    className="sc-EHOje eDefHi"
+    style={
+      Object {
+        "margin": "0rem 1rem 1rem 1rem",
+      }
+    }
   >
     <div
-      className="sc-dnqmqq gxyUiT"
+      className="sc-bZQynM dKkRuJ"
     >
-      12X
-    </div>
-  </div>
-  <div
-    className="sc-htoDjs kcZHVL"
-  >
-    <div
-      className="sc-iwsKbI jzKbeF"
-    >
-      20:12
+      <div
+        className="sc-dnqmqq bYgTad"
+      >
+        12X
+      </div>
     </div>
     <div
-      className="sc-gZMcBi iWdOsy"
+      className="sc-htoDjs dcGnxj"
     >
-      Towards leamington
+      <div
+        className="sc-iwsKbI jzKbeF"
+      >
+        20:12
+      </div>
+      <div
+        className="sc-gZMcBi iWdOsy"
+      >
+        Towards leamington
+      </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`Storyshots Card With Image 1`] = `
+exports[`Storyshots Simple/Card No Hero 1`] = `
 <div
-  className="sc-EHOje iCXQpB"
   style={
     Object {
-      "margin": "0rem 1rem 1rem 1rem",
+      "marginTop": "1rem",
     }
   }
 >
   <div
-    className="sc-bZQynM iQiZYL"
-  >
-    <img
-      className="sc-gzVnrw fBGXLH"
-      src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
-    />
-  </div>
-  <div
-    className="sc-htoDjs kcZHVL"
+    className="sc-EHOje eDefHi"
+    style={
+      Object {
+        "margin": "0rem 1rem 1rem 1rem",
+      }
+    }
   >
     <div
-      className="sc-iwsKbI jzKbeF"
+      className="sc-htoDjs dcGnxj"
     >
-      Psychademics
-    </div>
-    <div
-      className="sc-gZMcBi iWdOsy"
-    >
-      20:00 - 21:00
+      <div
+        className="sc-iwsKbI jzKbeF"
+      >
+        Title
+      </div>
+      <div
+        className="sc-gZMcBi iWdOsy"
+      >
+        Subtitle
+      </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`Storyshots Card With Long Text 1`] = `
+exports[`Storyshots Simple/Card Slim 1`] = `
 <div
-  className="sc-EHOje iCXQpB"
   style={
     Object {
-      "margin": "0rem 1rem 1rem 1rem",
+      "marginTop": "1rem",
     }
   }
 >
   <div
-    className="sc-bZQynM iQiZYL"
-  >
-    <img
-      className="sc-gzVnrw fBGXLH"
-      src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
-    />
-  </div>
-  <div
-    className="sc-htoDjs kcZHVL"
+    className="sc-EHOje ekSoZY"
+    style={
+      Object {
+        "margin": "0rem 1rem 1rem 1rem",
+      }
+    }
   >
     <div
-      className="sc-iwsKbI jzKbeF"
+      className="sc-bZQynM kAjfNX"
     >
-      Feels Like We Only Go Backwards (Special Edition)
+      <img
+        className="sc-gzVnrw dlzYWP"
+        src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
+      />
     </div>
     <div
-      className="sc-gZMcBi iWdOsy"
+      className="sc-htoDjs dcGnxj"
     >
-      Tame Impala
+      <div
+        className="sc-iwsKbI jzKbeF"
+      >
+        Psychademics
+      </div>
+      <div
+        className="sc-gZMcBi iWdOsy"
+      >
+        20:00 - 21:00
+      </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`Storyshots Headline Default 1`] = `
+exports[`Storyshots Simple/Card With Image 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "1rem",
+    }
+  }
+>
+  <div
+    className="sc-EHOje eDefHi"
+    style={
+      Object {
+        "margin": "0rem 1rem 1rem 1rem",
+      }
+    }
+  >
+    <div
+      className="sc-bZQynM dKkRuJ"
+    >
+      <img
+        className="sc-gzVnrw dlzYWP"
+        src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
+      />
+    </div>
+    <div
+      className="sc-htoDjs dcGnxj"
+    >
+      <div
+        className="sc-iwsKbI jzKbeF"
+      >
+        Psychademics
+      </div>
+      <div
+        className="sc-gZMcBi iWdOsy"
+      >
+        20:00 - 21:00
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Simple/Card With Long Text 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "1rem",
+    }
+  }
+>
+  <div
+    className="sc-EHOje eDefHi"
+    style={
+      Object {
+        "margin": "0rem 1rem 1rem 1rem",
+      }
+    }
+  >
+    <div
+      className="sc-bZQynM dKkRuJ"
+    >
+      <img
+        className="sc-gzVnrw dlzYWP"
+        src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
+      />
+    </div>
+    <div
+      className="sc-htoDjs dcGnxj"
+    >
+      <div
+        className="sc-iwsKbI jzKbeF"
+      >
+        Feels Like We Only Go Backwards (Special Edition)
+      </div>
+      <div
+        className="sc-gZMcBi iWdOsy"
+      >
+        Tame Impala
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Simple/Headline Default 1`] = `
 <div
   className="sc-gqjmRU bpDAjE"
 >
@@ -244,7 +818,33 @@ exports[`Storyshots Headline Default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Loader Default 1`] = `
+exports[`Storyshots Simple/ImageCycle Default 1`] = `
+<div
+  className="sc-jzJRlG lkgTUP"
+  style={
+    Object {
+      "backgroundImage": "url('https://dev.radio.warwick.ac.uk/status/images/main.jpg?force_fetch=')",
+      "opacity": 0,
+      "transform": "scale(0.8)",
+    }
+  }
+/>
+`;
+
+exports[`Storyshots Simple/ImageCycle No Animation 1`] = `
+<div
+  className="sc-jzJRlG lkgTUP"
+  style={
+    Object {
+      "backgroundImage": "url('https://webcams.radio.warwick.ac.uk/st1-dj.jpg?force_fetch=1553874167717')",
+      "opacity": 1,
+      "transform": "scale(1)",
+    }
+  }
+/>
+`;
+
+exports[`Storyshots Simple/Loader Default 1`] = `
 <div
   className="sc-bdVaJa bNlOCv"
 >
@@ -263,12 +863,68 @@ exports[`Storyshots Loader Default 1`] = `
 </div>
 `;
 
-exports[`Storyshots TextInput Default 1`] = `
+exports[`Storyshots Simple/Table Default 1`] = `
+<table
+  className="sc-cSHVUG kJGmYB"
+>
+  <tr>
+    <th
+      className="sc-kAzzGY rTDDS"
+    />
+    <th
+      className="sc-kAzzGY rTDDS"
+    >
+      Studio 2
+    </th>
+    <th
+      className="sc-kAzzGY rTDDS"
+    >
+      Tascam
+    </th>
+  </tr>
+  <tr>
+    <td
+      className="sc-chPdSV cEAiCH"
+    >
+      08:00
+    </td>
+    <td
+      className="sc-chPdSV cEAiCH"
+    >
+      Will Hall
+    </td>
+    <td
+      className="sc-chPdSV cEAiCH"
+    >
+      -
+    </td>
+  </tr>
+  <tr>
+    <td
+      className="sc-chPdSV cEAiCH"
+    >
+      09:00
+    </td>
+    <td
+      className="sc-chPdSV cEAiCH"
+    >
+      Barnany Merrill
+    </td>
+    <td
+      className="sc-chPdSV cEAiCH"
+    >
+      -
+    </td>
+  </tr>
+</table>
+`;
+
+exports[`Storyshots Simple/TextInput Default 1`] = `
 <div
-  className="sc-VigVT lolsgd"
+  className="sc-kgoBCf deKKli"
 >
   <input
-    className="sc-jTzLTM hhZlSG"
+    className="sc-kGXeez iWeVHX"
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
@@ -277,7 +933,7 @@ exports[`Storyshots TextInput Default 1`] = `
     value=""
   />
   <div
-    className="sc-fjdhpX jjvfjG"
+    className="sc-kpOJdX hXCvuZ"
     style={
       Object {
         "width": "0%",

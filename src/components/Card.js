@@ -7,17 +7,22 @@ import PropTypes from "prop-types";
  *
  * @param {object} data - An object which defines the data to display in the card.
  */
-const Card = ({ data }) => {
+const Card = ({ data, slim }) => {
   return (
     <Container
       style={{
         margin: "0rem 1rem 1rem 1rem"
       }}
+      slim={slim}
     >
-      <Hero>
-        {data.imageURL ? <HeroImage src={data.imageURL} /> : null}
-        {data.tag ? <HeroTag>{data.tag.substring(0, 3)}</HeroTag> : null}
-      </Hero>
+      {!data.imageURL && !data.tag ? null : (
+        <Hero slim={slim}>
+          {data.imageURL ? <HeroImage src={data.imageURL} /> : null}
+          {data.tag ? (
+            <HeroTag slim={slim}>{data.tag.substring(0, 3)}</HeroTag>
+          ) : null}
+        </Hero>
+      )}
       <Text>
         <Title>{data.title}</Title>
         <Subtitle>{data.subtitle}</Subtitle>
@@ -27,6 +32,7 @@ const Card = ({ data }) => {
 };
 
 Card.propTypes = {
+  slim: PropTypes.bool,
   data: PropTypes.shape({
     tag: PropTypes.string,
     imageURL: PropTypes.string,
@@ -43,14 +49,13 @@ export default Card;
  * A min-width ensures readability by enforcing a minimum text size.
  */
 const Container = styled.div`
-  height: 8rem;
-  min-width: 8rem;
+  height: ${props => (props.slim ? "6rem" : "8rem")};
+  min-width: ${props => (props.slim ? "6rem" : "8rem")};
 
   background-color: rgb(61, 61, 61);
   border-radius: 0.6rem;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
 
-  line-height: 1.2;
   font-family: "Lato", sans-serif;
   color: white;
 
@@ -65,7 +70,7 @@ const Container = styled.div`
  * Uses CSS Flexbox to position the tag text perfectly central to the parent.
  */
 const Hero = styled.div`
-  width: 8em;
+  width: ${props => (props.slim ? "6rem" : "8rem")};
   height: 100%;
 
   background-color: #d8b222;
@@ -92,7 +97,7 @@ const HeroImage = styled.img`
  * Uses CSS text-overflow anf CSS Flexbox to allow text truncation.
  */
 const Text = styled.div`
-  padding-left: 1em;
+  padding: 0em 1em;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -108,7 +113,7 @@ const Text = styled.div`
  * Style of text elements.
  */
 const HeroTag = styled.div`
-  font-size: 4em;
+  font-size: ${props => (props.slim ? "3rem" : "4rem")};
   position: absolute;
 `;
 

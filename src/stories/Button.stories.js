@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
 import Button from "../components/Button";
 
@@ -8,7 +9,9 @@ import Button from "../components/Button";
  * An active button with some text.
  */
 export const buttonDefault = {
-  value: "Click Me!"
+  value: "Click Me!",
+  loading: false,
+  disabled: false
 };
 
 /**
@@ -40,9 +43,15 @@ export const actions = {
   handleClick: action("handleClick")
 };
 
-storiesOf("Button", module)
+storiesOf("Simple/Button", module)
+  .addDecorator(withKnobs)
   .add("Default", () => (
-    <Button value={buttonDefault.value} handleClick={actions.handleClick} />
+    <Button
+      value={text("value", buttonDefault.value)}
+      loading={boolean("loading", buttonDefault.loading)}
+      disabled={boolean("disabled", buttonDefault.disabled)}
+      handleClick={actions.handleClick}
+    />
   ))
   .add("Loading", () => (
     <Button loading={buttonLoading.loading} handleClick={actions.handleClick} />

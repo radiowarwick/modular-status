@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { withKnobs, number } from "@storybook/addon-knobs";
 
 import Loader from "../components/Loader";
 
@@ -10,4 +11,6 @@ export const loader = {
   size: 1
 };
 
-storiesOf("Loader", module).add("Default", () => <Loader size={loader.size} />);
+storiesOf("Simple/Loader", module)
+  .addDecorator(withKnobs)
+  .add("Default", () => <Loader size={number("size", loader.size)} />);

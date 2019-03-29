@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { withKnobs, object } from "@storybook/addon-knobs";
 
 import Card from "../components/Card";
 
@@ -7,9 +8,10 @@ import Card from "../components/Card";
  * A card with a tag only.
  */
 const cardDefault = {
-  key: "bus_1",
+  key: "bs_0",
   data: {
     tag: "12X",
+    imageURL: "",
     title: "20:12",
     subtitle: "Towards leamington"
   }
@@ -19,7 +21,7 @@ const cardDefault = {
  * A card with an image only.
  */
 const cardImage = {
-  key: "oa_1",
+  key: "oa_0",
   data: {
     imageURL: "https://media.radio.warwick.ac.uk/shows/5010.large.jpg",
     title: "Psychademics",
@@ -31,7 +33,7 @@ const cardImage = {
  * A card with a lot of text.
  */
 const cardLong = {
-  key: "lp_1",
+  key: "lp_0",
   data: {
     imageURL:
       "https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg",
@@ -40,9 +42,12 @@ const cardLong = {
   }
 };
 
-storiesOf("Card", module)
+storiesOf("Simple/Card", module)
+  .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ marginTop: "1rem" }}>{story()}</div>)
-  .add("Default", () => <Card key={cardDefault.key} data={cardDefault.data} />)
+  .add("Default", () => (
+    <Card key={cardDefault.key} data={object("data", cardDefault.data)} />
+  ))
   .add("With Image", () => <Card key={cardImage.key} data={cardImage.data} />)
   .add("With Long Text", () => (
     <Card key={cardLong.key} data={cardLong.data} />

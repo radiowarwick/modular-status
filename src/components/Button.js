@@ -11,6 +11,7 @@ import Loader from "./Loader";
  * @param {string} value - Text value of the button.
  * @param {string} icon - material icon string for the button.
  * @param {bool} disabled - switch to set button to disabled mode. Does not call handleClick.
+ * @param {bool} loading - defines wether the button is loading or not.
  */
 const Button = ({ handleClick, value, icon, loading, disabled }) => {
   /**

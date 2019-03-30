@@ -10,7 +10,6 @@ import CardList from "../components/CardList";
 export const cardListDefault = {
   title: "Default",
   isSlim: false,
-  isWrapped: false,
   cards: [
     {
       id: "bs_0",
@@ -102,7 +101,6 @@ storiesOf("Composite/CardList", module)
       title={text("title", cardListDefault.title)}
       cards={cardListDefault.cards}
       isSlim={cardListDefault.isSlim}
-      isWrapped={boolean("isWrapped", cardListDefault.isWrapped)}
       loading={boolean("loading", cardListDefault.loading)}
     />
   ))

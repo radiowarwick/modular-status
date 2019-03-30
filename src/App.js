@@ -5,11 +5,11 @@ const App = () => {
     <div>
       <h2>This App is a Work In Progress.</h2>
       <p>
-        To view the{" "}
-        <a href="https://www.learnstorybook.com/react/en/get-started">
-          StoryBook
+        To view the Storybook, please
+        <a href="https://willthevideoman.github.io/raw-modular-status/">
+          click here
         </a>
-        , please refer to installation instructions.
+        .
       </p>
     </div>
   );

@@ -43,7 +43,7 @@ const TableContainer = styled.table`
   }
 `;
 const Heading = styled.th`
-  font-family: var(--font-heading)
+  font-family: var(--font-heading);
   font-size: 1.25rem;
 `;
 

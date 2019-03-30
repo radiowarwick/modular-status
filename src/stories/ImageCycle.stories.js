@@ -56,6 +56,7 @@ storiesOf("Simple/ImageCycle", module)
       images={object("images", imageCycleDefault.images)}
     />
   ))
+
   .add("No Animation", () => (
     <ImageCycle
       interval={imageCycleNoAnim.interval}

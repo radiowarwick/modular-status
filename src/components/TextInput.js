@@ -48,7 +48,7 @@ const Container = styled.div`
   border-radius: 0.4rem;
   overflow: hidden;
 
-  background-color: rgb(61, 61, 61);
+  background-color: var(--primary-colour);
 `;
 
 const StyledInput = styled.input`
@@ -61,10 +61,10 @@ const StyledInput = styled.input`
 
   color: white;
   font-size: 1.25rem;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-main);
 `;
 
 const ActionBar = styled(animated.div)`
-  height:2px
-  background: #d8b222;
+  height: 2px;
+  background-color: var(--accent-colour);
 `;

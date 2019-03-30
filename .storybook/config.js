@@ -7,14 +7,23 @@ import requireContext from "require-context.macro";
  * Define some global styles.
  */
 const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+  :root {
+    --primary-colour: rgb(61, 61, 61);
+    --secondary-colour: rgb(255,255,255);
+    --accent-colour: rgb(216,178,34);
+    --background-colour: rgb(43,43,43);
+
+    --font-heading: "Lato", sans-serif;
+    --font-main: "Raleway", sans-serif;
+  }
   body {
     margin: 0;
     padding: 0;
     overflow: hidden;
     box-sizing:border-box;
   }
-  @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 `;
 
 /**

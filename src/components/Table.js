@@ -32,21 +32,21 @@ export default Table;
 
 const TableContainer = styled.table`
   border-collapse: collapse;
-  color: white;
+  color: var(--secondary-colour);
   margin: 1rem;
 
   th,
   td {
-    border: 1px solid #d8b222;
+    border: 1px solid var(--accent-colour);
     padding: 1rem;
     text-align: center;
   }
 `;
 const Heading = styled.th`
-  font-family: "Lato", sans-serif;
+  font-family: var(--font-heading)
   font-size: 1.25rem;
 `;
 
 const Data = styled.td`
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-main);
 `;

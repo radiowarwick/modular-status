@@ -78,43 +78,6 @@ export const cardListSlim = {
 };
 
 /**
- * A wrapped list of cards. Many different types of card appear here.
- */
-export const cardListWrapped = {
-  title: "Wrapped",
-  isSlim: false,
-  isWrapped: true,
-  cards: [
-    {
-      id: "bs_2",
-      data: {
-        tag: "12X",
-        title: "21:24",
-        subtitle: "Towards Warwick Gates"
-      }
-    },
-    {
-      id: "oa_2",
-      data: {
-        imageURL: "https://media.radio.warwick.ac.uk/shows/5206.large.jpg",
-        title: "SESH GREMLINS",
-        subtitle: "21:00 - 22:00"
-      }
-    },
-    {
-      id: "lp_2",
-      data: {
-        imageURL:
-          "https://lastfm-img2.akamaized.net/i/u/770x0/89e66477f71594ea32b0fe7d888360b1.jpg",
-        title: "Fading",
-        subtitle: "Toro Y Moi"
-      }
-    }
-  ],
-  loading: false
-};
-
-/**
  * A card list which is loading.
  */
 export const cardListLoading = {
@@ -149,15 +112,6 @@ storiesOf("Composite/CardList", module)
       cards={cardListSlim.cards}
       isSlim={cardListSlim.isSlim}
       loading={cardListSlim.loading}
-    />
-  ))
-  .add("Wrapped", () => (
-    <CardList
-      title={cardListWrapped.title}
-      cards={cardListWrapped.cards}
-      isSlim={cardListWrapped.isSlim}
-      isWrapped={cardListWrapped.isWrapped}
-      loading={cardListWrapped.loading}
     />
   ))
   .add("Loading", () => (

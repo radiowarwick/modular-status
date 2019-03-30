@@ -29,11 +29,11 @@ export default Headline;
 const Container = styled.div`
   margin: ${props => (props.margin ? props.margin : "0")};
 
-  font-family: "Lato", sans-serif;
-  color: white;
+  font-family: var(--font-heading);
+  color: var(--secondary-colour);
   font-size: 2em;
 
-  background-color: rgb(43, 43, 43);
+  background-color: var(--background-colour);
 
   hr {
     margin-top: 0.2em;

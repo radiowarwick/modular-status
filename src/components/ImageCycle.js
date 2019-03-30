@@ -14,10 +14,8 @@ import { useInterval } from "../useInterval";
  */
 const ImageCycle = ({ interval, animate, forceFetch, images }) => {
   /**
-   * Set the force-fetch string to be the current date in milliseconds.
    * Define index to hold a reference to the currently displayed image.
    */
-  const ffString = forceFetch ? Date.now() : "";
   const [index, setIndex] = useState(0);
 
   /**
@@ -44,7 +42,8 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
       key={key}
       style={{
         ...props,
-        backgroundImage: `url('${item.url + "?force_fetch=" + ffString}')`
+        backgroundImage: `url('${item.url +
+          (forceFetch ? "?force_fetch=" + Date.now() : "")}')`
       }}
     />
   ));

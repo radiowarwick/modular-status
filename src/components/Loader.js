@@ -49,7 +49,7 @@ const Dot = styled.div`
   width: ${props => (props.size ? props.size : 0)}em;
   margin: 0 ${props => (props.size ? props.size / 3 : 0)}em;
 
-  background-color: #d8b222;
+  background-color: var(--accent-colour);
   border-radius: 100%;
 
   animation: bounce 1.4s infinite ease-in-out both;

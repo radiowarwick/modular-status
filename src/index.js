@@ -4,6 +4,17 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+  :root {
+    --primary-colour: rgb(61, 61, 61);
+    --seconday-colour: rgb(255,255,255);
+    --accent-colour: rgb(216,178,34);
+    --background-colour: rgb(43,43,43);
+
+    --font-heading: "Lato", sans-serif;
+    --font-main: "Raleway", sans-serif;
+  }
   body {
     margin: 0;
     padding: 0;
@@ -11,8 +22,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing:border-box;
     background-color: rgb(43, 43, 43);
   }
-  @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 `;
 
 ReactDOM.render(

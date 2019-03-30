@@ -9,12 +9,7 @@ import PropTypes from "prop-types";
  */
 const Card = ({ data, slim }) => {
   return (
-    <Container
-      style={{
-        margin: "0rem 1rem 1rem 1rem"
-      }}
-      slim={slim}
-    >
+    <Container slim={slim}>
       {!data.imageURL && !data.tag ? null : (
         <Hero slim={slim}>
           {data.imageURL ? <HeroImage src={data.imageURL} /> : null}
@@ -23,7 +18,7 @@ const Card = ({ data, slim }) => {
           ) : null}
         </Hero>
       )}
-      <Text>
+      <Text slim={slim}>
         <Title>{data.title}</Title>
         <Subtitle>{data.subtitle}</Subtitle>
       </Text>
@@ -46,23 +41,24 @@ export default Card;
 /**
  * Container to hold hero and text elements.
  * Uses CSS flexbox to position children as a dynamic row.
- * A min-width ensures readability by enforcing a minimum text size.
  */
 const Container = styled.div`
   height: ${props => (props.slim ? "6rem" : "8rem")};
   min-width: ${props => (props.slim ? "6rem" : "8rem")};
+  margin: 0rem 1rem 1rem 1rem;
 
-  background-color: rgb(61, 61, 61);
+  background-color: var(--primary-colour);
   border-radius: 0.6rem;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
 
-  font-family: "Lato", sans-serif;
-  color: white;
+  font-family: var(--font-heading);
+  color: var(--secondary-colour);
 
   display: flex;
   align-items: center;
 
   user-select: none;
+  overflow: hidden;
 `;
 
 /**
@@ -73,8 +69,7 @@ const Hero = styled.div`
   width: ${props => (props.slim ? "6rem" : "8rem")};
   height: 100%;
 
-  background-color: #d8b222;
-  border-radius: 0.6em 0em 0em 0.6em;
+  background-color: var(--accent-colour);
 
   display: flex;
   flex-shrink: 0;
@@ -89,7 +84,6 @@ const HeroImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.6em 0em 0em 0.6em;
 `;
 
 /**
@@ -97,13 +91,13 @@ const HeroImage = styled.img`
  * Uses CSS text-overflow anf CSS Flexbox to allow text truncation.
  */
 const Text = styled.div`
-  padding: 0em 1em;
+  padding-left: 1em;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  line-height: ${props => (props.slim ? "1" : "1.25")};
 
   div {
-    overflow: hidden;
     white-space: nowrap;
     text-overflow: clip;
   }
@@ -122,7 +116,7 @@ const Title = styled.div`
 `;
 
 const Subtitle = styled.div`
-  font-family: "Raleway", sans-serif;
-  color: #d8b222;
+  font-family: var(--font-main);
+  color: var(--accent-colour);
   font-size: 2em;
 `;

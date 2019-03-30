@@ -74,11 +74,13 @@ const Container = styled(animated.div)`
   height:1.5rem;
   margin: 0.7rem;
   padding: 0.45rem 0.9rem;
-  background-color: rgb(61, 61, 61);
+  background-color: var(--primary-colour);
 
   border-radius: 0.4rem;
   border: ${props =>
-    props.disabled ? "0.1rem solid grey" : "0.1rem solid #d8b222"} 
+    props.disabled
+      ? "0.1rem solid grey;"
+      : "0.1rem solid var(--accent-colour);"} 
 
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")}
   color: ${props => (props.disabled ? "grey" : "white")};
@@ -91,7 +93,7 @@ const Container = styled(animated.div)`
 `;
 
 const Text = styled.div`
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-main);
   font-size: 1.25em;
 `;
 

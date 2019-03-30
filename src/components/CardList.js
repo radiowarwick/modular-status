@@ -14,9 +14,8 @@ import Loader from "./Loader";
  * @param {array} cards - An array of cards to print.
  * @param {bool} loading - Defines if the card list is loading.
  * @param {bool} isSlim - Defines if the cards should be slim.
- * @param {bool} isWrapped - Defines is the cards should wrap.
  */
-const CardList = ({ title, cards, loading, isSlim, isWrapped }) => {
+const CardList = ({ title, cards, loading, isSlim }) => {
   /**
    * Define the transitional animations which will play of mount / unmount.
    */
@@ -51,13 +50,13 @@ const CardList = ({ title, cards, loading, isSlim, isWrapped }) => {
           <Empty>Nothing To Show</Empty>
         </InfoContainer>
       ) : (
-        <CardContainer wrap={isWrapped}>
+        <div>
           {transitions.map(({ item, key, props }) => (
             <animated.div key={key} style={props}>
               <Card key={item.id} data={item.data} slim={isSlim} />
             </animated.div>
           ))}
-        </CardContainer>
+        </div>
       )}
     </div>
   );
@@ -67,8 +66,7 @@ CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-  isSlim: PropTypes.bool,
-  isWrapped: PropTypes.bool
+  isSlim: PropTypes.bool
 };
 
 export default CardList;
@@ -83,16 +81,8 @@ const InfoContainer = styled.div`
 `;
 
 const Empty = styled.div`
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-main);
   color: rgba(125, 125, 125, 0.75);
   font-size: 2em;
   font-style: italic;
-`;
-
-/**
- * If wrapping is true, then apply wrapping styles.
- */
-const CardContainer = styled.div`
-  display: ${props => (props.wrap ? "flex" : "block")}
-  flex-wrap: ${props => (props.wrap ? "wrap" : "nowrap")}
 `;

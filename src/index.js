@@ -19,8 +19,10 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    box-sizing:border-box;
     background-color: rgb(43, 43, 43);
+  }
+  * {
+    box-sizing:border-box;
   }
 `;
 

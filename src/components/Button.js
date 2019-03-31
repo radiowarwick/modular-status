@@ -47,12 +47,19 @@ const Button = ({ handleClick, value, icon, loading, disabled }) => {
       onMouseLeave={setDown}
       onMouseUp={setUp}
       onMouseDown={setDown}
+      onTouchStart={setUp}
+      onTouchEnd={setDown}
       onClick={disabled || loading ? null : handleClick}
       disabled={disabled}
     >
-      {loading ? <Loader size={0.5} /> : null}
-      {value ? <Text>{value}</Text> : null}
-      {icon ? <Icon>{icon}</Icon> : null}
+      {loading ? (
+        <Loader size={0.5} />
+      ) : (
+        <div>
+          {value ? <Text>{value}</Text> : null}
+          {icon ? <Icon>{icon}</Icon> : null}
+        </div>
+      )}
     </Container>
   );
 };
@@ -73,7 +80,7 @@ export default Button;
 const Container = styled(animated.div)`
   height:1.5rem;
   margin: 0.7rem;
-  padding: 0.45rem 0.9rem;
+  padding: 1.1rem 0.8rem;
   background-color: var(--primary-colour);
 
   border-radius: 0.4rem;

@@ -2,6 +2,11 @@ import React from "react";
 import { configure, addDecorator, addParameters } from "@storybook/react";
 import { createGlobalStyle } from "styled-components";
 import requireContext from "require-context.macro";
+import { setConsoleOptions } from "@storybook/addon-console";
+
+setConsoleOptions({
+  panelExclude: []
+});
 
 /**
  * Define some global styles.
@@ -18,10 +23,12 @@ const GlobalStyles = createGlobalStyle`
     --font-heading: "Lato", sans-serif;
     --font-main: "Raleway", sans-serif;
   }
-  body {
+  body, html {
     margin: 0;
     padding: 0;
     overflow: hidden;
+  }
+  * {
     box-sizing:border-box;
   }
 `;

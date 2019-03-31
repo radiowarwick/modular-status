@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean, object } from "@storybook/addon-knobs";
 
 import CardList from "../components/CardList";
 
@@ -9,18 +9,20 @@ import CardList from "../components/CardList";
  */
 export const cardListDefault = {
   title: "Default",
-  isSlim: false,
+  highlighted: false,
   cards: [
     {
       id: "bs_0",
+      slim: false,
       data: {
         tag: "12X",
         title: "20:12",
-        subtitle: "Towards leamington"
+        subtitle: "Towards Leamington"
       }
     },
     {
       id: "oa_0",
+      slim: false,
       data: {
         imageURL: "https://media.radio.warwick.ac.uk/shows/5010.large.jpg",
         title: "Psychademics",
@@ -29,6 +31,7 @@ export const cardListDefault = {
     },
     {
       id: "lp_0",
+      slim: false,
       data: {
         imageURL:
           "https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg",
@@ -36,8 +39,7 @@ export const cardListDefault = {
         subtitle: "Tame Impala"
       }
     }
-  ],
-  loading: false
+  ]
 };
 
 /**
@@ -45,18 +47,20 @@ export const cardListDefault = {
  */
 export const cardListSlim = {
   title: "Slim",
-  isSlim: true,
+  highlighted: false,
   cards: [
     {
       id: "bs_1",
+      slim: true,
       data: {
         tag: "U1",
-        title: "20:25",
+        title: "19:25",
         subtitle: "Towards Coventry"
       }
     },
     {
       id: "oa_1",
+      slim: true,
       data: {
         imageURL: "https://media.radio.warwick.ac.uk/shows/5163.large.jpg",
         title: "ReggaetÓN",
@@ -65,6 +69,7 @@ export const cardListSlim = {
     },
     {
       id: "lp_1",
+      slim: true,
       data: {
         imageURL:
           "http://www.brooklynvegan.com/files/2019/03/tame-impala-patience.jpg",
@@ -72,17 +77,82 @@ export const cardListSlim = {
         subtitle: "Tame Impala"
       }
     }
-  ],
-  loading: false
+  ]
 };
 
 /**
- * A card list which is loading.
+ * A mixed list of cards. Many different types of card appear here.
  */
-export const cardListLoading = {
-  title: "Loading",
-  cards: [],
-  loading: true
+export const cardListMixed = {
+  title: "Mixed",
+  highlighted: false,
+  cards: [
+    {
+      id: "bs_2",
+      slim: false,
+      data: {
+        tag: "12X",
+        title: "17:02",
+        subtitle: "Towards Leamington"
+      }
+    },
+    {
+      id: "oa_2",
+      slim: true,
+      data: {
+        imageURL: "https://media.radio.warwick.ac.uk/shows/5100.large.jpg",
+        title: "The Italian Football Show",
+        subtitle: "17:00 - 18:00"
+      }
+    },
+    {
+      id: "lp_2",
+      slim: true,
+      data: {
+        imageURL: "https://i.ytimg.com/vi/hNJOI2dtDZ4/maxresdefault.jpg",
+        title: "Borderline",
+        subtitle: "Tame Impala"
+      }
+    }
+  ]
+};
+
+/**
+ * A list of cards with a highlighted head. Many different types of card appear here.
+ */
+export const cardListHighlight = {
+  title: "Highlighted",
+  highlighted: true,
+  cards: [
+    {
+      id: "bs_3",
+      slim: false,
+      data: {
+        tag: "12X",
+        title: "11:31",
+        subtitle: "Towards Coventry"
+      }
+    },
+    {
+      id: "oa_3",
+      slim: false,
+      data: {
+        imageURL: "https://media.radio.warwick.ac.uk/shows/5047.large.jpg",
+        title: "The Acoustic Lounge",
+        subtitle: "11:00 - 12:00"
+      }
+    },
+    {
+      id: "lp_3",
+      slim: false,
+      data: {
+        imageURL:
+          "https://images-na.ssl-images-amazon.com/images/I/A1LVEJikmZL._SL1500_.jpg",
+        title: "New Person (Same Old Mistakes)",
+        subtitle: "Tame Impala"
+      }
+    }
+  ]
 };
 
 /**
@@ -90,8 +160,8 @@ export const cardListLoading = {
  */
 export const cardListEmpty = {
   title: "Empty",
-  cards: [],
-  loading: false
+  highlighted: false,
+  cards: []
 };
 
 storiesOf("Composite/CardList", module)
@@ -99,30 +169,36 @@ storiesOf("Composite/CardList", module)
   .add("Default", () => (
     <CardList
       title={text("title", cardListDefault.title)}
-      cards={cardListDefault.cards}
-      isSlim={cardListDefault.isSlim}
-      loading={boolean("loading", cardListDefault.loading)}
+      cards={object("cards", cardListDefault.cards)}
+      highlighted={boolean("highlighted", cardListDefault.highlighted)}
+
     />
   ))
   .add("Slim", () => (
     <CardList
       title={cardListSlim.title}
       cards={cardListSlim.cards}
-      isSlim={cardListSlim.isSlim}
-      loading={cardListSlim.loading}
+      highlighted={cardListSlim.highlighted}
     />
   ))
-  .add("Loading", () => (
+  .add("Mixed", () => (
     <CardList
-      title={cardListLoading.title}
-      cards={cardListLoading.cards}
-      loading={cardListLoading.loading}
+      title={cardListMixed.title}
+      cards={cardListMixed.cards}
+      highlighted={cardListMixed.highlighted}
+    />
+  ))
+  .add("Highlighted", () => (
+    <CardList
+      title={cardListHighlight.title}
+      cards={cardListHighlight.cards}
+      highlighted={cardListHighlight.highlighted}
     />
   ))
   .add("Empty", () => (
     <CardList
       title={cardListEmpty.title}
       cards={cardListEmpty.cards}
-      loading={cardListEmpty.loading}
+      highlighted={cardListEmpty.highlighted}
     />
   ));

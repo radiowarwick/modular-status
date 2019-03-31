@@ -3,15 +3,21 @@
 exports[`Storyshots Composite/CardList Default 1`] = `
 <div>
   <div
-    className="sc-gqjmRU bpDAjE"
+    className="sc-gqjmRU kZidTY"
   >
     Default
     <hr />
   </div>
   <div
-    className="sc-fjdhpX fzTUIl"
-    wrap={false}
-  >
+    className="sc-jTzLTM eeedqI"
+    style={
+      Object {
+        "borderWidth": "0rem",
+        "height": "8.3rem",
+      }
+    }
+  />
+  <div>
     <div
       style={
         Object {
@@ -22,24 +28,39 @@ exports[`Storyshots Composite/CardList Default 1`] = `
       }
     >
       <div
-        className="sc-EHOje eDefHi"
+        className="sc-EHOje byzvOr"
         style={
           Object {
-            "margin": "0rem 1rem 1rem 1rem",
+            "height": "8rem",
           }
         }
       >
         <div
-          className="sc-bZQynM dKkRuJ"
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
         >
           <div
-            className="sc-dnqmqq bYgTad"
+            className="sc-dnqmqq kqTqqP"
+            style={
+              Object {
+                "fontSize": "4rem",
+              }
+            }
           >
             12X
           </div>
         </div>
         <div
-          className="sc-htoDjs dcGnxj"
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
         >
           <div
             className="sc-iwsKbI jzKbeF"
@@ -47,9 +68,9 @@ exports[`Storyshots Composite/CardList Default 1`] = `
             20:12
           </div>
           <div
-            className="sc-gZMcBi iWdOsy"
+            className="sc-gZMcBi ceWbWy"
           >
-            Towards leamington
+            Towards Leamington
           </div>
         </div>
       </div>
@@ -64,23 +85,33 @@ exports[`Storyshots Composite/CardList Default 1`] = `
       }
     >
       <div
-        className="sc-EHOje eDefHi"
+        className="sc-EHOje byzvOr"
         style={
           Object {
-            "margin": "0rem 1rem 1rem 1rem",
+            "height": "8rem",
           }
         }
       >
         <div
-          className="sc-bZQynM dKkRuJ"
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
         >
           <img
-            className="sc-gzVnrw dlzYWP"
+            className="sc-gzVnrw dUtZaE"
             src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
           />
         </div>
         <div
-          className="sc-htoDjs dcGnxj"
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
         >
           <div
             className="sc-iwsKbI jzKbeF"
@@ -88,7 +119,7 @@ exports[`Storyshots Composite/CardList Default 1`] = `
             Psychademics
           </div>
           <div
-            className="sc-gZMcBi iWdOsy"
+            className="sc-gZMcBi ceWbWy"
           >
             20:00 - 21:00
           </div>
@@ -105,23 +136,33 @@ exports[`Storyshots Composite/CardList Default 1`] = `
       }
     >
       <div
-        className="sc-EHOje eDefHi"
+        className="sc-EHOje byzvOr"
         style={
           Object {
-            "margin": "0rem 1rem 1rem 1rem",
+            "height": "8rem",
           }
         }
       >
         <div
-          className="sc-bZQynM dKkRuJ"
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
         >
           <img
-            className="sc-gzVnrw dlzYWP"
+            className="sc-gzVnrw dUtZaE"
             src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
           />
         </div>
         <div
-          className="sc-htoDjs dcGnxj"
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
         >
           <div
             className="sc-iwsKbI jzKbeF"
@@ -129,7 +170,7 @@ exports[`Storyshots Composite/CardList Default 1`] = `
             Feels Like We Only Go Backwards (Special Edition)
           </div>
           <div
-            className="sc-gZMcBi iWdOsy"
+            className="sc-gZMcBi ceWbWy"
           >
             Tame Impala
           </div>
@@ -143,68 +184,48 @@ exports[`Storyshots Composite/CardList Default 1`] = `
 exports[`Storyshots Composite/CardList Empty 1`] = `
 <div>
   <div
-    className="sc-gqjmRU bpDAjE"
+    className="sc-gqjmRU kZidTY"
   >
     Empty
     <hr />
   </div>
   <div
-    className="sc-VigVT cxTBom"
+    className="sc-jTzLTM eeedqI"
+    style={
+      Object {
+        "borderWidth": "0rem",
+        "height": "8.3rem",
+      }
+    }
   >
     <div
-      className="sc-jTzLTM jxxEck"
+      className="sc-VigVT evwndT"
     >
       Nothing To Show
     </div>
   </div>
+  <div />
 </div>
 `;
 
-exports[`Storyshots Composite/CardList Loading 1`] = `
+exports[`Storyshots Composite/CardList Highlighted 1`] = `
 <div>
   <div
-    className="sc-gqjmRU bpDAjE"
+    className="sc-gqjmRU kZidTY"
   >
-    Loading
+    Highlighted
     <hr />
   </div>
   <div
-    className="sc-VigVT cxTBom"
-  >
-    <div
-      className="sc-bdVaJa bNlOCv"
-    >
-      <div
-        className="sc-bwzfXH TkBhx"
-        size={1}
-      />
-      <div
-        className="sc-bwzfXH bJjpPE"
-        size={1}
-      />
-      <div
-        className="sc-bwzfXH ewJSIv"
-        size={1}
-      />
-    </div>
-  </div>
-  <div
-    className="sc-fjdhpX fzTUIl"
+    className="sc-jTzLTM eeedqI"
+    style={
+      Object {
+        "borderWidth": "0.2rem",
+        "height": "8.3rem",
+      }
+    }
   />
-</div>
-`;
-
-exports[`Storyshots Composite/CardList Slim 1`] = `
-<div>
-  <div
-    className="sc-gqjmRU bpDAjE"
-  >
-    Slim
-    <hr />
-  </div>
-  <div
-    className="sc-fjdhpX fzTUIl"
-  >
+  <div>
     <div
       style={
         Object {
@@ -215,32 +236,47 @@ exports[`Storyshots Composite/CardList Slim 1`] = `
       }
     >
       <div
-        className="sc-EHOje ekSoZY"
+        className="sc-EHOje byzvOr"
         style={
           Object {
-            "margin": "0rem 1rem 1rem 1rem",
+            "height": "8rem",
           }
         }
       >
         <div
-          className="sc-bZQynM kAjfNX"
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
         >
           <div
-            className="sc-dnqmqq kCsRWI"
+            className="sc-dnqmqq kqTqqP"
+            style={
+              Object {
+                "fontSize": "4rem",
+              }
+            }
           >
-            U1
+            12X
           </div>
         </div>
         <div
-          className="sc-htoDjs dcGnxj"
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
         >
           <div
             className="sc-iwsKbI jzKbeF"
           >
-            20:25
+            11:31
           </div>
           <div
-            className="sc-gZMcBi iWdOsy"
+            className="sc-gZMcBi ceWbWy"
           >
             Towards Coventry
           </div>
@@ -257,23 +293,395 @@ exports[`Storyshots Composite/CardList Slim 1`] = `
       }
     >
       <div
-        className="sc-EHOje ekSoZY"
+        className="sc-EHOje byzvOr"
         style={
           Object {
-            "margin": "0rem 1rem 1rem 1rem",
+            "height": "8rem",
           }
         }
       >
         <div
-          className="sc-bZQynM kAjfNX"
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
         >
           <img
-            className="sc-gzVnrw dlzYWP"
+            className="sc-gzVnrw dUtZaE"
+            src="https://media.radio.warwick.ac.uk/shows/5047.large.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            The Acoustic Lounge
+          </div>
+          <div
+            className="sc-gZMcBi ceWbWy"
+          >
+            11:00 - 12:00
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje byzvOr"
+        style={
+          Object {
+            "height": "8rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
+        >
+          <img
+            className="sc-gzVnrw dUtZaE"
+            src="https://images-na.ssl-images-amazon.com/images/I/A1LVEJikmZL._SL1500_.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            New Person (Same Old Mistakes)
+          </div>
+          <div
+            className="sc-gZMcBi ceWbWy"
+          >
+            Tame Impala
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Composite/CardList Mixed 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU kZidTY"
+  >
+    Mixed
+    <hr />
+  </div>
+  <div
+    className="sc-jTzLTM eeedqI"
+    style={
+      Object {
+        "borderWidth": "0rem",
+        "height": "8.3rem",
+      }
+    }
+  />
+  <div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje byzvOr"
+        style={
+          Object {
+            "height": "8rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "8rem",
+            }
+          }
+        >
+          <div
+            className="sc-dnqmqq kqTqqP"
+            style={
+              Object {
+                "fontSize": "4rem",
+              }
+            }
+          >
+            12X
+          </div>
+        </div>
+        <div
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1.25",
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            17:02
+          </div>
+          <div
+            className="sc-gZMcBi ceWbWy"
+          >
+            Towards Leamington
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje byzvOr"
+        style={
+          Object {
+            "height": "6rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "6rem",
+            }
+          }
+        >
+          <img
+            className="sc-gzVnrw dUtZaE"
+            src="https://media.radio.warwick.ac.uk/shows/5100.large.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1",
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            The Italian Football Show
+          </div>
+          <div
+            className="sc-gZMcBi ceWbWy"
+          >
+            17:00 - 18:00
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje byzvOr"
+        style={
+          Object {
+            "height": "6rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "6rem",
+            }
+          }
+        >
+          <img
+            className="sc-gzVnrw dUtZaE"
+            src="https://i.ytimg.com/vi/hNJOI2dtDZ4/maxresdefault.jpg"
+          />
+        </div>
+        <div
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1",
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            Borderline
+          </div>
+          <div
+            className="sc-gZMcBi ceWbWy"
+          >
+            Tame Impala
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Composite/CardList Slim 1`] = `
+<div>
+  <div
+    className="sc-gqjmRU kZidTY"
+  >
+    Slim
+    <hr />
+  </div>
+  <div
+    className="sc-jTzLTM eeedqI"
+    style={
+      Object {
+        "borderWidth": "0rem",
+        "height": "6.3rem",
+      }
+    }
+  />
+  <div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje byzvOr"
+        style={
+          Object {
+            "height": "6rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "6rem",
+            }
+          }
+        >
+          <div
+            className="sc-dnqmqq kqTqqP"
+            style={
+              Object {
+                "fontSize": "3rem",
+              }
+            }
+          >
+            U1
+          </div>
+        </div>
+        <div
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1",
+            }
+          }
+        >
+          <div
+            className="sc-iwsKbI jzKbeF"
+          >
+            19:25
+          </div>
+          <div
+            className="sc-gZMcBi ceWbWy"
+          >
+            Towards Coventry
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "height": "0rem",
+          "opacity": 0,
+          "transform": "translateX(8rem)",
+        }
+      }
+    >
+      <div
+        className="sc-EHOje byzvOr"
+        style={
+          Object {
+            "height": "6rem",
+          }
+        }
+      >
+        <div
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "6rem",
+            }
+          }
+        >
+          <img
+            className="sc-gzVnrw dUtZaE"
             src="https://media.radio.warwick.ac.uk/shows/5163.large.jpg"
           />
         </div>
         <div
-          className="sc-htoDjs dcGnxj"
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1",
+            }
+          }
         >
           <div
             className="sc-iwsKbI jzKbeF"
@@ -281,7 +689,7 @@ exports[`Storyshots Composite/CardList Slim 1`] = `
             ReggaetÓN
           </div>
           <div
-            className="sc-gZMcBi iWdOsy"
+            className="sc-gZMcBi ceWbWy"
           >
             19:00 - 20:00
           </div>
@@ -298,23 +706,33 @@ exports[`Storyshots Composite/CardList Slim 1`] = `
       }
     >
       <div
-        className="sc-EHOje ekSoZY"
+        className="sc-EHOje byzvOr"
         style={
           Object {
-            "margin": "0rem 1rem 1rem 1rem",
+            "height": "6rem",
           }
         }
       >
         <div
-          className="sc-bZQynM kAjfNX"
+          className="sc-bZQynM jzLdNW"
+          style={
+            Object {
+              "width": "6rem",
+            }
+          }
         >
           <img
-            className="sc-gzVnrw dlzYWP"
+            className="sc-gzVnrw dUtZaE"
             src="http://www.brooklynvegan.com/files/2019/03/tame-impala-patience.jpg"
           />
         </div>
         <div
-          className="sc-htoDjs dcGnxj"
+          className="sc-htoDjs dRcTZd"
+          style={
+            Object {
+              "lineHeight": "1",
+            }
+          }
         >
           <div
             className="sc-iwsKbI jzKbeF"
@@ -322,7 +740,7 @@ exports[`Storyshots Composite/CardList Slim 1`] = `
             Patience
           </div>
           <div
-            className="sc-gZMcBi iWdOsy"
+            className="sc-gZMcBi ceWbWy"
           >
             Tame Impala
           </div>
@@ -333,155 +751,17 @@ exports[`Storyshots Composite/CardList Slim 1`] = `
 </div>
 `;
 
-exports[`Storyshots Composite/CardList Wrapped 1`] = `
-<div>
-  <div
-    className="sc-gqjmRU bpDAjE"
-  >
-    Wrapped
-    <hr />
-  </div>
-  <div
-    className="sc-fjdhpX fyFBrl"
-    wrap={true}
-  >
-    <div
-      style={
-        Object {
-          "height": "0rem",
-          "opacity": 0,
-          "transform": "translateX(8rem)",
-        }
-      }
-    >
-      <div
-        className="sc-EHOje eDefHi"
-        style={
-          Object {
-            "margin": "0rem 1rem 1rem 1rem",
-          }
-        }
-      >
-        <div
-          className="sc-bZQynM dKkRuJ"
-        >
-          <div
-            className="sc-dnqmqq bYgTad"
-          >
-            12X
-          </div>
-        </div>
-        <div
-          className="sc-htoDjs dcGnxj"
-        >
-          <div
-            className="sc-iwsKbI jzKbeF"
-          >
-            21:24
-          </div>
-          <div
-            className="sc-gZMcBi iWdOsy"
-          >
-            Towards Warwick Gates
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      style={
-        Object {
-          "height": "0rem",
-          "opacity": 0,
-          "transform": "translateX(8rem)",
-        }
-      }
-    >
-      <div
-        className="sc-EHOje eDefHi"
-        style={
-          Object {
-            "margin": "0rem 1rem 1rem 1rem",
-          }
-        }
-      >
-        <div
-          className="sc-bZQynM dKkRuJ"
-        >
-          <img
-            className="sc-gzVnrw dlzYWP"
-            src="https://media.radio.warwick.ac.uk/shows/5206.large.jpg"
-          />
-        </div>
-        <div
-          className="sc-htoDjs dcGnxj"
-        >
-          <div
-            className="sc-iwsKbI jzKbeF"
-          >
-            SESH GREMLINS
-          </div>
-          <div
-            className="sc-gZMcBi iWdOsy"
-          >
-            21:00 - 22:00
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      style={
-        Object {
-          "height": "0rem",
-          "opacity": 0,
-          "transform": "translateX(8rem)",
-        }
-      }
-    >
-      <div
-        className="sc-EHOje eDefHi"
-        style={
-          Object {
-            "margin": "0rem 1rem 1rem 1rem",
-          }
-        }
-      >
-        <div
-          className="sc-bZQynM dKkRuJ"
-        >
-          <img
-            className="sc-gzVnrw dlzYWP"
-            src="https://lastfm-img2.akamaized.net/i/u/770x0/89e66477f71594ea32b0fe7d888360b1.jpg"
-          />
-        </div>
-        <div
-          className="sc-htoDjs dcGnxj"
-        >
-          <div
-            className="sc-iwsKbI jzKbeF"
-          >
-            Fading
-          </div>
-          <div
-            className="sc-gZMcBi iWdOsy"
-          >
-            Toro Y Moi
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Storyshots Simple/Button Default 1`] = `
 <div
-  className="sc-htpNat fzzpiM"
+  className="sc-htpNat hriTYS"
   disabled={false}
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
@@ -489,23 +769,27 @@ exports[`Storyshots Simple/Button Default 1`] = `
     }
   }
 >
-  <div
-    className="sc-bxivhb fTvRBV"
-  >
-    Click Me!
+  <div>
+    <div
+      className="sc-bxivhb hJcVJR"
+    >
+      Click Me!
+    </div>
   </div>
 </div>
 `;
 
 exports[`Storyshots Simple/Button Disabled 1`] = `
 <div
-  className="sc-htpNat hPitJA"
+  className="sc-htpNat gquIDs"
   disabled={true}
   onClick={null}
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
@@ -513,22 +797,26 @@ exports[`Storyshots Simple/Button Disabled 1`] = `
     }
   }
 >
-  <div
-    className="sc-bxivhb fTvRBV"
-  >
-    You Can't Click Me :(
+  <div>
+    <div
+      className="sc-bxivhb hJcVJR"
+    >
+      You Can't Click Me :(
+    </div>
   </div>
 </div>
 `;
 
 exports[`Storyshots Simple/Button Loading 1`] = `
 <div
-  className="sc-htpNat fzzpiM"
+  className="sc-htpNat hriTYS"
   onClick={null}
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
@@ -540,15 +828,15 @@ exports[`Storyshots Simple/Button Loading 1`] = `
     className="sc-bdVaJa bNlOCv"
   >
     <div
-      className="sc-bwzfXH hvXHaG"
+      className="sc-bwzfXH ghagIV"
       size={0.5}
     />
     <div
-      className="sc-bwzfXH kmvLIw"
+      className="sc-bwzfXH bvVunS"
       size={0.5}
     />
     <div
-      className="sc-bwzfXH ivnbRG"
+      className="sc-bwzfXH kZQvcK"
       size={0.5}
     />
   </div>
@@ -557,12 +845,14 @@ exports[`Storyshots Simple/Button Loading 1`] = `
 
 exports[`Storyshots Simple/Button With Icon & Text 1`] = `
 <div
-  className="sc-htpNat fzzpiM"
+  className="sc-htpNat hriTYS"
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
@@ -570,27 +860,31 @@ exports[`Storyshots Simple/Button With Icon & Text 1`] = `
     }
   }
 >
-  <div
-    className="sc-bxivhb fTvRBV"
-  >
-    Click Me!
+  <div>
+    <div
+      className="sc-bxivhb hJcVJR"
+    >
+      Click Me!
+    </div>
+    <i
+      className="sc-ifAKCX eQYFnI"
+    >
+      fingerprint
+    </i>
   </div>
-  <i
-    className="sc-ifAKCX eQYFnI"
-  >
-    fingerprint
-  </i>
 </div>
 `;
 
 exports[`Storyshots Simple/Button With Icon 1`] = `
 <div
-  className="sc-htpNat fzzpiM"
+  className="sc-htpNat hriTYS"
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
   style={
     Object {
       "boxShadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
@@ -598,11 +892,13 @@ exports[`Storyshots Simple/Button With Icon 1`] = `
     }
   }
 >
-  <i
-    className="sc-ifAKCX eQYFnI"
-  >
-    fingerprint
-  </i>
+  <div>
+    <i
+      className="sc-ifAKCX eQYFnI"
+    >
+      fingerprint
+    </i>
+  </div>
 </div>
 `;
 
@@ -615,24 +911,39 @@ exports[`Storyshots Simple/Card Default 1`] = `
   }
 >
   <div
-    className="sc-EHOje eDefHi"
+    className="sc-EHOje byzvOr"
     style={
       Object {
-        "margin": "0rem 1rem 1rem 1rem",
+        "height": "8rem",
       }
     }
   >
     <div
-      className="sc-bZQynM dKkRuJ"
+      className="sc-bZQynM jzLdNW"
+      style={
+        Object {
+          "width": "8rem",
+        }
+      }
     >
       <div
-        className="sc-dnqmqq bYgTad"
+        className="sc-dnqmqq kqTqqP"
+        style={
+          Object {
+            "fontSize": "4rem",
+          }
+        }
       >
         12X
       </div>
     </div>
     <div
-      className="sc-htoDjs dcGnxj"
+      className="sc-htoDjs dRcTZd"
+      style={
+        Object {
+          "lineHeight": "1.25",
+        }
+      }
     >
       <div
         className="sc-iwsKbI jzKbeF"
@@ -640,7 +951,7 @@ exports[`Storyshots Simple/Card Default 1`] = `
         20:12
       </div>
       <div
-        className="sc-gZMcBi iWdOsy"
+        className="sc-gZMcBi ceWbWy"
       >
         Towards leamington
       </div>
@@ -658,15 +969,20 @@ exports[`Storyshots Simple/Card No Hero 1`] = `
   }
 >
   <div
-    className="sc-EHOje eDefHi"
+    className="sc-EHOje byzvOr"
     style={
       Object {
-        "margin": "0rem 1rem 1rem 1rem",
+        "height": "8rem",
       }
     }
   >
     <div
-      className="sc-htoDjs dcGnxj"
+      className="sc-htoDjs dRcTZd"
+      style={
+        Object {
+          "lineHeight": "1.25",
+        }
+      }
     >
       <div
         className="sc-iwsKbI jzKbeF"
@@ -674,7 +990,7 @@ exports[`Storyshots Simple/Card No Hero 1`] = `
         Title
       </div>
       <div
-        className="sc-gZMcBi iWdOsy"
+        className="sc-gZMcBi ceWbWy"
       >
         Subtitle
       </div>
@@ -692,23 +1008,33 @@ exports[`Storyshots Simple/Card Slim 1`] = `
   }
 >
   <div
-    className="sc-EHOje ekSoZY"
+    className="sc-EHOje byzvOr"
     style={
       Object {
-        "margin": "0rem 1rem 1rem 1rem",
+        "height": "6rem",
       }
     }
   >
     <div
-      className="sc-bZQynM kAjfNX"
+      className="sc-bZQynM jzLdNW"
+      style={
+        Object {
+          "width": "6rem",
+        }
+      }
     >
       <img
-        className="sc-gzVnrw dlzYWP"
+        className="sc-gzVnrw dUtZaE"
         src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
       />
     </div>
     <div
-      className="sc-htoDjs dcGnxj"
+      className="sc-htoDjs dRcTZd"
+      style={
+        Object {
+          "lineHeight": "1",
+        }
+      }
     >
       <div
         className="sc-iwsKbI jzKbeF"
@@ -716,7 +1042,7 @@ exports[`Storyshots Simple/Card Slim 1`] = `
         Psychademics
       </div>
       <div
-        className="sc-gZMcBi iWdOsy"
+        className="sc-gZMcBi ceWbWy"
       >
         20:00 - 21:00
       </div>
@@ -734,23 +1060,33 @@ exports[`Storyshots Simple/Card With Image 1`] = `
   }
 >
   <div
-    className="sc-EHOje eDefHi"
+    className="sc-EHOje byzvOr"
     style={
       Object {
-        "margin": "0rem 1rem 1rem 1rem",
+        "height": "8rem",
       }
     }
   >
     <div
-      className="sc-bZQynM dKkRuJ"
+      className="sc-bZQynM jzLdNW"
+      style={
+        Object {
+          "width": "8rem",
+        }
+      }
     >
       <img
-        className="sc-gzVnrw dlzYWP"
+        className="sc-gzVnrw dUtZaE"
         src="https://media.radio.warwick.ac.uk/shows/5010.large.jpg"
       />
     </div>
     <div
-      className="sc-htoDjs dcGnxj"
+      className="sc-htoDjs dRcTZd"
+      style={
+        Object {
+          "lineHeight": "1.25",
+        }
+      }
     >
       <div
         className="sc-iwsKbI jzKbeF"
@@ -758,7 +1094,7 @@ exports[`Storyshots Simple/Card With Image 1`] = `
         Psychademics
       </div>
       <div
-        className="sc-gZMcBi iWdOsy"
+        className="sc-gZMcBi ceWbWy"
       >
         20:00 - 21:00
       </div>
@@ -776,23 +1112,33 @@ exports[`Storyshots Simple/Card With Long Text 1`] = `
   }
 >
   <div
-    className="sc-EHOje eDefHi"
+    className="sc-EHOje byzvOr"
     style={
       Object {
-        "margin": "0rem 1rem 1rem 1rem",
+        "height": "8rem",
       }
     }
   >
     <div
-      className="sc-bZQynM dKkRuJ"
+      className="sc-bZQynM jzLdNW"
+      style={
+        Object {
+          "width": "8rem",
+        }
+      }
     >
       <img
-        className="sc-gzVnrw dlzYWP"
+        className="sc-gzVnrw dUtZaE"
         src="https://images-na.ssl-images-amazon.com/images/I/A1gZc70vUIL._SL1500_.jpg"
       />
     </div>
     <div
-      className="sc-htoDjs dcGnxj"
+      className="sc-htoDjs dRcTZd"
+      style={
+        Object {
+          "lineHeight": "1.25",
+        }
+      }
     >
       <div
         className="sc-iwsKbI jzKbeF"
@@ -800,7 +1146,7 @@ exports[`Storyshots Simple/Card With Long Text 1`] = `
         Feels Like We Only Go Backwards (Special Edition)
       </div>
       <div
-        className="sc-gZMcBi iWdOsy"
+        className="sc-gZMcBi ceWbWy"
       >
         Tame Impala
       </div>
@@ -811,7 +1157,7 @@ exports[`Storyshots Simple/Card With Long Text 1`] = `
 
 exports[`Storyshots Simple/Headline Default 1`] = `
 <div
-  className="sc-gqjmRU bpDAjE"
+  className="sc-gqjmRU kZidTY"
 >
   Big Important Text
   <hr />
@@ -820,10 +1166,10 @@ exports[`Storyshots Simple/Headline Default 1`] = `
 
 exports[`Storyshots Simple/ImageCycle Default 1`] = `
 <div
-  className="sc-jzJRlG lkgTUP"
+  className="sc-fjdhpX kPvvJt"
   style={
     Object {
-      "backgroundImage": "url('https://dev.radio.warwick.ac.uk/status/images/main.jpg?force_fetch=')",
+      "backgroundImage": "url('https://dev.radio.warwick.ac.uk/status/images/main.jpg')",
       "opacity": 0,
       "transform": "scale(0.8)",
     }
@@ -833,10 +1179,10 @@ exports[`Storyshots Simple/ImageCycle Default 1`] = `
 
 exports[`Storyshots Simple/ImageCycle No Animation 1`] = `
 <div
-  className="sc-jzJRlG lkgTUP"
+  className="sc-fjdhpX kPvvJt"
   style={
     Object {
-      "backgroundImage": "url('https://webcams.radio.warwick.ac.uk/st1-dj.jpg?force_fetch=1553874167717')",
+      "backgroundImage": "url('https://webcams.radio.warwick.ac.uk/st1-dj.jpg?force_fetch=965931720000')",
       "opacity": 1,
       "transform": "scale(1)",
     }
@@ -849,82 +1195,132 @@ exports[`Storyshots Simple/Loader Default 1`] = `
   className="sc-bdVaJa bNlOCv"
 >
   <div
-    className="sc-bwzfXH TkBhx"
+    className="sc-bwzfXH bYnxHq"
     size={1}
   />
   <div
-    className="sc-bwzfXH bJjpPE"
+    className="sc-bwzfXH hnAMwj"
     size={1}
   />
   <div
-    className="sc-bwzfXH ewJSIv"
+    className="sc-bwzfXH iZsKlc"
     size={1}
   />
 </div>
 `;
 
+exports[`Storyshots Simple/Message Default 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "1rem",
+    }
+  }
+>
+  <div
+    className="sc-jzJRlG Bami"
+  >
+    <div
+      className="sc-cSHVUG eAqKPt"
+    >
+      <img
+        className="sc-kAzzGY fqwChY"
+        src="https://seeklogo.com/images/T/twitter-2012-negative-logo-5C6C1F1521-seeklogo.com.png"
+      />
+      <div
+        className="sc-chPdSV bohLky"
+      >
+        <div
+          className="sc-kgoBCf eUMLyR"
+        >
+          Student Radio Assoc.
+        </div>
+        <div
+          className="sc-kGXeez eEJNlM"
+        >
+          @SRA
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-kpOJdX dQjeSN"
+    >
+      @RAW1251AM have a Show Development Team.
+
+They develop shows.
+
+And get nominated for #ILSR awards 
+
+🙌THIS https://t.co/CbsjmYzx39
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Simple/Table Default 1`] = `
 <table
-  className="sc-cSHVUG kJGmYB"
+  className="sc-dxgOiQ jiaWpt"
 >
-  <tr>
-    <th
-      className="sc-kAzzGY rTDDS"
-    />
-    <th
-      className="sc-kAzzGY rTDDS"
-    >
-      Studio 2
-    </th>
-    <th
-      className="sc-kAzzGY rTDDS"
-    >
-      Tascam
-    </th>
-  </tr>
-  <tr>
-    <td
-      className="sc-chPdSV cEAiCH"
-    >
-      08:00
-    </td>
-    <td
-      className="sc-chPdSV cEAiCH"
-    >
-      Will Hall
-    </td>
-    <td
-      className="sc-chPdSV cEAiCH"
-    >
-      -
-    </td>
-  </tr>
-  <tr>
-    <td
-      className="sc-chPdSV cEAiCH"
-    >
-      09:00
-    </td>
-    <td
-      className="sc-chPdSV cEAiCH"
-    >
-      Barnany Merrill
-    </td>
-    <td
-      className="sc-chPdSV cEAiCH"
-    >
-      -
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <th
+        className="sc-ckVGcZ bcNAZB"
+      />
+      <th
+        className="sc-ckVGcZ bcNAZB"
+      >
+        Studio 2
+      </th>
+      <th
+        className="sc-ckVGcZ bcNAZB"
+      >
+        Tascam
+      </th>
+    </tr>
+    <tr>
+      <td
+        className="sc-jKJlTe kwLYVQ"
+      >
+        08:00
+      </td>
+      <td
+        className="sc-jKJlTe kwLYVQ"
+      >
+        Will Hall
+      </td>
+      <td
+        className="sc-jKJlTe kwLYVQ"
+      >
+        -
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="sc-jKJlTe kwLYVQ"
+      >
+        09:00
+      </td>
+      <td
+        className="sc-jKJlTe kwLYVQ"
+      >
+        Barnany Merrill
+      </td>
+      <td
+        className="sc-jKJlTe kwLYVQ"
+      >
+        -
+      </td>
+    </tr>
+  </tbody>
 </table>
 `;
 
 exports[`Storyshots Simple/TextInput Default 1`] = `
 <div
-  className="sc-kgoBCf deKKli"
+  className="sc-eNQAEJ oiBWJ"
 >
   <input
-    className="sc-kGXeez iWeVHX"
+    className="sc-hMqMXs jUltJm"
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
@@ -933,7 +1329,7 @@ exports[`Storyshots Simple/TextInput Default 1`] = `
     value=""
   />
   <div
-    className="sc-kpOJdX hXCvuZ"
+    className="sc-kEYyzF goleI"
     style={
       Object {
         "width": "0%",

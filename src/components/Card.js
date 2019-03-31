@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useSpring, animated } from "react-spring";
 
 /**
  * Card.js: A component which returns an 'information' card, with either an image or a text `tag` (limited to three characters) or both.
@@ -8,17 +9,32 @@ import PropTypes from "prop-types";
  * @param {object} data - An object which defines the data to display in the card.
  */
 const Card = ({ data, slim }) => {
+  const props = {
+    container: useSpring({
+      height: slim ? "6rem" : "8rem"
+    }),
+    hero: useSpring({
+      width: slim ? "6rem" : "8rem"
+    }),
+    tag: useSpring({
+      fontSize: slim ? "3rem" : "4rem"
+    }),
+    text: useSpring({
+      lineHeight: slim ? "1" : "1.25"
+    })
+  };
+
   return (
-    <Container slim={slim}>
+    <Container style={props.container}>
       {!data.imageURL && !data.tag ? null : (
-        <Hero slim={slim}>
+        <Hero style={props.hero}>
           {data.imageURL ? <HeroImage src={data.imageURL} /> : null}
           {data.tag ? (
-            <HeroTag slim={slim}>{data.tag.substring(0, 3)}</HeroTag>
+            <HeroTag style={props.tag}>{data.tag.substring(0, 3)}</HeroTag>
           ) : null}
         </Hero>
       )}
-      <Text slim={slim}>
+      <Text style={props.text}>
         <Title>{data.title}</Title>
         <Subtitle>{data.subtitle}</Subtitle>
       </Text>
@@ -27,13 +43,13 @@ const Card = ({ data, slim }) => {
 };
 
 Card.propTypes = {
-  slim: PropTypes.bool,
+  slim: PropTypes.bool.isRequired,
   data: PropTypes.shape({
     tag: PropTypes.string,
     imageURL: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string
-  })
+  }).isRequired
 };
 
 export default Card;
@@ -42,14 +58,13 @@ export default Card;
  * Container to hold hero and text elements.
  * Uses CSS flexbox to position children as a dynamic row.
  */
-const Container = styled.div`
-  height: ${props => (props.slim ? "6rem" : "8rem")};
-  min-width: ${props => (props.slim ? "6rem" : "8rem")};
-  margin: 0rem 1rem 1rem 1rem;
+const Container = styled(animated.div)`
+  min-width: 8rem;
+  margin: 0 1rem 1rem 1rem;
 
   background-color: var(--primary-colour);
-  border-radius: 0.6rem;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 0.6rem;
 
   font-family: var(--font-heading);
   color: var(--secondary-colour);
@@ -59,16 +74,15 @@ const Container = styled.div`
 
   user-select: none;
   overflow: hidden;
+  backface-visibility: hidden;
 `;
 
 /**
  * Element which holds either an image or a 'tag' text with yellow background.
  * Uses CSS Flexbox to position the tag text perfectly central to the parent.
  */
-const Hero = styled.div`
-  width: ${props => (props.slim ? "6rem" : "8rem")};
+const Hero = styled(animated.div)`
   height: 100%;
-
   background-color: var(--accent-colour);
 
   display: flex;
@@ -90,12 +104,11 @@ const HeroImage = styled.img`
  * Contains the text of the card, pushed over to the right.
  * Uses CSS text-overflow anf CSS Flexbox to allow text truncation.
  */
-const Text = styled.div`
+const Text = styled(animated.div)`
   padding-left: 1em;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  line-height: ${props => (props.slim ? "1" : "1.25")};
 
   div {
     white-space: nowrap;
@@ -106,8 +119,7 @@ const Text = styled.div`
 /**
  * Style of text elements.
  */
-const HeroTag = styled.div`
-  font-size: ${props => (props.slim ? "3rem" : "4rem")};
+const HeroTag = styled(animated.div)`
   position: absolute;
 `;
 

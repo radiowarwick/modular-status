@@ -171,6 +171,7 @@ storiesOf("Composite/CardList", module)
       title={text("title", cardListDefault.title)}
       cards={object("cards", cardListDefault.cards)}
       highlighted={boolean("highlighted", cardListDefault.highlighted)}
+
     />
   ))
   .add("Slim", () => (

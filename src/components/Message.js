@@ -26,7 +26,7 @@ const Message = ({ sender, origin, imageURL, body }) => {
 };
 
 Message.propTypes = {
-  name: PropTypes.string.isRequired,
+  sender: PropTypes.string.isRequired,
   origin: PropTypes.string.isRequired,
   imageURL: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired

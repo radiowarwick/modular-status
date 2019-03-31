@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean, object } from "@storybook/addon-knobs";
 
 import CardList from "../components/CardList";
 
@@ -100,9 +100,8 @@ storiesOf("Composite/CardList", module)
   .add("Default", () => (
     <CardList
       title={text("title", cardListDefault.title)}
-      cards={cardListDefault.cards}
+      cards={object("cards", cardListDefault.cards)}
       isSlim={cardListDefault.isSlim}
-      isWrapped={boolean("isWrapped", cardListDefault.isWrapped)}
       loading={boolean("loading", cardListDefault.loading)}
     />
   ))

@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
  *
  * @param {object} data - An object which defines the data to display in the card.
  */
-const Card = ({ data, slim }) => {
+const Card = ({ data, slim, active }) => {
   return (
-    <Container slim={slim}>
+    <Container slim={slim} active={active}>
       {!data.imageURL && !data.tag ? null : (
         <Hero slim={slim}>
           {data.imageURL ? <HeroImage src={data.imageURL} /> : null}
@@ -28,6 +28,7 @@ const Card = ({ data, slim }) => {
 
 Card.propTypes = {
   slim: PropTypes.bool,
+  active: PropTypes.bool,
   data: PropTypes.shape({
     tag: PropTypes.string,
     imageURL: PropTypes.string,
@@ -45,12 +46,16 @@ export default Card;
 const Container = styled.div`
   height: ${props => (props.slim ? "6rem" : "8rem")};
   min-width: ${props => (props.slim ? "6rem" : "8rem")};
-  margin: 0rem 1rem 1rem 1rem;
+  margin: 0 1rem 1rem 1rem;
 
+  box-sizing: border-box;
   background-color: var(--primary-colour);
-  border-radius: 0.6rem;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
 
+  border-radius: 0.6rem;
+  border: ${props =>
+    props.active ? "0.2rem solid var(--accent-colour);" : "none;"}
+  
   font-family: var(--font-heading);
   color: var(--secondary-colour);
 
@@ -59,6 +64,13 @@ const Container = styled.div`
 
   user-select: none;
   overflow: hidden;
+`;
+
+const InfoLabel = styled.div`
+  width: 3rem;
+  height: 8rem;
+  font-size: 1.25rem;
+  box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
 `;
 
 /**

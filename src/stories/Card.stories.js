@@ -10,6 +10,7 @@ import Card from "../components/Card";
 const cardDefault = {
   key: "bs_0",
   slim: false,
+  active: false,
   data: {
     tag: "12X",
     imageURL: "",
@@ -19,11 +20,24 @@ const cardDefault = {
 };
 
 /**
- * A card with an image only.
+ * A slim card with an image only.
  */
 const cardSlim = {
   key: "sl_0",
   slim: true,
+  data: {
+    imageURL: "https://media.radio.warwick.ac.uk/shows/5010.large.jpg",
+    title: "Psychademics",
+    subtitle: "20:00 - 21:00"
+  }
+};
+
+/**
+ * An active card with an image only.
+ */
+const cardActive = {
+  key: "ac_0",
+  active: true,
   data: {
     imageURL: "https://media.radio.warwick.ac.uk/shows/5010.large.jpg",
     title: "Psychademics",
@@ -75,10 +89,14 @@ storiesOf("Simple/Card", module)
       key={cardDefault.key}
       data={object("data", cardDefault.data)}
       slim={boolean("slim", cardDefault.slim)}
+      active={boolean("active", cardDefault.active)}
     />
   ))
   .add("Slim", () => (
     <Card key={cardSlim.key} data={cardSlim.data} slim={cardSlim.slim} />
+  ))
+  .add("Active", () => (
+    <Card key={cardSlim.key} data={cardSlim.data} active={cardActive.active} />
   ))
   .add("With Image", () => <Card key={cardImage.key} data={cardImage.data} />)
   .add("No Hero", () => <Card key={cardNoHero.key} data={cardNoHero.data} />)

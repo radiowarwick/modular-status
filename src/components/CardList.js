@@ -4,16 +4,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Card from "./Card";
-import Headline from "./Headline";
 
 /**
  * CardList.js - Displays a list of cards that automagically animate their mount / unmount.
  *
- * @param {string} title - The main title text of the list.
  * @param {array} cards - An array of cards to print.
  * @param {boolean} highlight - Defines if the top card in the list should be highlighted.
  */
-const CardList = ({ title, cards, highlighted }) => {
+const CardList = ({ cards, highlighted }) => {
   /**
    * Define the transitional animations which will play of mount / unmount.
    */
@@ -49,8 +47,6 @@ const CardList = ({ title, cards, highlighted }) => {
    */
   return (
     <div>
-      <Headline value={title} />
-
       <Frame style={frameProps}>
         {cards.length < 1 ? <Empty>Nothing To Show</Empty> : null}
       </Frame>
@@ -68,7 +64,6 @@ const CardList = ({ title, cards, highlighted }) => {
 
 CardList.propTypes = {
   cards: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
   highlighted: PropTypes.bool.isRequired
 };
 

@@ -7,16 +7,19 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-fittext": "^1.0.0",
     "react-scripts": "2.1.8",
     "react-spring": "^8.0.18",
     "react-test-renderer": "^16.8.5",
     "require-context.macro": "^1.0.4",
+    "source-map-explorer": "^1.8.0",
     "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public -o docs"

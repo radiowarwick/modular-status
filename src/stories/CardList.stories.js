@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean, object } from "@storybook/addon-knobs";
+import { withKnobs, boolean, object } from "@storybook/addon-knobs";
 
 import CardList from "../components/CardList";
 
@@ -8,7 +8,6 @@ import CardList from "../components/CardList";
  * A default list of cards. Many different types of card appear here.
  */
 export const cardListDefault = {
-  title: "Default",
   highlighted: false,
   cards: [
     {
@@ -46,7 +45,6 @@ export const cardListDefault = {
  * A slim list of cards. Many different types of card appear here.
  */
 export const cardListSlim = {
-  title: "Slim",
   highlighted: false,
   cards: [
     {
@@ -84,7 +82,6 @@ export const cardListSlim = {
  * A mixed list of cards. Many different types of card appear here.
  */
 export const cardListMixed = {
-  title: "Mixed",
   highlighted: false,
   cards: [
     {
@@ -121,7 +118,6 @@ export const cardListMixed = {
  * A list of cards with a highlighted head. Many different types of card appear here.
  */
 export const cardListHighlight = {
-  title: "Highlighted",
   highlighted: true,
   cards: [
     {
@@ -166,38 +162,33 @@ export const cardListEmpty = {
 
 storiesOf("Composite/CardList", module)
   .addDecorator(withKnobs)
+  .addDecorator(story => <div style={{ marginTop: "1rem" }}>{story()}</div>)
   .add("Default", () => (
     <CardList
-      title={text("title", cardListDefault.title)}
       cards={object("cards", cardListDefault.cards)}
       highlighted={boolean("highlighted", cardListDefault.highlighted)}
-
     />
   ))
   .add("Slim", () => (
     <CardList
-      title={cardListSlim.title}
       cards={cardListSlim.cards}
       highlighted={cardListSlim.highlighted}
     />
   ))
   .add("Mixed", () => (
     <CardList
-      title={cardListMixed.title}
       cards={cardListMixed.cards}
       highlighted={cardListMixed.highlighted}
     />
   ))
   .add("Highlighted", () => (
     <CardList
-      title={cardListHighlight.title}
       cards={cardListHighlight.cards}
       highlighted={cardListHighlight.highlighted}
     />
   ))
   .add("Empty", () => (
     <CardList
-      title={cardListEmpty.title}
       cards={cardListEmpty.cards}
       highlighted={cardListEmpty.highlighted}
     />

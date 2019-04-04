@@ -79,7 +79,7 @@ export default Button;
  */
 const Container = styled(animated.div)`
   height:1.5rem;
-  margin: 0.7rem;
+  margin-bottom:0.7rem;
   padding: 1.1rem 0.8rem;
   background-color: var(--primary-colour);
 

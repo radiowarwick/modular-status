@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
   :root {
     --primary-colour: rgb(61, 61, 61);
-    --seconday-colour: rgb(255,255,255);
+    --secondary-colour: rgb(255,255,255);
     --accent-colour: rgb(216,178,34);
     --background-colour: rgb(43,43,43);
 
@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: rgb(43, 43, 43);
+    background-color: var(--background-colour);
   }
   * {
     box-sizing:border-box;

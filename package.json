@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^7.0.0",
+    "flexlayout-react": "^0.3.3",
     "fs-extra": "^7.0.1",
     "koa": "^2.7.0",
     "koa-mount": "^4.0.0",

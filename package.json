@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@storybook/addon-storyshots": "^5.0.5",
     "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
     "fs-extra": "^7.0.1",
     "koa": "^2.7.0",
+    "koa-mount": "^4.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "prop-types": "^15.7.2",
@@ -15,16 +16,12 @@
     "react-fittext": "^1.0.0",
     "react-scripts": "2.1.8",
     "react-spring": "^8.0.18",
-    "react-test-renderer": "^16.8.5",
-    "require-context.macro": "^1.0.4",
-    "source-map-explorer": "^1.8.0",
     "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public -o docs"
@@ -45,9 +42,11 @@
     "@storybook/addon-console": "^1.1.0",
     "@storybook/addon-knobs": "^5.0.5",
     "@storybook/addon-links": "^5.0.5",
+    "@storybook/addon-storyshots": "^5.0.6",
     "@storybook/addons": "^5.0.5",
     "@storybook/react": "^5.0.5",
-    "@storybook/storybook-deployer": "^2.8.1",
-    "babel-loader": "^8.0.5"
+    "babel-loader": "^8.0.5",
+    "react-test-renderer": "^16.8.6",
+    "require-context.macro": "^1.0.4"
   }
 }

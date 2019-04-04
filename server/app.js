@@ -1,8 +1,9 @@
 const koa = require("koa");
 const serve = require("koa-static");
+const mount = require("koa-mount");
 
 const app = new koa();
-const router = require("./router");
+const api = require("./routes/api");
 
 app.use(async (ctx, next) => {
   try {
@@ -16,11 +17,10 @@ app.use(async (ctx, next) => {
 
 app.use(serve("../build"));
 app.use(serve("./resources"));
+app.use(mount("/api", api.routes()));
 
 app.on("error", (err, ctx) => {
   console.log(err.message);
 });
-
-app.use(router.routes());
 
 module.exports = app;

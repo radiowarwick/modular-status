@@ -78,6 +78,7 @@
   overflow: hidden;
   position: absolute;
   box-sizing: border-box;
+  border: 0.05rem solid var(--primary-colour);
 }
 
 .flexlayout__tab_button {
@@ -130,11 +131,16 @@
   width: 20px;
   height: 15px;
   margin-top: 2px;
-  padding-left: 12px;
+  padding: 0px;
   border: none;
   font-size: 10px;
-  color: lightgray;
+  color: var(--accent-colour);
+  background-color: var(--background-colour);
   font-family: Arial, sans-serif;
+}
+
+.flexlayout__tab_button_overflow:before {
+  content: "▼";
 }
 
 .flexlayout__tabset_header {

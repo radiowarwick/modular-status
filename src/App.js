@@ -3,13 +3,28 @@ import FlexLayout from "flexlayout-react";
 import styled from "styled-components";
 import "./app.css";
 
-import DateTime from "./components/DateTime";
-import CardList from "./components/CardList";
 import Button from "./components/Button";
+import Headline from "./components/Headline";
+
+import DateTime from "./widgets/DateTime";
 
 const App = () => {
   const layoutRef = useRef(null);
   const [editing, setEditing] = useState(true);
+  const [adding, setAdding] = useState(false);
+
+  /**
+   * Define the widgets that can be added to the layout.
+   */
+  const [widgets, setWidgets] = useState([
+    {
+      component: "DateTime",
+      ref: DateTime,
+      name: "Date & Time",
+      dataURL: null,
+      props: null
+    }
+  ]);
 
   /**
    * Define model from localStorage.
@@ -29,84 +44,45 @@ const App = () => {
   });
 
   /**
-   * Default Cardlist for Demo Only.
-   */
-  const [cardList] = useState({
-    highlighted: false,
-    cards: [
-      {
-        id: "bs_2",
-        slim: false,
-        data: {
-          tag: "12X",
-          title: "17:02",
-          subtitle: "Towards Leamington"
-        }
-      },
-      {
-        id: "oa_2",
-        slim: true,
-        data: {
-          imageURL: "https://media.radio.warwick.ac.uk/shows/5100.large.jpg",
-          title: "The Italian Football Show",
-          subtitle: "17:00 - 18:00"
-        }
-      },
-      {
-        id: "lp_2",
-        slim: true,
-        data: {
-          imageURL: "https://i.ytimg.com/vi/hNJOI2dtDZ4/maxresdefault.jpg",
-          title: "Borderline",
-          subtitle: "Tame Impala"
-        }
-      }
-    ]
-  });
-
-  /**
-   * Avaliable widgets.
-   */
-  const widgets = [
-    { component: "DateTime", name: "Date & Time" },
-    { component: "CardList", name: "Card List" }
-  ];
-
-  /**
-   * Returns a widget (react component) based on a node's component property.
-   *
-   * @param {object} node
-   */
-  const factory = node => {
-    const component = node.getComponent();
-    switch (component) {
-      case "DateTime":
-        return <DateTime unix={1577836799} />;
-      case "CardList":
-        return (
-          <CardList cards={cardList.cards} highlighted={cardList.highlighted} />
-        );
-      default:
-        return <p>{node.getName()}</p>;
-    }
-  };
-
-  /**
    * Saves the model back to localStorage.
    */
   const save = () =>
     localStorage.setItem("flexLayoutJSON", JSON.stringify(model.toJson()));
 
   /**
+   * Returns a widget (react component) based on a node's component property.
+   *
+   * Uses the node's component property to extract a widget (from the widget object held in state)
+   * with matching component property.
+   *
+   * The widget is then built dynamically, using a refence to the actual react component function (Widget.ref),
+   * and with the current props (Widget.props).
+   *
+   * @param {object} node - A node in the flexlayout model that will be converted to a react component.
+   */
+  const factory = node => {
+    const component = node.getComponent();
+    const [Widget] = widgets.filter(widget => widget.component === component);
+    return <Widget.ref {...Widget.props} />;
+  };
+
+  /**
    * Triggers an add tab event, providing a draggable box to position the new tab.
    *
-   * @param {object} widget
+   * Will add a new node to the model based on the widget passed.
+   *
+   * @param {object} widget - The widget that will added to the flexlayout model (as a new node).
    */
-  const addNew = widget => {
-    layoutRef.current.addTabWithDragAndDropIndirect("Drag: " + widget.name, {
-      component: widget.component,
-      name: widget.name
-    });
+  const addWidgetToModel = widget => {
+    setAdding(true);
+    layoutRef.current.addTabWithDragAndDropIndirect(
+      "Drag: " + widget.name,
+      {
+        component: widget.component,
+        name: widget.name
+      },
+      () => setAdding(false)
+    );
   };
 
   /**
@@ -131,12 +107,14 @@ const App = () => {
   return (
     <Container>
       <EditIcon onClick={toggleEdit}>✎</EditIcon>
-      <Toolbar style={{ display: editing ? "flex" : "none" }}>
+      <Toolbar style={{ width: editing ? "11rem" : "0rem" }}>
+        <Headline value="Widgets" fontSize={1.5} />
         {widgets.map((widget, index) => (
           <Button
             key={index}
-            handleClick={() => addNew(widget)}
+            handleClick={() => addWidgetToModel(widget)}
             value={widget.name}
+            disabled={adding}
           />
         ))}
       </Toolbar>
@@ -170,11 +148,12 @@ const Content = styled.div`
 `;
 
 const Toolbar = styled.div`
-  padding: 1rem;
   background-color: #111;
 
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  box-shadow: inset -3px 0px 3px 0px black;
 `;
 
 const EditIcon = styled.div`

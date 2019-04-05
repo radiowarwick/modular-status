@@ -1,14 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import FitText from "react-fittext";
 import styled from "styled-components";
+import { useInterval } from "../useInterval";
 
 /**
  * Date.js - Returns a formatted and auto-scaling date/time formatted element.
- *
- * @param {number} unix - The unix time (seconds) to convert to date/time.
  */
-const DateTime = ({ unix }) => {
+const DateTime = () => {
+  const [unix, setUnix] = useState(Math.floor(Date.now() / 1000));
+
+  useInterval(() => {
+    setUnix(unix + 1);
+  }, 1000);
+
   const date = new Date(unix * 1000);
 
   return (
@@ -21,10 +25,6 @@ const DateTime = ({ unix }) => {
       </FitText>
     </Container>
   );
-};
-
-DateTime.propTypes = {
-  unix: PropTypes.number.isRequired
 };
 
 export default DateTime;

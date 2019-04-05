@@ -79,7 +79,7 @@ export default Button;
  */
 const Container = styled(animated.div)`
   height:1.5rem;
-  margin-bottom:0.7rem;
+  margin:0rem 0.7rem 0.7rem 0.7rem;
   padding: 1.1rem 0.8rem;
   background-color: var(--primary-colour);
 
@@ -102,6 +102,8 @@ const Container = styled(animated.div)`
 const Text = styled.div`
   font-family: var(--font-main);
   font-size: 1.25em;
+  white-space: nowrap;
+  text-overflow: clip;
 `;
 
 const Icon = styled.i`

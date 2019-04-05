@@ -6,10 +6,11 @@ import PropTypes from "prop-types";
  * Headline.js: A component which returns an underlined headline text.
  *
  * @param {string} value - The big important text to be displayed.
+ * @param {number} fontSize - The size of the font in rem.
  */
-const Headline = ({ value }) => {
+const Headline = ({ value, fontSize }) => {
   return (
-    <Container margin="1rem">
+    <Container fontSize={fontSize}>
       {value}
       <hr />
     </Container>
@@ -17,7 +18,8 @@ const Headline = ({ value }) => {
 };
 
 Headline.propTypes = {
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
+  fontSize: PropTypes.number
 };
 
 export default Headline;
@@ -27,13 +29,11 @@ export default Headline;
  * Accepts a `margin` property.
  */
 const Container = styled.div`
-  margin: ${props => (props.margin ? props.margin : "0")};
+  margin: 0.5rem;
 
   font-family: var(--font-heading);
   color: var(--secondary-colour);
-  font-size: 2em;
-
-  background-color: var(--background-colour);
+  font-size: ${props => (props.fontSize ? props.fontSize : "2")}rem;
 
   hr {
     margin-top: 0.2em;

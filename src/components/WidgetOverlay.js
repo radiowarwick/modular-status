@@ -75,6 +75,7 @@ const Message = styled.div`
   font-size: 2rem;
   color: var(--secondary-colour);
   font-family: var(--font-heading);
+  user-select: none;
 `;
 
 /**

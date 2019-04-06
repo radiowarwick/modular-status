@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text } from "@storybook/addon-knobs";
 
-import TextInput from "../components/TextInput";
+import TextInput from "../TextInput";
 
 export const textInput = {
   value: "",

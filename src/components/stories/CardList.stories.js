@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs";
 
-import CardList from "../components/CardList";
+import CardList from "../CardList";
 
 /**
  * A default list of cards. Many different types of card appear here.

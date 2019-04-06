@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import WidgetOverlay from "../components/WidgetOverlay";
 import Headline from "../components/Headline";
-import Card from "../components/Card";
+import CardList from "../components/CardList";
 
 import icn_clear_day from "../icons/clear-day.svg";
 import icn_clear_night from "../icons/clear-night.svg";
@@ -17,55 +17,69 @@ import icn_sleet from "../icons/sleet.svg";
 import icn_snow from "../icons/snow.svg";
 import icn_wind from "../icons/wind.svg";
 
+/**
+ * CurrentWeather.js - Returns a formatted representation of the current weather conditions.
+ *
+ * @param {bool} err - Defines if the component should be in an error state. Error state if true.
+ * @param {object} data - Defines the data to the transformed by the widget. Loading state if null.
+ */
 const CurrentWeather = ({ err, data }) => {
-  const cardData = { imageURL: null, title: null, subtitle: null };
+  const card = {
+    id: "weather",
+    slim: false,
+    data: { imageURL: null, title: null, subtitle: null }
+  };
 
-  if (!err) {
-    cardData.subtitle = data.weather.summary;
-    cardData.title = data.weather.temperature + "°C";
+  if (!err && data) {
+    card.data.subtitle = data.weather.summary;
+    card.data.title = data.weather.temperature + "°C";
+
+    /**
+     * The following large and ugly switch statement maps the icon parameter to an actual SVG image.
+     */
     switch (data.weather.icon) {
       case "clear-day":
-        cardData.imageURL = icn_clear_day;
+        card.data.imageURL = icn_clear_day;
         break;
       case "clear-night":
-        cardData.imageURL = icn_clear_night;
+        card.data.imageURL = icn_clear_night;
         break;
       case "cloudy":
-        cardData.imageURL = icn_cloudy;
+        card.data.imageURL = icn_cloudy;
         break;
       case "fog":
-        cardData.imageURL = icn_fog;
+        card.data.imageURL = icn_fog;
         break;
       case "partly-cloudy-day":
-        cardData.imageURL = icn_partly_cloudy_day;
+        card.data.imageURL = icn_partly_cloudy_day;
         break;
       case "partly-cloudy-night":
-        cardData.imageURL = icn_partly_cloudy_night;
+        card.data.imageURL = icn_partly_cloudy_night;
         break;
       case "rain":
-        cardData.imageURL = icn_rain;
+        card.data.imageURL = icn_rain;
         break;
       case "sleet":
-        cardData.imageURL = icn_sleet;
+        card.data.imageURL = icn_sleet;
         break;
       case "snow":
-        cardData.imageURL = icn_snow;
+        card.data.imageURL = icn_snow;
         break;
       case "wind":
-        cardData.imageURL = icn_wind;
+        card.data.imageURL = icn_wind;
         break;
       default:
-        cardData.imageURL = icn_default;
+        card.data.imageURL = icn_default;
     }
   }
 
   return (
     <div>
       <WidgetOverlay error={err} loading={data ? false : true} />
-      {!err ? (
+      {!err && data ? (
         <div>
           <Headline value="Weather" />
-          <Card slim={false} data={cardData} />
+          <CardList cards={[card]} highlighted={false} />
         </div>
       ) : null}
     </div>
@@ -74,7 +88,15 @@ const CurrentWeather = ({ err, data }) => {
 
 CurrentWeather.propTypes = {
   err: PropTypes.bool.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.shape({
+    success: PropTypes.bool.isRequired,
+    weather: PropTypes.shape({
+      summary: PropTypes.string.isRequired,
+      temperature: PropTypes.number.isRequired,
+      icon: PropTypes.string.isRequired,
+      precip: PropTypes.number
+    }).isRequired
+  })
 };
 
 export default CurrentWeather;

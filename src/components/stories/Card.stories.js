@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, object, boolean } from "@storybook/addon-knobs";
 
-import Card from "../components/Card";
+import Card from "../Card";
 
 /**
  * A card with a tag only.

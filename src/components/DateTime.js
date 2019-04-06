@@ -12,10 +12,16 @@ import PropTypes from "prop-types";
 const DateTime = ({ unixStart }) => {
   const [unix, setUnix] = useState(unixStart);
 
+  /**
+   * Every second, add one.
+   */
   useInterval(() => {
     setUnix(unix + 1);
   }, 1000);
 
+  /**
+   * If the start time changes, then update the state to the new start time.
+   */
   useEffect(() => {
     setUnix(unixStart);
   }, [unixStart]);
@@ -24,11 +30,18 @@ const DateTime = ({ unixStart }) => {
 
   return (
     <Container>
-      <FitText compressor={0.7}>
+      <FitText compressor={0.5}>
         <div>{date.toLocaleTimeString("en-GB")}</div>
       </FitText>
       <FitText compressor={1}>
-        <div>{date.toDateString()}</div>
+        <div>
+          {date.toLocaleDateString("en-GB", {
+            weekday: "short",
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+          })}
+        </div>
       </FitText>
     </Container>
   );

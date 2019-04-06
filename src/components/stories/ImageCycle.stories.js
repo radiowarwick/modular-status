@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, number, object, boolean } from "@storybook/addon-knobs";
 
-import ImageCycle from "../components/ImageCycle";
+import ImageCycle from "../ImageCycle";
 
 /**
  * A Default image cycle with three images.

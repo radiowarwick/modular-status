@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, array } from "@storybook/addon-knobs";
 
-import Table from "../components/Table";
+import Table from "../Table";
 
 export const tableDefault = {
   headings: [null, "Studio 2", "Tascam"],

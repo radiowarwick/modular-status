@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, number } from "@storybook/addon-knobs";
 
-import Loader from "../components/Loader";
+import Loader from "../Loader";
 
 /**
  * Defines a default loader of a reasonable size.

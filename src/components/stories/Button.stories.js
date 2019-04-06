@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
-import Button from "../components/Button";
+import Button from "../Button";
 
 /**
  * An active button with some text.

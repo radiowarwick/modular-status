@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useInterval } from "./useInterval";
 import FlexLayout from "flexlayout-react";
 import styled from "styled-components";
+import axios from "axios";
 import "./app.css";
 
 import Button from "./components/Button";
@@ -10,39 +12,47 @@ import CurrentDateTime from "./widgets/CurrentDateTime";
 import CurrentWeather from "./widgets/CurrentWeather";
 
 const App = () => {
+  /**
+   * Define references (mutable persistant "boxes" to hold data).
+   */
   const layoutRef = useRef(null);
+  const secondsElapsed = useRef(0);
+
+  /**
+   * UI Control variables to define how the UI should look in different states.
+   */
   const [editing, setEditing] = useState(true);
   const [adding, setAdding] = useState(false);
+
+  /**
+   * TODO - Write comment
+   *
+   * Updates each render. This means that, the array may not reflect the current widgets
+   * on screen until the next render.
+   *
+   * Used to fetch data only for the widgets on screen.
+   */
+  const activeWidgetIndices = [];
 
   /**
    * Define the widgets that can be added to the layout.
    */
   const [widgets, setWidgets] = useState([
     {
-      component: "CurrentDateTime",
-      ref: CurrentDateTime,
       name: "Date & Time",
+      component: CurrentDateTime,
       dataURL: null,
       refreshInterval: null,
       props: { err: false, data: {} }
     },
     {
-      component: "CurrentWeather",
-      ref: CurrentWeather,
       name: "Weather",
+      component: CurrentWeather,
       dataURL: "http://localhost:8080/api/weather",
-      refreshInterval: null,
+      refreshInterval: 120,
       props: {
         err: false,
-        data: {
-          success: true,
-          weather: {
-            summary: "Mostly Cloudy",
-            temperature: 7.64,
-            icon: "partly-cloudy-day",
-            precip: 0
-          }
-        }
+        data: null
       }
     }
   ]);
@@ -65,44 +75,99 @@ const App = () => {
   });
 
   /**
-   * Saves the model back to localStorage.
+   * Fetch and refresh the data for a widget in the widgets array (held in state).
+   *
+   * @param {number} widgetIndex - The index of the widget to be refreshed.
    */
-  const save = () =>
-    localStorage.setItem("flexLayoutJSON", JSON.stringify(model.toJson()));
+  const refreshWidgetByIndex = widgetIndex => {
+    /**
+     * Make a copy of the widgets array. Prevents mutation of the widgets array.
+     */
+    const newWidgets = widgets.slice(0);
+
+    /**
+     * Fetch the data from the given dataURL endpoint.
+     *
+     * If all goes well, then set the `nextWidgets` array (index of widget) to hold the new data.
+     *
+     * If an error occours, then set `nextWidgets` array (index of widget) to an error state.
+     *
+     * No matter what happens, set the widgets array (held in state) to the new widgets.
+     */
+    axios
+      .get(widgets[widgetIndex].dataURL)
+      .then(response => {
+        newWidgets[widgetIndex].props = {
+          err: false,
+          data: response.data
+        };
+      })
+      .catch(error => {
+        newWidgets[widgetIndex].props = {
+          err: true,
+          data: null
+        };
+      })
+      .then(() => {
+        setWidgets(newWidgets);
+        console.log("Updating: " + widgets[widgetIndex].name);
+        console.log("-----------------");
+      });
+  };
 
   /**
    * Returns a widget (react component) based on a node's component property.
    *
-   * Uses the node's component property to extract a widget (from the widget object held in state)
-   * with matching component property.
+   * The node's component property holds the index of a widget in the widgets array (held in state).
    *
    * The widget is then built dynamically, using a refence to the actual react component function (Widget.ref),
    * and with the current props (Widget.props).
    *
-   * @param {object} node - A node in the flexlayout model that will be converted to a react component.
+   * @param {object} node - A node in the flexlayout model that will be converted to a widget (react component).
    */
   const factory = node => {
-    const component = node.getComponent();
-    const [Widget] = widgets.filter(widget => widget.component === component);
-    return <Widget.ref {...Widget.props} />;
+    /**
+     * Get the index of the widget in the widgets array from the node on the flexlayout model.
+     */
+    const widgetIndex = node.getComponent();
+
+    /**
+     * Add the widget index to the active widget index array (if not already present).
+     */
+    if (activeWidgetIndices.indexOf(widgetIndex) < 0)
+      activeWidgetIndices.push(widgetIndex);
+
+    /**
+     * Return the correct widget.
+     */
+    const Widget = widgets[widgetIndex];
+
+    return <Widget.component {...Widget.props} />;
   };
 
   /**
    * Triggers an add tab event, providing a draggable box to position the new tab.
    *
-   * Will add a new node to the model based on the widget passed.
+   * Will add a new node to the model based on the widget index that is passed.
    *
-   * @param {object} widget - The widget that will added to the flexlayout model (as a new node).
+   * @param {number} widgetIndex- The index in the widget array of the widget that will added
+   * to the flexlayout model (as a new node).
    */
-  const addWidgetToModel = widget => {
+  const addWidgetToModel = widgetIndex => {
     setAdding(true);
     layoutRef.current.addTabWithDragAndDropIndirect(
-      "Drag: " + widget.name,
+      "Drag: " + widgets[widgetIndex].name,
       {
-        component: widget.component,
-        name: widget.name
+        component: widgetIndex,
+        name: widgets[widgetIndex].name
       },
-      () => setAdding(false)
+      () => {
+        /**
+         * After the widget has been "dropped", check if the widget has any data. If not, refresh with new data.
+         */
+        if (!widgets[widgetIndex].props.data) refreshWidgetByIndex(widgetIndex);
+        setAdding(false);
+      }
     );
   };
 
@@ -110,6 +175,32 @@ const App = () => {
    * Toggle editing toolbar.
    */
   const toggleEdit = () => setEditing(!editing);
+
+  /**
+   * Saves the layout model to localStorage.
+   */
+  const save = () =>
+    localStorage.setItem("flexLayoutJSON", JSON.stringify(model.toJson()));
+
+  /**
+   * Every second, check to see if the active widgets need to be refreshed with new data.
+   */
+  useInterval(() => {
+    activeWidgetIndices.forEach(widgetIndex => {
+      /**
+       * If the `refreshInterval` is null, then the widget doesn't need to be refreshed (static).
+       * If a suitable number of seconds have elapsed (based on `refreshInterval`), then refresh the widget.
+       */
+      if (
+        widgets[widgetIndex].refreshInterval &&
+        secondsElapsed.current % widgets[widgetIndex].refreshInterval === 0
+      ) {
+        refreshWidgetByIndex(widgetIndex);
+      }
+    });
+
+    secondsElapsed.current++;
+  }, 1000);
 
   /**
    * If the editing mode changes, then update the model's global attributes to reflect the change.
@@ -125,15 +216,19 @@ const App = () => {
     );
   }, [editing]);
 
+  console.log("Active Widgets: ");
+  console.log(activeWidgetIndices);
+  console.log("-----------------");
+
   return (
     <Container>
       <EditIcon onClick={toggleEdit}>✎</EditIcon>
       <Toolbar style={{ width: editing ? "11rem" : "0rem" }}>
         <Headline value="Widgets" fontSize={1.5} />
-        {widgets.map((widget, index) => (
+        {widgets.map((widget, widgetIndex) => (
           <Button
-            key={index}
-            handleClick={() => addWidgetToModel(widget)}
+            key={widgetIndex}
+            handleClick={() => addWidgetToModel(widgetIndex)}
             value={widget.name}
             disabled={adding}
           />

@@ -6,7 +6,7 @@ import "./app.css";
 import Button from "./components/Button";
 import Headline from "./components/Headline";
 
-import DateTime from "./widgets/DateTime";
+import DateTime from "./components/DateTime";
 
 const App = () => {
   const layoutRef = useRef(null);

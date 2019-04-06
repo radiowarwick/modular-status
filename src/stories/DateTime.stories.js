@@ -1,6 +1,15 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { withKnobs, number } from "@storybook/addon-knobs";
 
-import DateTime from "../widgets/DateTime";
+import DateTime from "../components/DateTime";
 
-storiesOf("Widgets/DateTime", module).add("Default", () => <DateTime />);
+export const dateTimeDefault = {
+  unixStart: 0
+};
+
+storiesOf("Simple/DateTime", module)
+  .addDecorator(withKnobs)
+  .add("Default", () => (
+    <DateTime unixStart={number("unixStart", dateTimeDefault.unixStart)} />
+  ));

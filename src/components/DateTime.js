@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FitText from "react-fittext";
 import styled from "styled-components";
 import { useInterval } from "../useInterval";
+import PropTypes from "prop-types";
 
 /**
  * Date.js - Returns a formatted and auto-scaling date/time formatted element.
+ *
+ * @param {number} unixStart - The start time to begin counting from.
  */
-const DateTime = () => {
-  const [unix, setUnix] = useState(Math.floor(Date.now() / 1000));
+const DateTime = ({ unixStart }) => {
+  const [unix, setUnix] = useState(unixStart);
 
   useInterval(() => {
     setUnix(unix + 1);
   }, 1000);
+
+  useEffect(() => {
+    setUnix(unixStart);
+  }, [unixStart]);
 
   const date = new Date(unix * 1000);
 
@@ -25,6 +32,10 @@ const DateTime = () => {
       </FitText>
     </Container>
   );
+};
+
+DateTime.propTypes = {
+  unixStart: PropTypes.number.isRequired
 };
 
 export default DateTime;

@@ -6,7 +6,8 @@ import "./app.css";
 import Button from "./components/Button";
 import Headline from "./components/Headline";
 
-import DateTime from "./components/DateTime";
+import CurrentDateTime from "./widgets/CurrentDateTime";
+import CurrentWeather from "./widgets/CurrentWeather";
 
 const App = () => {
   const layoutRef = useRef(null);
@@ -18,11 +19,31 @@ const App = () => {
    */
   const [widgets, setWidgets] = useState([
     {
-      component: "DateTime",
-      ref: DateTime,
+      component: "CurrentDateTime",
+      ref: CurrentDateTime,
       name: "Date & Time",
       dataURL: null,
-      props: null
+      refreshInterval: null,
+      props: { err: false, data: {} }
+    },
+    {
+      component: "CurrentWeather",
+      ref: CurrentWeather,
+      name: "Weather",
+      dataURL: "http://localhost:8080/api/weather",
+      refreshInterval: null,
+      props: {
+        err: false,
+        data: {
+          success: true,
+          weather: {
+            summary: "Mostly Cloudy",
+            temperature: 7.64,
+            icon: "partly-cloudy-day",
+            precip: 0
+          }
+        }
+      }
     }
   ]);
 

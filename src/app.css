@@ -78,7 +78,6 @@
   overflow: hidden;
   position: absolute;
   box-sizing: border-box;
-  border: 0.05rem solid var(--primary-colour);
 }
 
 .flexlayout__tab_button {

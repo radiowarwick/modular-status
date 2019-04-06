@@ -29,7 +29,7 @@ export default Headline;
  * Accepts a `margin` property.
  */
 const Container = styled.div`
-  margin: 0.5rem;
+  margin: 0.5rem 1rem;
 
   font-family: var(--font-heading);
   color: var(--secondary-colour);

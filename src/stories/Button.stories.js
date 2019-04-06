@@ -43,7 +43,7 @@ export const actions = {
   handleClick: action("handleClick")
 };
 
-storiesOf("Simple/Button", module)
+storiesOf("Composite/Button", module)
   .addDecorator(withKnobs)
   .add("Default", () => (
     <Button

@@ -7,8 +7,8 @@ const api = new koaRouter();
 const endpoints = {
   weather: "https://my.warwick.ac.uk/api/tiles/content/weather",
   bus: "https://my.warwick.ac.uk/api/tiles/content/bus",
-  messages: "",
-  lastplayed: "",
+  messages: "https://beta.radio.warwick.ac.uk/api/message",
+  lastplayed: "https://beta.radio.warwick.ac.uk/api/log",
   schedule: "",
   equipment: ""
 };
@@ -57,60 +57,71 @@ api.get("/weather", async ctx => {
 
 api.get("/images", async ctx => {
   const files = await fs.readdir("./resources/media/images/");
-  const images = files.map(file => "/media/images/" + encodeURIComponent(file));
+  const images = files.map((file, index) => ({
+    id: "img_" + index,
+    url: "/media/images/" + encodeURIComponent(file)
+  }));
 
   ctx.body = { success: true, images: images };
 });
 
 api.get("/messages", async ctx => {
-  /*const response = await axios.get(endpoints.messages, {
+  const response = await axios.get(endpoints.messages, {
     params: { key: process.env.RAW_API_KEY }
   });
-  const json = response.data;*/
 
-  const messages = [
-    {
-      id: 1,
-      sender: "Will Hall",
-      origin: "Twitter",
-      origin_code: "twt",
-      body: "Test Message. Hey this is a message."
-    },
-    {
-      id: 0,
-      sender: "Larry Brosman",
-      origin: "Website",
-      origin_code: "web",
-      body: "This message is from a web user."
-    }
-  ];
+  const content = response.data;
+
+  const messages = content.map(message => {
+    let origin = "";
+
+    const senderChars = message.sender.split("");
+    const indexOfOriginStart = senderChars.indexOf("<");
+
+    const originLong = senderChars
+      .slice(indexOfOriginStart)
+      .join("")
+      .trim();
+
+    const sender = senderChars
+      .slice(0, indexOfOriginStart)
+      .join("")
+      .trim();
+
+    if (originLong === "<website>") origin = "web";
+    if (originLong === "<notify@twitter.com>") origin = "twt";
+
+    return {
+      id: "msg_" + message.id,
+      origin: origin,
+      sender: sender,
+      subject: message.subject,
+      body: message.body
+    };
+  });
 
   ctx.body = { success: true, messages: messages };
 });
 
 api.get("/lastplayed", async ctx => {
-  /*const response = await axios.get(endpoints.lastplayed, {
+  const response = await axios.get(endpoints.lastplayed, {
     params: { key: process.env.RAW_API_KEY }
-  })
-  const json = response.data;*/
+  });
 
-  const lastplayed = [
-    {
-      id: 1,
-      time: 1554370299,
-      title: "Borderline",
-      artist: "Tame Impala",
-      imageURL: "https://i.ytimg.com/vi/hNJOI2dtDZ4/maxresdefault.jpg"
-    },
-    {
-      id: 0,
-      time: 1554370237,
-      title: "Patience",
-      artist: "Tame Impala",
+  const content = response.data;
+
+  const lastplayed = content.map(logRow => {
+    return {
+      id: "lp_" + logRow.id,
+      time: logRow.datetime,
+      title: logRow.title,
+      artist: logRow.artist,
       imageURL:
-        "http://www.brooklynvegan.com/files/2019/03/tame-impala-patience.jpg"
-    }
-  ];
+        "https://media.radio.warwick.ac.uk/lastfm/" +
+        encodeURIComponent(logRow.artist) +
+        ".jpg"
+    };
+  });
 
   ctx.body = { success: true, lastplayed: lastplayed };
 });

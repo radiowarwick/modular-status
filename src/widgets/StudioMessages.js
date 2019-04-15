@@ -19,9 +19,7 @@ const StudioMessages = ({ err, data }) => {
   /**
    * If not error, and data is present, transform data.
    */
-  if (!err && data) {
-    messages = data.messages;
-  }
+  if (!err && data) messages = data.messages;
 
   /**
    * TODO: describe.

@@ -38,7 +38,7 @@ export const defaultWidgets = [
     name: "Bus Times",
     component: BusTimes,
     dataURL: "http://localhost:8080/api/bus",
-    refreshInterval: 240,
+    refreshInterval: 180,
     props: {
       err: null,
       data: null
@@ -48,7 +48,7 @@ export const defaultWidgets = [
     name: "Messages",
     component: StudioMessages,
     dataURL: "http://localhost:8080/api/messages",
-    refreshInterval: 480,
+    refreshInterval: 240,
     props: {
       err: null,
       data: null

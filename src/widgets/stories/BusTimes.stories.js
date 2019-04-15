@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, object, boolean } from "@storybook/addon-knobs";
+import { withKnobs, object } from "@storybook/addon-knobs";
 
 import BusTimes from "../BusTimes";
 
@@ -8,7 +8,7 @@ import BusTimes from "../BusTimes";
  * A default bus with 5 departures.
  */
 export const busTimesDefault = {
-  err: false,
+  err: null,
   data: {
     success: true,
     busses: [
@@ -38,7 +38,7 @@ storiesOf("Widgets/BusTimes", module)
   .addDecorator(withKnobs)
   .add("default", () => (
     <BusTimes
-      err={boolean("err", busTimesDefault.err)}
+      err={object("err", busTimesDefault.err)}
       data={object("data", busTimesDefault.data)}
     />
   ));

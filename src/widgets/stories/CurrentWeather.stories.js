@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, object, boolean } from "@storybook/addon-knobs";
+import { withKnobs, object } from "@storybook/addon-knobs";
 
 import CurrentWeather from "../CurrentWeather";
 
@@ -8,7 +8,7 @@ import CurrentWeather from "../CurrentWeather";
  * Default current weather component, with no error and example dataset.
  */
 export const currentWeatherDefault = {
-  err: false,
+  err: null,
   data: {
     success: true,
     weather: {
@@ -24,7 +24,7 @@ storiesOf("Widgets/CurrentWeather", module)
   .addDecorator(withKnobs)
   .add("Default", () => (
     <CurrentWeather
-      err={boolean("err", currentWeatherDefault.err)}
+      err={object("err", currentWeatherDefault.err)}
       data={object("data", currentWeatherDefault.data)}
     />
   ));

@@ -1,12 +1,20 @@
 self.__precacheManifest = [
   {
-    "url": "main.2e7f42f664998874826f.bundle.js"
+    "url": "main.3fae08fd7c67c58b8572.bundle.js"
   },
   {
-    "url": "runtime~main.2e7f42f664998874826f.bundle.js"
+    "url": "runtime~main.3fae08fd7c67c58b8572.bundle.js"
   },
   {
-    "url": "vendors~main.2e7f42f664998874826f.bundle.js"
+    "url": "vendors~main.3fae08fd7c67c58b8572.bundle.js"
+  },
+  {
+    "revision": "438efa02aca97783ef1a0db462800809",
+    "url": "static/media/twitter.438efa02.png"
+  },
+  {
+    "revision": "df6ed8cce9e456681f43f18a17d07199",
+    "url": "static/media/website.df6ed8cc.png"
   },
   {
     "revision": "cf04a6d3d5d5e9cfb718b06c948888a9",
@@ -53,7 +61,7 @@ self.__precacheManifest = [
     "url": "static/media/wind.2573181f.svg"
   },
   {
-    "revision": "dca24edd078104206c770d0b73bab8d5",
+    "revision": "a694f4c0a3af9ccceb56380d1933fba7",
     "url": "iframe.html"
   }
 ];

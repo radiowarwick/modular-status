@@ -1,14 +1,13 @@
 const koaRouter = require("koa-router");
 const axios = require("axios");
-const fs = require("fs-extra");
 
 const api = new koaRouter();
 
 const endpoints = {
   weather: "https://my.warwick.ac.uk/api/tiles/content/weather",
   bus: "https://my.warwick.ac.uk/api/tiles/content/bus",
-  messages: "",
-  lastplayed: "",
+  messages: "https://beta.radio.warwick.ac.uk/api/message",
+  lastplayed: "https://beta.radio.warwick.ac.uk/api/log",
   schedule: "",
   equipment: ""
 };
@@ -21,19 +20,19 @@ api.get("/bus", async ctx => {
   const response = await axios.get(endpoints.bus);
   const json = response.data;
 
-  const buses = json.data.bus.content.items.map(bus => {
+  const busses = json.data.bus.content.items.map(bus => {
     const textArray = bus.text.split(" ");
-    const busService = textArray[0];
+    const service = textArray[0];
     const destination = textArray.slice(textArray.indexOf("to") + 1).join(" ");
     return {
-      id: bus.id,
+      id: "bus_" + bus.id,
       callout: bus.callout,
       destination: destination,
-      bus_service: busService
+      service: service
     };
   });
 
-  ctx.body = { success: true, buses: buses };
+  ctx.body = { success: true, busses: busses };
 });
 
 /**
@@ -55,62 +54,80 @@ api.get("/weather", async ctx => {
   ctx.body = { success: true, weather: weather };
 });
 
-api.get("/images", async ctx => {
-  const files = await fs.readdir("./resources/media/images/");
-  const images = files.map(file => "/media/images/" + encodeURIComponent(file));
+api.get("/images/:group", async ctx => {
+  const response = await axios.get(
+    process.env.MEDIA_URL + "/describe/" + ctx.params.group.toLowerCase()
+  );
+  let images = null;
+  if (response.data.success) {
+    const baseURL = process.env.MEDIA_URL + response.data.path;
+    images = response.data.files.map((file, index) => ({
+      id: "img_" + index,
+      url: baseURL + encodeURIComponent(file)
+    }));
+  }
 
   ctx.body = { success: true, images: images };
 });
 
 api.get("/messages", async ctx => {
-  /*const response = await axios.get(endpoints.messages, {
+  const response = await axios.get(endpoints.messages, {
     params: { key: process.env.RAW_API_KEY }
   });
-  const json = response.data;*/
 
-  const messages = [
-    {
-      id: 1,
-      sender: "Will Hall",
-      origin: "Twitter",
-      origin_code: "twt",
-      body: "Test Message. Hey this is a message."
-    },
-    {
-      id: 0,
-      sender: "Larry Brosman",
-      origin: "Website",
-      origin_code: "web",
-      body: "This message is from a web user."
-    }
-  ];
+  const content = response.data;
+
+  const messages = content.map(message => {
+    let origin = "";
+
+    const senderChars = message.sender.split("");
+    const indexOfOriginStart = senderChars.indexOf("<");
+
+    const originLong = senderChars
+      .slice(indexOfOriginStart)
+      .join("")
+      .trim();
+
+    const sender = senderChars
+      .slice(0, indexOfOriginStart)
+      .join("")
+      .trim();
+
+    if (originLong === "<website>") origin = "web";
+    if (originLong === "<notify@twitter.com>") origin = "twt";
+
+    return {
+      id: "msg_" + message.id,
+      origin: origin,
+      sender: sender,
+      subject: message.subject,
+      body: message.body,
+      datetime: message.datetime
+    };
+  });
 
   ctx.body = { success: true, messages: messages };
 });
 
 api.get("/lastplayed", async ctx => {
-  /*const response = await axios.get(endpoints.lastplayed, {
+  const response = await axios.get(endpoints.lastplayed, {
     params: { key: process.env.RAW_API_KEY }
-  })
-  const json = response.data;*/
+  });
 
-  const lastplayed = [
-    {
-      id: 1,
-      time: 1554370299,
-      title: "Borderline",
-      artist: "Tame Impala",
-      imageURL: "https://i.ytimg.com/vi/hNJOI2dtDZ4/maxresdefault.jpg"
-    },
-    {
-      id: 0,
-      time: 1554370237,
-      title: "Patience",
-      artist: "Tame Impala",
+  const content = response.data;
+
+  const lastplayed = content.map(logRow => {
+    return {
+      id: "lp_" + logRow.id,
+      time: logRow.datetime,
+      title: logRow.title,
+      artist: logRow.artist,
       imageURL:
-        "http://www.brooklynvegan.com/files/2019/03/tame-impala-patience.jpg"
-    }
-  ];
+        "https://media.radio.warwick.ac.uk/lastfm/" +
+        encodeURIComponent(logRow.artist) +
+        ".jpg"
+    };
+  });
 
   ctx.body = { success: true, lastplayed: lastplayed };
 });

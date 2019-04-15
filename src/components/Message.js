@@ -2,22 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import twitter from "../images/twitter.png";
+import website from "../images/website.png";
+
 /**
  * Message.js - Returns a formatted message box.
  *
  * @param {string} sender - Defines who sent the message.
  * @param {string} origin - Defines where the message came from.
- * @param {string} imageURL - Defines the image to display.
+ * @param {string} subject - Defines the subject of the message.
  * @param {string} body - Defines the body of the message.
  */
-const Message = ({ sender, origin, imageURL, body }) => {
+const Message = ({ sender, origin, subject, body, datetime }) => {
   return (
     <Container>
       <Head>
-        <HeadImage src={imageURL} />
+        <HeadImage src={origin === "twt" ? twitter : website} />
         <HeadText>
           <HeadTitle>{sender}</HeadTitle>
-          <HeadOrigin>{origin}</HeadOrigin>
+          <HeadSubject>
+            {new Date(datetime * 1000).toLocaleTimeString("en-GB", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })}
+            &nbsp;&bull;&nbsp;{subject}
+          </HeadSubject>
         </HeadText>
       </Head>
       <Body>{body}</Body>
@@ -28,8 +37,9 @@ const Message = ({ sender, origin, imageURL, body }) => {
 Message.propTypes = {
   sender: PropTypes.string.isRequired,
   origin: PropTypes.string.isRequired,
-  imageURL: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  subject: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  datetime: PropTypes.number.isRequired
 };
 
 export default Message;
@@ -61,7 +71,7 @@ const HeadImage = styled.img`
 `;
 
 const HeadText = styled.div`
-  padding-left: 0.8em;
+  padding-left: 0.75em;
   line-height: 1.1;
 
   display: flex;
@@ -69,7 +79,7 @@ const HeadText = styled.div`
   justify-content: center;
 
   white-space: nowrap;
-  text-overflow: clip;
+  text-overflow: ellipse;
 `;
 
 const HeadTitle = styled.div`
@@ -77,12 +87,12 @@ const HeadTitle = styled.div`
   font-size: 2rem;
 `;
 
-const HeadOrigin = styled.div`
-  font-size: 1.5rem;
+const HeadSubject = styled.div`
+  font-size: 1.2rem;
 `;
 
 const Body = styled.div`
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   padding: 0.8rem;
   line-height: 1.2;
   white-space: pre-line;

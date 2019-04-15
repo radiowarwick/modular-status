@@ -17,7 +17,7 @@ const Card = ({ data, slim }) => {
       width: slim ? "6rem" : "8rem"
     }),
     tag: useSpring({
-      fontSize: slim ? "3rem" : "4rem"
+      fontSize: slim ? "2.75rem" : "3.75rem"
     }),
     text: useSpring({
       lineHeight: slim ? "1" : "1.25"

@@ -1,6 +1,5 @@
 const koaRouter = require("koa-router");
 const axios = require("axios");
-const fs = require("fs-extra");
 
 const api = new koaRouter();
 
@@ -21,19 +20,19 @@ api.get("/bus", async ctx => {
   const response = await axios.get(endpoints.bus);
   const json = response.data;
 
-  const buses = json.data.bus.content.items.map(bus => {
+  const busses = json.data.bus.content.items.map(bus => {
     const textArray = bus.text.split(" ");
-    const busService = textArray[0];
+    const service = textArray[0];
     const destination = textArray.slice(textArray.indexOf("to") + 1).join(" ");
     return {
-      id: bus.id,
+      id: "bus_" + bus.id,
       callout: bus.callout,
       destination: destination,
-      bus_service: busService
+      service: service
     };
   });
 
-  ctx.body = { success: true, buses: buses };
+  ctx.body = { success: true, busses: busses };
 });
 
 /**
@@ -55,12 +54,18 @@ api.get("/weather", async ctx => {
   ctx.body = { success: true, weather: weather };
 });
 
-api.get("/images", async ctx => {
-  const files = await fs.readdir("./resources/media/images/");
-  const images = files.map((file, index) => ({
-    id: "img_" + index,
-    url: "/media/images/" + encodeURIComponent(file)
-  }));
+api.get("/images/:group", async ctx => {
+  const response = await axios.get(
+    process.env.MEDIA_URL + "/describe/" + ctx.params.group.toLowerCase()
+  );
+  let images = null;
+  if (response.data.success) {
+    const baseURL = process.env.MEDIA_URL + response.data.path;
+    images = response.data.files.map((file, index) => ({
+      id: "img_" + index,
+      url: baseURL + encodeURIComponent(file)
+    }));
+  }
 
   ctx.body = { success: true, images: images };
 });

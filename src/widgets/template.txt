@@ -1,0 +1,43 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+import WidgetOverlay from "../components/WidgetOverlay";
+import Headline from "../components/Headline";
+
+/**
+ * Template.js - a default widget.
+ *
+ * @param {bool} err - Defines if the component should be in an error state. Error state if true.
+ * @param {object} data - Defines the data to the transformed by the widget. Loading state if null.
+ */
+const Template = ({ err, data }) => {
+
+  /**
+   * If not error, and data is present, transform data.
+   */
+  if (!err && data) {
+
+  }
+
+  /**
+   * TODO: describe.
+   * Else, widget overlay handles errors and loading.
+   */
+  return (
+    <div>
+      <WidgetOverlay error={err} loading={data ? false : true} />
+      {!err && data ? (
+        <div>
+          <Headline value="Bus Departures" />
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+Template.propTypes = {
+  err: PropTypes.bool.isRequired,
+  data: PropTypes.object
+};
+
+export default Template;

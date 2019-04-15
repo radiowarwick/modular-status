@@ -20,16 +20,22 @@ import icn_wind from "../icons/wind.svg";
 /**
  * CurrentWeather.js - Returns a formatted representation of the current weather conditions.
  *
- * @param {bool} err - Defines if the component should be in an error state. Error state if true.
+ * @param {object} err - Defines if the component should be in an error state. Error state if not null.
  * @param {object} data - Defines the data to the transformed by the widget. Loading state if null.
  */
 const CurrentWeather = ({ err, data }) => {
+  /**
+   * Define a base card to show.
+   */
   const card = {
     id: "weather",
     slim: false,
     data: { imageURL: null, title: null, subtitle: null }
   };
 
+  /**
+   * If not error, and data is present, transform it.
+   */
   if (!err && data) {
     card.data.subtitle = data.weather.summary;
     card.data.title = data.weather.temperature + "°C";
@@ -74,7 +80,7 @@ const CurrentWeather = ({ err, data }) => {
   }
 
   return (
-    <div>
+    <>
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
@@ -82,12 +88,12 @@ const CurrentWeather = ({ err, data }) => {
           <CardList cards={[card]} highlighted={false} />
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 
 CurrentWeather.propTypes = {
-  err: PropTypes.bool.isRequired,
+  err: PropTypes.object,
   data: PropTypes.shape({
     success: PropTypes.bool.isRequired,
     weather: PropTypes.shape({

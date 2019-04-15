@@ -8,15 +8,14 @@ import "./app.css";
 import Button from "./components/Button";
 import Headline from "./components/Headline";
 
-import CurrentDateTime from "./widgets/CurrentDateTime";
-import CurrentWeather from "./widgets/CurrentWeather";
+import { defaultWidgets } from "./defaultWidgets";
 
 const App = () => {
   /**
    * Define references (mutable persistant "boxes" to hold data).
    */
   const layoutRef = useRef(null);
-  const secondsElapsed = useRef(0);
+  const secondsElapsed = useRef(new Date().getSeconds());
 
   /**
    * UI Control variables to define how the UI should look in different states.
@@ -35,27 +34,11 @@ const App = () => {
   const activeWidgetIndices = [];
 
   /**
-   * Define the widgets that can be added to the layout.
+   * Define the widgets from a copy of the defaultWidgets array.
+   *
+   * Widgets make up the UI.
    */
-  const [widgets, setWidgets] = useState([
-    {
-      name: "Date & Time",
-      component: CurrentDateTime,
-      dataURL: null,
-      refreshInterval: null,
-      props: { err: false, data: {} }
-    },
-    {
-      name: "Weather",
-      component: CurrentWeather,
-      dataURL: "http://localhost:8080/api/weather",
-      refreshInterval: 120,
-      props: {
-        err: false,
-        data: null
-      }
-    }
-  ]);
+  const [widgets, setWidgets] = useState(defaultWidgets.slice(0));
 
   /**
    * Define model from localStorage.
@@ -98,21 +81,17 @@ const App = () => {
       .get(widgets[widgetIndex].dataURL)
       .then(response => {
         newWidgets[widgetIndex].props = {
-          err: false,
+          err: null,
           data: response.data
         };
       })
       .catch(error => {
         newWidgets[widgetIndex].props = {
-          err: true,
+          err: error,
           data: null
         };
       })
-      .then(() => {
-        setWidgets(newWidgets);
-        console.log("Updating: " + widgets[widgetIndex].name);
-        console.log("-----------------");
-      });
+      .then(() => setWidgets(newWidgets));
   };
 
   /**
@@ -216,9 +195,16 @@ const App = () => {
     );
   }, [editing]);
 
-  console.log("Active Widgets: ");
-  console.log(activeWidgetIndices);
-  console.log("-----------------");
+  /**
+   * When the component mounts, get the data for all the active components. Only runs once, on mount.
+   */
+  useEffect(() => {
+    activeWidgetIndices.forEach(widgetIndex => {
+      if (widgets[widgetIndex].refreshInterval)
+        refreshWidgetByIndex(widgetIndex);
+    });
+    return setWidgets(defaultWidgets.slice(0));
+  }, []);
 
   return (
     <Container>

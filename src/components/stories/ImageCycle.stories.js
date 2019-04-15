@@ -46,7 +46,7 @@ const imageCycleNoAnim = {
   ]
 };
 
-storiesOf("Simple/ImageCycle", module)
+storiesOf("Composite/ImageCycle", module)
   .addDecorator(withKnobs)
   .add("Default", () => (
     <ImageCycle

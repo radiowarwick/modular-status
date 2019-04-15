@@ -9,7 +9,7 @@ import Loader from "./Loader";
  *
  * The widget gradually fades out (`HideBar`) towards the bottom to cope with overflow nicely.
  *
- * @params {bool} error - Defines if the widget is in an error state.
+ * @params {object} error - Defines if the widget is in an error state.
  * @params {bool} loading - Defines if the widget is in a loading state.
  */
 const WidgetOverlay = ({ error, loading }) => {
@@ -20,6 +20,7 @@ const WidgetOverlay = ({ error, loading }) => {
           <ErrorContainer>
             <Cross />
             <Message>Error</Message>
+            <Verbose>{error.message}</Verbose>
           </ErrorContainer>
         ) : loading ? (
           <Loader size={1.5} />
@@ -31,7 +32,7 @@ const WidgetOverlay = ({ error, loading }) => {
 };
 
 WidgetOverlay.propTypes = {
-  error: PropTypes.bool,
+  error: PropTypes.object,
   loading: PropTypes.bool
 };
 
@@ -59,12 +60,15 @@ const Display = styled.div`
 
 const ErrorContainer = styled.div`
   text-align: center;
+  color: var(--secondary-colour);
+  font-family: monospace;
+  user-select: none;
 `;
 
 const Cross = styled.div`
   font-size: 5rem;
   color: crimson;
-  font-family: var(--font-main);
+  line-height: 0.8;
 
   &:after {
     content: "X";
@@ -73,9 +77,10 @@ const Cross = styled.div`
 
 const Message = styled.div`
   font-size: 2rem;
-  color: var(--secondary-colour);
-  font-family: var(--font-heading);
-  user-select: none;
+`;
+
+const Verbose = styled.div`
+  font-size: 0.75rem;
 `;
 
 /**
@@ -85,7 +90,7 @@ const Message = styled.div`
 const HideBar = styled.div`
   background-image: linear-gradient(
     rgba(0, 0, 0, 0),
-    var(--background-colour) 30%
+    var(--background-colour) 80%
   );
   height: 1rem;
 `;

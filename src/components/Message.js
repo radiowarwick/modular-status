@@ -68,6 +68,7 @@ const Head = styled.div`
 const HeadImage = styled.img`
   height: 4.5rem;
   width: 4.5rem;
+  flex-shrink: 0;
 `;
 
 const HeadText = styled.div`

@@ -46,7 +46,7 @@ api.get("/weather", async ctx => {
 
   const weather = {
     summary: content.currentConditions.summary,
-    temperature: content.currentConditions.temperature,
+    temperature: Math.round(content.currentConditions.temperature),
     icon: content.currentConditions.icon,
     precip: content.items.length > 0 ? content.items[0].precipProbability : null
   };
@@ -54,6 +54,9 @@ api.get("/weather", async ctx => {
   ctx.body = { success: true, weather: weather };
 });
 
+/**
+ * Returns an array or images based on image group (e.g. marketing).
+ */
 api.get("/images/:group", async ctx => {
   const response = await axios.get(
     process.env.MEDIA_URL + "/describe/" + ctx.params.group.toLowerCase()
@@ -70,6 +73,9 @@ api.get("/images/:group", async ctx => {
   ctx.body = { success: true, images: images };
 });
 
+/**
+ * Fetches the studio messages.
+ */
 api.get("/messages", async ctx => {
   const response = await axios.get(endpoints.messages, {
     params: { key: process.env.RAW_API_KEY }
@@ -109,6 +115,9 @@ api.get("/messages", async ctx => {
   ctx.body = { success: true, messages: messages };
 });
 
+/**
+ * Gets the last played tracks.
+ */
 api.get("/lastplayed", async ctx => {
   const response = await axios.get(endpoints.lastplayed, {
     params: { key: process.env.RAW_API_KEY }
@@ -132,6 +141,9 @@ api.get("/lastplayed", async ctx => {
   ctx.body = { success: true, lastplayed: lastplayed };
 });
 
+/**
+ * Gets the schedule of programming.
+ */
 api.get("/schedule", async ctx => {
   /*const response = await axios.get(endpoints.schedule, {
     params: { key: process.env.RAW_API_KEY }
@@ -158,6 +170,9 @@ api.get("/schedule", async ctx => {
   ctx.body = { success: true, schedule: schedule };
 });
 
+/**
+ * Gets the equipment bookings.
+ */
 api.get("/equipment", async ctx => {
   /*const response = await axios.get(endpoints.equipment, {
     params: { key: process.env.RAW_API_KEY }

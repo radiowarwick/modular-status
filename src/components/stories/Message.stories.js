@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs, text, number } from "@storybook/addon-knobs";
 
 import Message from "../Message";
 
@@ -11,7 +11,8 @@ export const messageDefualt = {
   sender: "Student Radio Assoc.",
   origin: "twt",
   subject: "@SRA",
-  body: 'Hey!"""""'
+  body: 'Hey!"""""',
+  datetime: 5734769
 };
 
 storiesOf("Simple/Message", module)
@@ -23,5 +24,6 @@ storiesOf("Simple/Message", module)
       origin={text("origin", messageDefualt.origin)}
       subject={text("imageURL", messageDefualt.subject)}
       body={text("body", messageDefualt.body)}
+      datetime={number("datetime", messageDefualt.datetime)}
     />
   ));

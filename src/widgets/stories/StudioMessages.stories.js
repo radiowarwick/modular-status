@@ -13,26 +13,30 @@ export const studioMessagesDefault = {
     success: true,
     messages: [
       {
-        id: "msg_125840",
+        id: "msg_125845",
         origin: "web",
-        sender: "Test",
-        subject: "A Test",
-        body: 'Hey!"""""\'<><>%£%""\''
+        sender: "Cool Message Test",
+        subject: "Message from Website",
+        body: "Epic Test Alert...",
+        datetime: 1555335508
       },
       {
-        id: "msg_125839",
-        origin: "web",
-        sender: "Test",
-        subject: "A Test",
-        body: 'Hey!"""""'
-      },
-      {
-        id: "msg_125838",
+        id: "msg_125844",
         origin: "twt",
         sender: "Pierre",
         subject: "@1251time just mentioned us on twitter",
         body:
-          "@1251time: .@buczistash good news! It's 12:51, and today you are victRaWrious! Tweet us a request @RaW1251AM #1251time"
+          "@1251time: .@tabib910 good news! It's 12:51, and today you are victRaWrious! Tweet us a request @RaW1251AM #1251time",
+        datetime: 1555329122
+      },
+      {
+        id: "msg_125843",
+        origin: "twt",
+        sender: "Dave",
+        subject: "@dflite just mentioned us on twitter",
+        body:
+          "@dflite: @RAW1251AM Hi. I understand you're looking for past members to talk about the station for the 50th anniversary? Programme Controller 95-97 here.. and I have a few more people also interested in contributing.",
+        datetime: 1555314363
       }
     ]
   }

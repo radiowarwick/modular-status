@@ -48,6 +48,7 @@ const MessageCycle = ({ interval, animate, messages }) => {
         origin={item.origin}
         subject={item.subject}
         body={item.body}
+        datetime={item.datetime}
       />
     </animated.div>
   ));
@@ -61,7 +62,8 @@ MessageCycle.propTypes = {
       sender: PropTypes.string.isRequired,
       origin: PropTypes.string.isRequired,
       subject: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired
+      body: PropTypes.string.isRequired,
+      datetime: PropTypes.number.isRequired
     }).isRequired
   ).isRequired
 };

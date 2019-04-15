@@ -48,7 +48,8 @@ StudioMessages.propTypes = {
         origin: PropTypes.string.isRequired,
         sender: PropTypes.string.isRequired,
         subject: PropTypes.string.isRequired,
-        body: PropTypes.string.isRequired
+        body: PropTypes.string.isRequired,
+        datetime: PropTypes.number.isRequired
       })
     ).isRequired
   })

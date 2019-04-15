@@ -13,14 +13,20 @@ import website from "../images/website.png";
  * @param {string} subject - Defines the subject of the message.
  * @param {string} body - Defines the body of the message.
  */
-const Message = ({ sender, origin, subject, body }) => {
+const Message = ({ sender, origin, subject, body, datetime }) => {
   return (
     <Container>
       <Head>
         <HeadImage src={origin === "twt" ? twitter : website} />
         <HeadText>
           <HeadTitle>{sender}</HeadTitle>
-          <HeadSubject>{subject}</HeadSubject>
+          <HeadSubject>
+            {new Date(datetime * 1000).toLocaleTimeString("en-GB", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })}
+            &nbsp;&bull;&nbsp;{subject}
+          </HeadSubject>
         </HeadText>
       </Head>
       <Body>{body}</Body>
@@ -32,7 +38,8 @@ Message.propTypes = {
   sender: PropTypes.string.isRequired,
   origin: PropTypes.string.isRequired,
   subject: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
+  datetime: PropTypes.number.isRequired
 };
 
 export default Message;
@@ -64,7 +71,7 @@ const HeadImage = styled.img`
 `;
 
 const HeadText = styled.div`
-  padding-left: 0.8em;
+  padding-left: 0.75em;
   line-height: 1.1;
 
   display: flex;

@@ -101,7 +101,8 @@ api.get("/messages", async ctx => {
       origin: origin,
       sender: sender,
       subject: message.subject,
-      body: message.body
+      body: message.body,
+      datetime: message.datetime
     };
   });
 

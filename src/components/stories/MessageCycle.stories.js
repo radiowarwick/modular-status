@@ -17,7 +17,8 @@ const messageCycleDefault = {
       sender: "Pierre",
       subject: "@1251time just mentioned us on twitter",
       body:
-        "@1251time: .@buczistash good news! It's 12:51, and today you are victRaWrious! Tweet us a request @RaW1251AM #1251time"
+        "@1251time: .@buczistash good news! It's 12:51, and today you are victRaWrious! Tweet us a request @RaW1251AM #1251time",
+      datetime: 12345678
     },
     {
       id: "msg_125837",
@@ -25,7 +26,8 @@ const messageCycleDefault = {
       sender: "Billy",
       subject: "@billyarnold1999 just mentioned us on twitter",
       body:
-        "@billyarnold1999: They were also incredibly nice, and we recorded a great interview that will be on air in term 3 @RAW1251AM"
+        "@billyarnold1999: They were also incredibly nice, and we recorded a great interview that will be on air in term 3 @RAW1251AM",
+      datetime: 22349678
     },
     {
       id: "msg_125836",
@@ -33,7 +35,8 @@ const messageCycleDefault = {
       sender: "Jessica ◟̽◞̽",
       subject: "@happy4tommo just mentioned us on twitter",
       body:
-        "@happy4tommo: @RAW1251AM hey! Could you please play @Louis_Tomlinson ‘s new song #TwoOfUs !? Thanks so much :)"
+        "@happy4tommo: @RAW1251AM hey! Could you please play @Louis_Tomlinson ‘s new song #TwoOfUs !? Thanks so much :)",
+      datetime: 32355900
     }
   ]
 };

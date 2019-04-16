@@ -21,7 +21,7 @@ body, html {
   overflow-x: hidden;
   background-color: var(--background-colour);
   @media (max-width: 1024px) {
-    font-size:14px;
+    font-size:12px;
   }
 }
 * {

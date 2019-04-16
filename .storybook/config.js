@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     overflow: hidden;
     @media (max-width: 1024px) {
-      font-size:14px;
+      font-size:12px;
     }
   }
   * {

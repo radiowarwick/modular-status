@@ -36,7 +36,7 @@ export const busTimesDefault = {
 
 storiesOf("Widgets/BusTimes", module)
   .addDecorator(withKnobs)
-  .add("default", () => (
+  .add("Default", () => (
     <BusTimes
       err={object("err", busTimesDefault.err)}
       data={object("data", busTimesDefault.data)}

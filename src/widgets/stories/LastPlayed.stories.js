@@ -3,6 +3,9 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, object } from "@storybook/addon-knobs";
 import LastPlayed from "../LastPlayed";
 
+/**
+ * A default set of last played tracks.
+ */
 export const lastPlayedDefault = {
   err: null,
   data: {

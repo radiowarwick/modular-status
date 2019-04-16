@@ -20,16 +20,19 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
 
   /**
    * Update the index over time.
+   * If there are no images to display, then set index to be zero, triggering a re-render.
    */
   useInterval(() => {
-    setIndex((index + 1) % images.length);
+    setIndex(images.length > 0 ? (index + 1) % images.length : 0);
   }, interval);
+
+  const currentImage = images.length > 0 ? images[index] : { id: "", url: "" };
 
   /**
    * Define the initial animations. Start small and transparent, then full-size and opaque.
    * Will not animate if `animate` is false.
    */
-  const transitions = useTransition(images[index], images[index].id, {
+  const transitions = useTransition(currentImage, currentImage.id, {
     from: { opacity: 0, transform: "scale(0.8)" },
     enter: { opacity: 1, transform: " scale(1)" },
     leave: { opacity: 0, transform: " scale(0.8)" },
@@ -40,11 +43,9 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
   return transitions.map(({ item, props, key }) => (
     <Image
       key={key}
-      style={{
-        ...props,
-        backgroundImage: `url('${item.url +
-          (forceFetch ? "?force_fetch=" + Date.now() : "")}')`
-      }}
+      src={item.url + (forceFetch ? "?force_fetch=" + Date.now() : "")}
+      alt="Nothing to show..."
+      style={props}
     />
   ));
 };
@@ -54,7 +55,7 @@ ImageCycle.propTypes = {
   animate: PropTypes.bool.isRequired,
   forceFetch: PropTypes.bool,
   images: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, url: PropTypes.string }).isRequired
+    PropTypes.shape({ id: PropTypes.string, url: PropTypes.string })
   ).isRequired
 };
 
@@ -65,14 +66,16 @@ ImageCycle.defaultProps = {
 export default ImageCycle;
 
 /**
- *  Define image styled. Images is a background of a div, so dynamic sizing can be acheived.
+ *  Define a styled image.
  */
-const Image = styled(animated.div)`
-  width: 100%;
-  height: 100%;
+const Image = styled(animated.img)`
+  width: calc(100% - 1.6rem);
+  margin: 0 0.8rem;
   position: absolute;
 
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  border-color: var(--accent-colour);
+  border-style: solid;
+  border-radius: 0.9rem;
+
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
 `;

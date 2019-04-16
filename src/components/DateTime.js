@@ -61,4 +61,7 @@ const Container = styled.div`
   color: var(--accent-colour);
   text-align: center;
   user-select: none;
+  * {
+    background-color: var(--background-colour);
+  }
 `;

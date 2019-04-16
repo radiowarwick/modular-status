@@ -2,6 +2,7 @@ import CurrentDateTime from "./widgets/CurrentDateTime";
 import CurrentWeather from "./widgets/CurrentWeather";
 import BusTimes from "./widgets/BusTimes";
 import StudioMessages from "./widgets/StudioMessages";
+import LastPlayed from "./widgets/LastPlayed";
 
 /**
  * defaultWidgets.js - An array of default widgets, that defines and describes each widget.
@@ -49,6 +50,16 @@ export const defaultWidgets = [
     component: StudioMessages,
     dataURL: "http://localhost:8080/api/messages",
     refreshInterval: 240,
+    props: {
+      err: null,
+      data: null
+    }
+  },
+  {
+    name: "Last Played",
+    component: LastPlayed,
+    dataURL: "http://localhost:8080/api/lastplayed",
+    refreshInterval: 45,
     props: {
       err: null,
       data: null

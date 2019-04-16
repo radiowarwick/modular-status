@@ -3,24 +3,40 @@ import PropTypes from "prop-types";
 
 import WidgetOverlay from "../components/WidgetOverlay";
 import Headline from "../components/Headline";
+import CardList from "../components/CardList";
 
 /**
- * Template.js - a default widget.
+ * LastPlayed.js -
  *
  * @param {bool} err - Defines if the component should be in an error state. Error state if true.
  * @param {object} data - Defines the data to the transformed by the widget. Loading state if null.
  */
-const Template = ({ err, data }) => {
+const LastPlayed = ({ err, data }) => {
+  let cards = [];
 
   /**
    * If not error, and data is present, transform data.
+   *
+   * Generate an array of cards, which are all colourful and not slim.
    */
   if (!err && data) {
-
+    cards = data.lastplayed.map(track => {
+      return {
+        id: track.id,
+        slim: false,
+        colourful: true,
+        data: {
+          title: track.title,
+          subtitle: track.artist,
+          imageURL: track.imageURL
+        }
+      };
+    });
   }
 
   /**
-   * TODO: describe.
+   * Return a colourful CardList with the last played tracks.
+   *
    * Else, widget overlay handles errors and loading.
    */
   return (
@@ -28,16 +44,17 @@ const Template = ({ err, data }) => {
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
-          <Headline value="Template Title" />
+          <Headline value="Last Played" />
+          <CardList cards={cards} highlighted={false} />
         </div>
       ) : null}
     </div>
   );
 };
 
-Template.propTypes = {
+LastPlayed.propTypes = {
   err: PropTypes.object,
   data: PropTypes.object
 };
 
-export default Template;
+export default LastPlayed;

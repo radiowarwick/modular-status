@@ -5,6 +5,11 @@ const mount = require("koa-mount");
 const app = new koa();
 const api = require("./routes/api");
 
+/**
+ * Capture all errors with a overwrapping middleware.
+ *
+ * Try each step, fail with 500 if required.
+ */
 app.use(async (ctx, next) => {
   try {
     await next();
@@ -15,12 +20,24 @@ app.use(async (ctx, next) => {
   }
 });
 
+/**
+ * Serve the actual react app from the build folder.
+ */
 app.use(serve("../build"));
-app.use(serve("./resources"));
+
+/**
+ * Mount all API routes to the /api base route.
+ */
 app.use(mount("/api", api.routes()));
 
+/**
+ * Log errors.
+ */
 app.on("error", (err, ctx) => {
   console.log(err.message);
 });
 
+/**
+ * Export app.
+ */
 module.exports = app;

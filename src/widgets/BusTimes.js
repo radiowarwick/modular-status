@@ -30,6 +30,7 @@ const BusTimes = ({ err, data }) => {
       return {
         id: bus.id,
         slim: index === 0 ? false : true,
+        colourful: false,
         data: {
           tag: bus.service,
           title: bus.callout,

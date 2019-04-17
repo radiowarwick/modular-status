@@ -28,7 +28,7 @@ const Template = ({ err, data }) => {
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
-          <Headline value="Bus Departures" />
+          <Headline value="Template Title" />
         </div>
       ) : null}
     </div>
@@ -36,7 +36,7 @@ const Template = ({ err, data }) => {
 };
 
 Template.propTypes = {
-  err: PropTypes.bool.isRequired,
+  err: PropTypes.object,
   data: PropTypes.object
 };
 

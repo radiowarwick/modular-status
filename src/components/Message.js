@@ -17,7 +17,10 @@ const Message = ({ sender, origin, subject, body, datetime }) => {
   return (
     <Container>
       <Head>
-        <HeadImage src={origin === "twt" ? twitter : website} />
+        <HeadImage
+          src={origin === "twt" ? twitter : website}
+          alt="Origin Image"
+        />
         <HeadText>
           <HeadTitle>{sender}</HeadTitle>
           <HeadSubject>
@@ -68,11 +71,15 @@ const Head = styled.div`
 const HeadImage = styled.img`
   height: 4.5rem;
   width: 4.5rem;
+  flex-shrink: 0;
 `;
 
 const HeadText = styled.div`
   padding-left: 0.75em;
   line-height: 1.1;
+
+  color: var(--primary-colour);
+  font-weight: 600;
 
   display: flex;
   flex-direction: column;

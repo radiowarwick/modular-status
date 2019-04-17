@@ -7,8 +7,10 @@ import { useSpring, animated } from "react-spring";
  * Card.js: A component which returns an 'information' card, with either an image or a text `tag` (limited to three characters) or both.
  *
  * @param {object} data - An object which defines the data to display in the card.
+ * @param {bool} slim - Define if the card should be slim. Or not.
+ * @param {bool} colourful - Define if the card should use the image to make a dynamic background.
  */
-const Card = ({ data, slim }) => {
+const Card = ({ data, slim, colourful }) => {
   const props = {
     container: useSpring({
       height: slim ? "6rem" : "8rem"
@@ -19,7 +21,7 @@ const Card = ({ data, slim }) => {
     tag: useSpring({
       fontSize: slim ? "2.75rem" : "3.75rem"
     }),
-    text: useSpring({
+    content: useSpring({
       lineHeight: slim ? "1" : "1.25"
     })
   };
@@ -28,22 +30,28 @@ const Card = ({ data, slim }) => {
     <Container style={props.container}>
       {!data.imageURL && !data.tag ? null : (
         <Hero style={props.hero}>
-          {data.imageURL ? <HeroImage src={data.imageURL} /> : null}
+          {data.imageURL ? (
+            <HeroImage src={data.imageURL} alt={data.title} />
+          ) : null}
           {data.tag ? (
             <HeroTag style={props.tag}>{data.tag.substring(0, 3)}</HeroTag>
           ) : null}
         </Hero>
       )}
-      <Text style={props.text}>
+      <Content style={props.content}>
         <Title>{data.title}</Title>
         <Subtitle>{data.subtitle}</Subtitle>
-      </Text>
+      </Content>
+      {colourful && data.imageURL ? (
+        <Colourful imageurl={data.imageURL} />
+      ) : null}
     </Container>
   );
 };
 
 Card.propTypes = {
   slim: PropTypes.bool.isRequired,
+  colourful: PropTypes.bool.isRequired,
   data: PropTypes.shape({
     tag: PropTypes.string,
     imageURL: PropTypes.string,
@@ -60,6 +68,7 @@ export default Card;
  */
 const Container = styled(animated.div)`
   min-width: 8rem;
+  position: relative
   margin: 0 1rem 1rem 1rem;
 
   background-color: var(--primary-colour);
@@ -70,7 +79,6 @@ const Container = styled(animated.div)`
   color: var(--secondary-colour);
 
   display: flex;
-  align-items: center;
 
   user-select: none;
   overflow: hidden;
@@ -84,6 +92,8 @@ const Container = styled(animated.div)`
 const Hero = styled(animated.div)`
   height: 100%;
   background-color: var(--accent-colour);
+
+  z-index: 99;
 
   display: flex;
   flex-shrink: 0;
@@ -101,13 +111,17 @@ const HeroImage = styled.img`
 `;
 
 /**
- * Contains the text of the card, pushed over to the right.
- * Uses CSS text-overflow anf CSS Flexbox to allow text truncation.
+ * Contains the content of the card, pushed over to the right.
+ * Uses CSS text-overflow and CSS Flexbox to allow text truncation.
  */
-const Text = styled(animated.div)`
+const Content = styled(animated.div)`
   padding-left: 1em;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
+  z-index: 99;
+
   min-width: 0;
 
   div {
@@ -117,10 +131,32 @@ const Text = styled(animated.div)`
 `;
 
 /**
+ * Adds a colourful plate thingy underneath the hero and content.
+ * Uses the image to make a large, blurred frosted-glass like appearance.
+ */
+const Colourful = styled.div`
+  width:100%;
+  height:100%;
+
+  position:absolute;
+  z-index:0;
+
+  background-image: url("${props => props.imageurl}");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center; 
+
+  filter:blur(16px) opacity(40%) saturate(150%);
+  transform:scale(1.20);
+`;
+
+/**
  * Style of text elements.
  */
 const HeroTag = styled(animated.div)`
   position: absolute;
+  font-weight: 600;
+  color: var(--primary-colour);
 `;
 
 const Title = styled.div`

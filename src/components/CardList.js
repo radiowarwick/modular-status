@@ -14,6 +14,8 @@ import Card from "./Card";
 const CardList = ({ cards, highlighted }) => {
   /**
    * Define the transitional animations which will play of mount / unmount.
+   *
+   * Define the height of the animatable element based on 'slimness'.
    */
   const transitions = useTransition(cards, cards.map(({ id }) => id), {
     from: { opacity: 0, transform: "translateX(8rem)", height: "0rem" },
@@ -54,7 +56,12 @@ const CardList = ({ cards, highlighted }) => {
       <div>
         {transitions.map(({ item, key, props }) => (
           <animated.div key={key} style={props}>
-            <Card key={item.id} data={item.data} slim={item.slim} />
+            <Card
+              key={item.id}
+              data={item.data}
+              slim={item.slim}
+              colourful={item.colourful}
+            />
           </animated.div>
         ))}
       </div>
@@ -63,7 +70,18 @@ const CardList = ({ cards, highlighted }) => {
 };
 
 CardList.propTypes = {
-  cards: PropTypes.array.isRequired,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      slim: PropTypes.bool.isRequired,
+      colourful: PropTypes.bool.isRequired,
+      data: PropTypes.shape({
+        tag: PropTypes.string,
+        imageURL: PropTypes.string,
+        title: PropTypes.string,
+        subtitle: PropTypes.string
+      }).isRequired
+    }).isRequired
+  ),
   highlighted: PropTypes.bool.isRequired
 };
 

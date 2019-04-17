@@ -3,6 +3,7 @@ import { configure, addDecorator, addParameters } from "@storybook/react";
 import { createGlobalStyle } from "styled-components";
 import requireContext from "require-context.macro";
 import { setConsoleOptions } from "@storybook/addon-console";
+import { withA11y } from "@storybook/addon-a11y";
 
 setConsoleOptions({
   panelExclude: []
@@ -17,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --primary-colour: rgb(61, 61, 61);
     --secondary-colour: rgb(255,255,255);
-    --accent-colour: rgb(216,178,34);
+    --accent-colour: rgb(221, 180, 34);
     --background-colour: rgb(43,43,43);
 
     --font-heading: "Lato", sans-serif;
@@ -27,6 +28,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow: hidden;
+    @media (max-width: 1024px) {
+      font-size:12px;
+    }
   }
   * {
     box-sizing:border-box;
@@ -48,6 +52,8 @@ addDecorator(s => (
     {s()}
   </>
 ));
+
+addDecorator(withA11y);
 
 addParameters({
   backgrounds: [

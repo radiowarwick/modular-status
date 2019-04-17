@@ -254,7 +254,7 @@ const Toolbar = styled.div`
 
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
   box-shadow: inset -3px 0px 3px 0px black;
 `;
 

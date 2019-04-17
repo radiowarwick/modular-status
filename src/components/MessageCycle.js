@@ -22,14 +22,26 @@ const MessageCycle = ({ interval, animate, messages }) => {
    * Update the index over time.
    */
   useInterval(() => {
-    setIndex((index + 1) % messages.length);
+    setIndex(messages.length > 0 ? (index + 1) % messages.length : 0);
   }, interval);
+
+  const currentMessage =
+    messages.length > 0
+      ? messages[index]
+      : {
+          id: "msg_0",
+          origin: "web",
+          sender: "Empty",
+          subject: "Nothing to show...",
+          body: ":)",
+          datetime: 0
+        };
 
   /**
    * Define the initial animations. Start small and transparent, then full-size and opaque.
    * Will not animate if `animate` is false.
    */
-  const transitions = useTransition(messages[index], messages[index].id, {
+  const transitions = useTransition(currentMessage, currentMessage.id, {
     from: {
       opacity: 0,
       transform: index % 2 === 0 ? "translateX(8rem)" : "translateX(-8rem)",
@@ -64,7 +76,7 @@ MessageCycle.propTypes = {
       subject: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
       datetime: PropTypes.number.isRequired
-    }).isRequired
+    })
   ).isRequired
 };
 

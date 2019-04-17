@@ -30,6 +30,7 @@ const CurrentWeather = ({ err, data }) => {
   const card = {
     id: "weather",
     slim: false,
+    colourful: false,
     data: { imageURL: null, title: null, subtitle: null }
   };
 

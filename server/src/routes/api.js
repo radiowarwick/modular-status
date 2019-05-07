@@ -237,7 +237,7 @@ api.get("/lastplayed", async ctx => {
       title: logRow.title,
       artist: logRow.artist,
       imageURL:
-        "https://media2.radio.warwick.ac.uk/lastfm/track/" +
+        "https://media2.radio.warwick.ac.uk/music/track/" +
         encodeURIComponent(logRow.artist) +
         "/" +
         encodeURIComponent(logRow.title)

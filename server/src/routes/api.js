@@ -7,8 +7,8 @@ const api = new koaRouter();
 const endpoints = {
   weather: "https://my.warwick.ac.uk/api/tiles/content/weather",
   bus: "https://my.warwick.ac.uk/api/tiles/content/bus",
-  messages: "https://beta.radio.warwick.ac.uk/api/message",
-  lastplayed: "https://beta.radio.warwick.ac.uk/api/log",
+  messages: "https://digiplay.radio.warwick.ac.uk/api/message",
+  lastplayed: "https://digiplay.radio.warwick.ac.uk/api/log",
   schedule: "",
   equipment: ""
 };

@@ -14,13 +14,6 @@ const endpoints = {
 };
 
 /**
- * x--------------------------x
- * MUSTFIX: https module required for *.radio.warwic.ac.uk broken CA chain. Must fix.
- * x--------------------------x
- */
-const https = require("https");
-
-/**
  * Returns the next busses to depart.
  * Transforms the data from the external API into a consistent data set.
  */
@@ -105,32 +98,18 @@ api.get("/images/:group", async ctx => {
   let images = null;
 
   /**
-   * x--------------------------x
-   * MUSTFIX: agent which bypasses bad certs is required for *.radio.warwic.ac.uk broken CA chain. Must fix.
-   * x--------------------------x
-   */
-  const agent = new https.Agent({
-    rejectUnauthorized: false
-  });
-
-  /**
    * Visit the media server's describe endpoint to learn about the images avaliable.
-   *
-   * x--------------------------x
-   * MUSTFIX: agent required to bypass bad cert here.
-   * x--------------------------x
    */
   const response = await axios.get(
-    "https://media2.radio.warwick.ac.uk/describe/" +
-      ctx.params.group.toLowerCase(),
-    { httpsAgent: agent }
+    "http://media2:8080/describe/" +
+      ctx.params.group.toLowerCase()
   );
 
   /**
    * If the response is godd, build up the media URLs and then an array of images.
    */
   if (response.data.success) {
-    const baseURL = "https://media2.radio.warwick.ac.uk" + response.data.path;
+    const baseURL = "http://media2:8080" + response.data.path;
     images = response.data.files.map((file, index) => ({
       id: "img_" + index,
       url: baseURL + encodeURIComponent(file)
@@ -237,7 +216,7 @@ api.get("/lastplayed", async ctx => {
       title: logRow.title,
       artist: logRow.artist,
       imageURL:
-        "https://media2.radio.warwick.ac.uk/music/track/" +
+        "http://media2:8080/music/track/" +
         encodeURIComponent(logRow.artist) +
         "/" +
         encodeURIComponent(logRow.title)

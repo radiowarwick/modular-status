@@ -39,7 +39,8 @@ const CardList = ({ cards, highlighted }) => {
         transform: "translateX(0rem)"
       }
     ],
-    leave: { opacity: 0, transform: "translateX(-8rem)", height: "0rem" }
+    leave: { opacity: 0, transform: "translateX(-8rem)", height: "0rem" },
+    immediate: true
   });
 
   /**

@@ -40,7 +40,7 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
     enter: { opacity: 1, transform: " scale(1)" },
     leave: { opacity: 0, transform: " scale(0.8)" },
     config: { mass: 1, tension: 230, friction: 21 },
-    immediate: !animate
+    immediate: true
   });
 
   return transitions.map(({ item, props, key }) => (

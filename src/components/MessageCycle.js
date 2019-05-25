@@ -50,7 +50,7 @@ const MessageCycle = ({ interval, animate, messages }) => {
     enter: { opacity: 1, transform: "translateX(0rem)", height: "auto" },
     leave: { opacity: 0, transform: "translateX(-8rem)", height: 0 },
     config: { mass: 3, tension: 85, friction: 18 },
-    immediate: !animate
+    immediate: true
   });
 
   return transitions.map(({ item, props, key }) => (

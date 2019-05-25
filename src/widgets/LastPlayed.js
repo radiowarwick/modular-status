@@ -20,10 +20,10 @@ const LastPlayed = ({ err, data }) => {
    * Generate an array of cards, which are all colourful and not slim.
    */
   if (!err && data) {
-    cards = data.lastplayed.map(track => {
+    cards = data.lastplayed.map((track, index) => {
       return {
         id: track.id,
-        slim: false,
+        slim: index === 0 ? false : true,
         colourful: true,
         data: {
           title: track.title,

@@ -20,12 +20,15 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
 
   /**
    * Update the index over time.
-   * If there are no images to display, then set index to be zero, triggering a re-render.
+   * If there are no images to display, then set index to be zero, triggering a re-render and halting the cycle.
    */
   useInterval(() => {
     setIndex(images.length > 0 ? (index + 1) % images.length : 0);
   }, interval);
 
+  /**
+   * Set the current image to display, falling back to a default if there are no images to show.
+   */
   const currentImage = images.length > 0 ? images[index] : { id: "", url: "" };
 
   /**

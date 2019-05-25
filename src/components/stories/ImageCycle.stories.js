@@ -14,15 +14,15 @@ const imageCycleDefault = {
   images: [
     {
       id: "img_0",
-      url: "https://dev.radio.warwick.ac.uk/status/images/main.jpg"
+      url: "https://media2.radio.warwick.ac.uk/static/marketing/default"
     },
     {
       id: "img_1",
-      url: "https://dev.radio.warwick.ac.uk/status/images/bigd.png"
+      url: "https://media2.radio.warwick.ac.uk/static/marketing/default"
     },
     {
       id: "img_2",
-      url: "https://dev.radio.warwick.ac.uk/status/images/varsity.png"
+      url: "https://media2.radio.warwick.ac.uk/static/marketing/default"
     }
   ]
 };

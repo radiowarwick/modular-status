@@ -8,7 +8,6 @@ import CardList from "../CardList";
  * A default list of cards. Many different types of card appear here.
  */
 export const cardListDefault = {
-  highlighted: false,
   cards: [
     {
       id: "bs_0",
@@ -36,7 +35,7 @@ export const cardListDefault = {
       colourful: false,
       data: {
         imageURL:
-          "https://media2.radio.warwick.ac.uk/lastfm/track/tame%20impala/Feels%20Like%20We%20Only%20Go%20Backwards",
+          "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/Feels%20Like%20We%20Only%20Go%20Backwards",
         title: "Feels Like We Only Go Backwards (Special Edition)",
         subtitle: "Tame Impala"
       }
@@ -48,7 +47,6 @@ export const cardListDefault = {
  * A slim list of cards. Many different types of card appear here.
  */
 export const cardListSlim = {
-  highlighted: false,
   cards: [
     {
       id: "bs_1",
@@ -76,7 +74,7 @@ export const cardListSlim = {
       colourful: false,
       data: {
         imageURL:
-          "https://media2.radio.warwick.ac.uk/lastfm/track/tame%20impala/patience",
+          "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/patience",
         title: "Patience",
         subtitle: "Tame Impala"
       }
@@ -88,7 +86,6 @@ export const cardListSlim = {
  * A slim list of cards. Many different types of card appear here.
  */
 export const cardListColourful = {
-  highlighted: false,
   cards: [
     {
       id: "bs_1.5",
@@ -116,7 +113,7 @@ export const cardListColourful = {
       colourful: true,
       data: {
         imageURL:
-          "https://media2.radio.warwick.ac.uk/lastfm/track/still%20woozy/habit",
+          "https://media2.radio.warwick.ac.uk/music/track/still%20woozy/habit",
         title: "Habit",
         subtitle: "Still Woozy"
       }
@@ -128,7 +125,6 @@ export const cardListColourful = {
  * A mixed list of cards. Many different types of card appear here.
  */
 export const cardListMixed = {
-  highlighted: false,
   cards: [
     {
       id: "bs_2",
@@ -156,48 +152,8 @@ export const cardListMixed = {
       colourful: true,
       data: {
         imageURL:
-          "https://media2.radio.warwick.ac.uk/lastfm/track/tame%20impala/borderline",
+          "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/borderline",
         title: "Borderline",
-        subtitle: "Tame Impala"
-      }
-    }
-  ]
-};
-
-/**
- * A list of cards with a highlighted head. Many different types of card appear here.
- */
-export const cardListHighlight = {
-  highlighted: true,
-  cards: [
-    {
-      id: "bs_3",
-      slim: false,
-      colourful: false,
-      data: {
-        tag: "12X",
-        title: "11:31",
-        subtitle: "Towards Coventry"
-      }
-    },
-    {
-      id: "oa_3",
-      slim: false,
-      colourful: false,
-      data: {
-        imageURL: "https://media2.radio.warwick.ac.uk/static/shows/5047",
-        title: "The Acoustic Lounge",
-        subtitle: "11:00 - 12:00"
-      }
-    },
-    {
-      id: "lp_3",
-      slim: false,
-      colourful: false,
-      data: {
-        imageURL:
-          "https://media2.radio.warwick.ac.uk/lastfm/track/tame%20impala/let%20it%20happen",
-        title: "Let It Happen",
         subtitle: "Tame Impala"
       }
     }
@@ -209,7 +165,6 @@ export const cardListHighlight = {
  */
 export const cardListEmpty = {
   title: "Empty",
-  highlighted: false,
   cards: []
 };
 
@@ -217,38 +172,9 @@ storiesOf("Composite/CardList", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ marginTop: "1rem" }}>{story()}</div>)
   .add("Default", () => (
-    <CardList
-      cards={object("cards", cardListDefault.cards)}
-      highlighted={boolean("highlighted", cardListDefault.highlighted)}
-    />
+    <CardList cards={object("cards", cardListDefault.cards)} />
   ))
-  .add("Slim", () => (
-    <CardList
-      cards={cardListSlim.cards}
-      highlighted={cardListSlim.highlighted}
-    />
-  ))
-  .add("Colourful", () => (
-    <CardList
-      cards={cardListColourful.cards}
-      highlighted={cardListColourful.highlighted}
-    />
-  ))
-  .add("Mixed", () => (
-    <CardList
-      cards={cardListMixed.cards}
-      highlighted={cardListMixed.highlighted}
-    />
-  ))
-  .add("Highlighted", () => (
-    <CardList
-      cards={cardListHighlight.cards}
-      highlighted={cardListHighlight.highlighted}
-    />
-  ))
-  .add("Empty", () => (
-    <CardList
-      cards={cardListEmpty.cards}
-      highlighted={cardListEmpty.highlighted}
-    />
-  ));
+  .add("Slim", () => <CardList cards={cardListSlim.cards} />)
+  .add("Colourful", () => <CardList cards={cardListColourful.cards} />)
+  .add("Mixed", () => <CardList cards={cardListMixed.cards} />)
+  .add("Empty", () => <CardList cards={cardListEmpty.cards} />);

@@ -20,7 +20,7 @@ const App = () => {
   /**
    * UI Control variables to define how the UI should look in different states.
    */
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(false);
   const [adding, setAdding] = useState(false);
 
   /**

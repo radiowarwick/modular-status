@@ -31,7 +31,7 @@ export const defaultWidgets = [
     name: "Weather",
     component: CurrentWeather,
     dataURL: "/api/weather",
-    refreshInterval: 480,
+    refreshInterval: 483,
     props: {
       err: null,
       data: null
@@ -41,7 +41,7 @@ export const defaultWidgets = [
     name: "Bus Times",
     component: BusTimes,
     dataURL: "/api/bus",
-    refreshInterval: 180,
+    refreshInterval: 187,
     props: {
       err: null,
       data: null
@@ -51,7 +51,7 @@ export const defaultWidgets = [
     name: "Messages",
     component: StudioMessages,
     dataURL: "/api/messages",
-    refreshInterval: 240,
+    refreshInterval: 241,
     props: {
       err: null,
       data: null
@@ -61,7 +61,7 @@ export const defaultWidgets = [
     name: "Last Played",
     component: LastPlayed,
     dataURL: "/api/lastplayed",
-    refreshInterval: 45,
+    refreshInterval: 46,
     props: {
       err: null,
       data: null

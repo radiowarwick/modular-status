@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
 import { useInterval } from "../useInterval";
+import { GlobalAnimateContext } from "../App";
 
 /**
  * ImageCycle.js - Returns an infinite cycle of images, that can animate if you like.
@@ -13,6 +14,11 @@ import { useInterval } from "../useInterval";
  * @param {array} images - The array of images to display.
  */
 const ImageCycle = ({ interval, animate, forceFetch, images }) => {
+  /**
+   * Extract a boolean value from the global animation context.
+   */
+  const globalAnimate = useContext(GlobalAnimateContext);
+
   /**
    * Define index to hold a reference to the currently displayed image.
    */
@@ -40,7 +46,7 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
     enter: { opacity: 1, transform: " scale(1)" },
     leave: { opacity: 0, transform: " scale(0.8)" },
     config: { mass: 1, tension: 230, friction: 21 },
-    immediate: true
+    immediate: !globalAnimate || !animate
   });
 
   return transitions.map(({ item, props, key }) => (

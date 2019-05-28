@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useTransition, animated } from "react-spring";
 import { useInterval } from "../useInterval";
+import { GlobalAnimateContext } from "../App";
 
 import Message from "./Message";
 
@@ -13,6 +14,11 @@ import Message from "./Message";
  * @param {array} messages - The array of messages to display.
  */
 const MessageCycle = ({ interval, animate, messages }) => {
+  /**
+   * Extract a boolean value from the global animation context.
+   */
+  const globalAnimate = useContext(GlobalAnimateContext);
+
   /**
    * Define index to hold a reference to the currently displayed message.
    */
@@ -50,7 +56,7 @@ const MessageCycle = ({ interval, animate, messages }) => {
     enter: { opacity: 1, transform: "translateX(0rem)", height: "auto" },
     leave: { opacity: 0, transform: "translateX(-8rem)", height: 0 },
     config: { mass: 3, tension: 85, friction: 18 },
-    immediate: true
+    immediate: !globalAnimate || !animate
   });
 
   return transitions.map(({ item, props, key }) => (

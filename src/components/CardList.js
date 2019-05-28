@@ -1,7 +1,8 @@
-import React from "react";
-import { useSpring, useTransition, animated } from "react-spring";
+import React, { useContext } from "react";
+import { useTransition, animated } from "react-spring";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { GlobalAnimateContext } from "../App";
 
 import Card from "./Card";
 
@@ -9,9 +10,12 @@ import Card from "./Card";
  * CardList.js - Displays a list of cards that automagically animate their mount / unmount.
  *
  * @param {array} cards - An array of cards to print.
- * @param {boolean} highlight - Defines if the top card in the list should be highlighted.
  */
-const CardList = ({ cards, highlighted }) => {
+const CardList = ({ cards }) => {
+  /**
+   * Extract a boolean value from the global animation context.
+   */
+  const globalAnimate = useContext(GlobalAnimateContext);
   /**
    * Enforce a maximum card length of 6, for performance reasons.
    *
@@ -40,7 +44,7 @@ const CardList = ({ cards, highlighted }) => {
       }
     ],
     leave: { opacity: 0, transform: "translateX(-8rem)", height: "0rem" },
-    immediate: true
+    immediate: !globalAnimate
   });
 
   /**

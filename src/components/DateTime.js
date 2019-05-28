@@ -26,7 +26,7 @@ const DateTime = ({ unixStart }) => {
     setUnix(unixStart);
   }, [unixStart]);
 
-  const date = new Date(unix * 1000);
+  const date = new Date();
 
   return (
     <Container>

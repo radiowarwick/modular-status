@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useSpring, animated } from "react-spring";
+import { GlobalAnimateContext } from "../App";
 
 /**
  * Card.js: A component which returns an 'information' card, with either an image or a text `tag` (limited to three characters) or both.
@@ -11,18 +12,29 @@ import { useSpring, animated } from "react-spring";
  * @param {bool} colourful - Define if the card should use the image to make a dynamic background.
  */
 const Card = ({ data, slim, colourful }) => {
+  /**
+   * Extract a boolean value from the global animation context.
+   */
+  const globalAnimate = useContext(GlobalAnimateContext);
+
+  console.log(globalAnimate);
+
   const props = {
     container: useSpring({
-      height: slim ? "6rem" : "8rem"
+      height: slim ? "6rem" : "8rem",
+      immediate: !globalAnimate
     }),
     hero: useSpring({
-      width: slim ? "6rem" : "8rem"
+      width: slim ? "6rem" : "8rem",
+      immediate: !globalAnimate
     }),
     tag: useSpring({
-      fontSize: slim ? "2.75rem" : "3.75rem"
+      fontSize: slim ? "2.75rem" : "3.75rem",
+      immediate: !globalAnimate
     }),
     content: useSpring({
-      lineHeight: slim ? "1" : "1.25"
+      lineHeight: slim ? "1" : "1.25",
+      immediate: !globalAnimate
     })
   };
 

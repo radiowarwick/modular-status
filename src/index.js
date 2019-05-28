@@ -20,10 +20,7 @@ body, html {
   padding: 0;
   overflow-x: hidden;
   background-color: var(--background-colour);
-  font-size:20px;
-  @media (max-width: 1024px) {
-    font-size:16px;
-  }
+  font-size: calc(14px + 0.2vw);
 }
 * {
   box-sizing:border-box;

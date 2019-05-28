@@ -28,10 +28,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-size:20px;
-    @media (max-width: 1024px) {
-      font-size:16px;
-    }
+    font-size: calc(14px + 0.2vw);
   }
   * {
     box-sizing:border-box;

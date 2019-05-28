@@ -7,8 +7,14 @@ import "./app.css";
 
 import Button from "./components/Button";
 import Headline from "./components/Headline";
+import Checkbox from "./components/Checkbox";
 
 import { defaultWidgets } from "./defaultWidgets";
+
+/**
+ * Export the context which provides the state of animations.
+ */
+export const GlobalAnimateContext = React.createContext(true);
 
 const App = () => {
   /**
@@ -24,7 +30,16 @@ const App = () => {
   const [adding, setAdding] = useState(false);
 
   /**
-   * TODO - Write comment
+   * Define whether components should animate or not.
+   * This is an application-wide parameter.
+   */
+  const [animate, setAnimate] = useState(() => {
+    if (!localStorage.animate) localStorage.setItem("animate", "true");
+    return localStorage.animate === "true" ? true : false;
+  });
+
+  /**
+   * An array of the indices of widgets (based on the defaultWidgets array) currently on the screen (active).
    *
    * Updates each render. This means that, the array may not reflect the current widgets
    * on screen until the next render.
@@ -51,9 +66,9 @@ const App = () => {
       },
       layout: {}
     };
-    if (!localStorage.flexLayoutJSON) {
+    if (!localStorage.flexLayoutJSON)
       localStorage.setItem("flexLayoutJSON", JSON.stringify(defaultJSON));
-    }
+
     return FlexLayout.Model.fromJson(JSON.parse(localStorage.flexLayoutJSON));
   });
 
@@ -196,6 +211,11 @@ const App = () => {
   }, [editing]);
 
   /**
+   * If the animation state changes, save to local storage.
+   */
+  useEffect(() => localStorage.setItem("animate", animate), [animate]);
+
+  /**
    * When the component mounts, get the data for all the active components. Only runs once, on mount.
    */
   useEffect(() => {
@@ -210,7 +230,12 @@ const App = () => {
     <Container>
       <EditIcon onClick={toggleEdit}>✎</EditIcon>
       <Toolbar style={{ width: editing ? "11rem" : "0rem" }}>
-        <Headline value="Widgets" fontSize={1.5} />
+        <Headline value="Toolbar" fontSize={1.5} />
+        <Checkbox
+          value="Animate"
+          isChecked={animate}
+          handleChange={() => setAnimate(!animate)}
+        />
         {widgets.map((widget, widgetIndex) => (
           <Button
             key={widgetIndex}
@@ -221,12 +246,14 @@ const App = () => {
         ))}
       </Toolbar>
       <Content>
-        <FlexLayout.Layout
-          ref={layoutRef}
-          model={model}
-          factory={factory}
-          onModelChange={save}
-        />
+        <GlobalAnimateContext.Provider value={animate}>
+          <FlexLayout.Layout
+            ref={layoutRef}
+            model={model}
+            factory={factory}
+            onModelChange={save}
+          />
+        </GlobalAnimateContext.Provider>
       </Content>
     </Container>
   );

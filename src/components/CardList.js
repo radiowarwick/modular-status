@@ -17,11 +17,11 @@ const CardList = ({ cards }) => {
    */
   const globalAnimate = useContext(GlobalAnimateContext);
   /**
-   * Enforce a maximum card length of 6, for performance reasons.
+   * Enforce a maximum card length of 10, for performance reasons.
    *
    * Long lists tend to cause epic jank.
    */
-  cards = cards.length > 6 ? cards.slice(0, 6) : cards;
+  cards = cards.length > 10 ? cards.slice(0, 10) : cards;
   /**
    * Define the transitional animations which will play of mount / unmount.
    *

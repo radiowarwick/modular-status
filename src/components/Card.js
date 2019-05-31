@@ -17,8 +17,6 @@ const Card = ({ data, slim, colourful }) => {
    */
   const globalAnimate = useContext(GlobalAnimateContext);
 
-  console.log(globalAnimate);
-
   const props = {
     container: useSpring({
       height: slim ? "6rem" : "8rem",

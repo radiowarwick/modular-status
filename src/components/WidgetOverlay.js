@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Loader from "./Loader";
+import ErrorBox from "./ErrorBox";
 
 /**
  * WidgetOverlay.js - Returns an overlay for all widgets. Can be in an error or loading state (or neither, but not both).
@@ -17,11 +18,7 @@ const WidgetOverlay = ({ error, loading }) => {
     <Container>
       <Display>
         {error ? (
-          <ErrorContainer>
-            <Cross />
-            <Message>Error</Message>
-            <Verbose>{error.message}</Verbose>
-          </ErrorContainer>
+          <ErrorBox message={error.message} />
         ) : loading ? (
           <Loader size={1.5} />
         ) : null}
@@ -56,31 +53,6 @@ const Display = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const ErrorContainer = styled.div`
-  text-align: center;
-  color: var(--secondary-colour);
-  font-family: monospace;
-  user-select: none;
-`;
-
-const Cross = styled.div`
-  font-size: 5rem;
-  color: crimson;
-  line-height: 0.8;
-
-  &:after {
-    content: "X";
-  }
-`;
-
-const Message = styled.div`
-  font-size: 2rem;
-`;
-
-const Verbose = styled.div`
-  font-size: 0.75rem;
 `;
 
 /**

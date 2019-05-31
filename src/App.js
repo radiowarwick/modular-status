@@ -271,8 +271,6 @@ const App = () => {
       updateScreenSaver();
 
     secondsElapsed.current++;
-
-    console.log(screenSaver);
   }, 1000);
 
   /**

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Custom Hook to execute a callback every given interval.
@@ -36,4 +36,27 @@ export function useInterval(callback, delay) {
       return () => clearInterval(id);
     }
   }, [delay]);
+}
+
+export function useKeyPress(target) {
+  const [keyDown, setKeyDown] = useState(false);
+
+  const handleDown = ({ key }) => {
+    if (key === target) setKeyDown(true);
+  };
+
+  const handleUp = ({ key }) => {
+    if (key === target) setKeyDown(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleDown);
+    window.addEventListener("keyup", handleUp);
+    return () => {
+      window.removeEventListener("keydown", handleDown);
+      window.removeEventListener("keyup", handleUp);
+    };
+  }, []);
+
+  return keyDown;
 }

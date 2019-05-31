@@ -101,15 +101,14 @@ api.get("/images/:group", async ctx => {
    * Visit the media server's describe endpoint to learn about the images avaliable.
    */
   const response = await axios.get(
-    "http://media2:8080/describe/" +
-      ctx.params.group.toLowerCase()
+    config.MEDIA_URL + "/describe/" + ctx.params.group.toLowerCase()
   );
 
   /**
    * If the response is godd, build up the media URLs and then an array of images.
    */
   if (response.data.success) {
-    const baseURL = "http://media2:8080" + response.data.path;
+    const baseURL = config.MEDIA_URL + response.data.path;
     images = response.data.files.map((file, index) => ({
       id: "img_" + index,
       url: baseURL + encodeURIComponent(file)
@@ -216,7 +215,8 @@ api.get("/lastplayed", async ctx => {
       title: logRow.title,
       artist: logRow.artist,
       imageURL:
-        "http://media2:8080/music/track/" +
+        config.MEDIA_URL +
+        "/music/track/" +
         encodeURIComponent(logRow.artist) +
         "/" +
         encodeURIComponent(logRow.title)
@@ -245,6 +245,21 @@ api.get("/schedule", async ctx => {
  */
 api.get("/equipment", async ctx => {
   ctx.body = { success: true, equipment: null };
+});
+
+/**
+ * Returns the URL of the ScreenSaver video and the minuite of the hour the video should be played.
+ *
+ * TODO - implement when endpoint becomes avaliable.
+ */
+api.get("/screensaver", async ctx => {
+  ctx.body = {
+    success: true,
+    screensaver: {
+      url: "https://media.radio.warwick.ac.uk/video/timelapse.mp4",
+      minuteOfHour: 30
+    }
+  };
 });
 
 /**

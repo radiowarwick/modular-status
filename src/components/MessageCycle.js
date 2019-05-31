@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useTransition, animated } from "react-spring";
-import { useInterval } from "../useInterval";
+import { useInterval } from "../customHooks";
 import { GlobalAnimateContext } from "../App";
 
 import Message from "./Message";

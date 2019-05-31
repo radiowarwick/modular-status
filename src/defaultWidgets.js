@@ -88,6 +88,7 @@ export const defaultWidgets = [
         success: true,
         webcam: {
           name: "Studio One",
+          code: "st1",
           images: [
             {
               id: "st1_dj",
@@ -113,6 +114,7 @@ export const defaultWidgets = [
         success: true,
         webcam: {
           name: "Studio Two",
+          code: "st2",
           images: [
             {
               id: "st1_dj",

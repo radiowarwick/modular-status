@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useInterval } from "./useInterval";
+import { useInterval, useKeyPress } from "./customHooks";
 import FlexLayout from "flexlayout-react";
 import styled from "styled-components";
 import axios from "axios";
@@ -8,6 +8,7 @@ import "./app.css";
 import Button from "./components/Button";
 import Headline from "./components/Headline";
 import Checkbox from "./components/Checkbox";
+import VideoOverlay from "./components/VideoOverlay";
 
 import { defaultWidgets } from "./defaultWidgets";
 
@@ -22,12 +23,25 @@ const App = () => {
    */
   const layoutRef = useRef(null);
   const secondsElapsed = useRef(new Date().getSeconds());
+  const unixStart = useRef(
+    Math.floor(Date.now() / 1000) - secondsElapsed.current
+  );
 
   /**
    * UI Control variables to define how the UI should look in different states.
    */
+  const editKeyDown = useKeyPress("e");
   const [editing, setEditing] = useState(false);
   const [adding, setAdding] = useState(false);
+
+  /**
+   * Default Screensaver object held in state.
+   */
+  const [screenSaver, setScreenSaver] = useState({
+    show: false,
+    url: "https://media.radio.warwick.ac.uk/video/timelapse.mp4",
+    minuteOfHour: 52
+  });
 
   /**
    * Define whether components should animate or not.
@@ -166,20 +180,63 @@ const App = () => {
   };
 
   /**
-   * Toggle editing toolbar.
-   */
-  const toggleEdit = () => setEditing(!editing);
-
-  /**
    * Saves the layout model to localStorage.
    */
   const save = () =>
     localStorage.setItem("flexLayoutJSON", JSON.stringify(model.toJson()));
 
   /**
-   * Every second, check to see if the active widgets need to be refreshed with new data.
+   * Toggle editing mode.
+   * If the screensaver is running, it will be hidden.
+   */
+  const toggleEdit = () => {
+    setEditing(!editing);
+    if (screenSaver.show === true) unshowScreenSaver();
+  };
+
+  /**
+   * Unshow the screen saver.
+   */
+  const unshowScreenSaver = () =>
+    setScreenSaver({ ...screenSaver, show: false });
+
+  /**
+   * Fetch the remote config for the screensaver.
+   * If an error occours, don't do anything, and hold on the the previous screensaver config.
+   */
+  const updateScreenSaver = () => {
+    axios.get("/api/screensaver").then(response => {
+      /**
+       * Only if the returned values exist and are valid should the config be overwritten in state.
+       */
+      if (
+        response.data.screensaver.url &&
+        response.data.screensaver.minuteOfHour &&
+        !isNaN(response.data.screensaver.minuteOfHour)
+      )
+        setScreenSaver({
+          ...screenSaver,
+          url: response.data.screensaver.url,
+          minuteOfHour: response.data.screensaver.minuteOfHour
+        });
+    });
+  };
+
+  /**
+   * Every second, check to see if the active widgets need to be refreshed with new data, or if the screensaver
+   * needs to be played.
    */
   useInterval(() => {
+    /**
+     * Define the current date based on how many seconds have elapsed from the start time.
+     *
+     * This may not reflect the precise date, but it will be instantiated for each second independant of the
+     * time it takes for one update cycle to complete.
+     */
+    const currentDate = new Date(
+      (unixStart.current + secondsElapsed.current) * 1000
+    );
+
     activeWidgetIndices.forEach(widgetIndex => {
       /**
        * If the `refreshInterval` is null, then the widget doesn't need to be refreshed (static).
@@ -188,12 +245,34 @@ const App = () => {
       if (
         widgets[widgetIndex].refreshInterval &&
         secondsElapsed.current % widgets[widgetIndex].refreshInterval === 0
-      ) {
+      )
         refreshWidgetByIndex(widgetIndex);
-      }
     });
 
+    /**
+     * If the current miniute matches the minuite that the screensaver should be shown,
+     * and it is the first second of the minite, then reveal the screensaver.
+     */
+    if (
+      currentDate.getMinutes() === screenSaver.minuteOfHour &&
+      currentDate.getSeconds() === 0 &&
+      !screenSaver.show
+    )
+      setScreenSaver({ ...screenSaver, show: true });
+
+    /**
+     * If the current minuite is 30 minuites before the scheduled display of the screensaver,
+     * update the screensaver config to get any new videos or new minuite of hour for display.
+     */
+    if (
+      currentDate.getMinutes() === screenSaver.minuteOfHour - 30 &&
+      currentDate.getSeconds() === 0
+    )
+      updateScreenSaver();
+
     secondsElapsed.current++;
+
+    console.log(screenSaver);
   }, 1000);
 
   /**
@@ -211,11 +290,6 @@ const App = () => {
   }, [editing]);
 
   /**
-   * If the animation state changes, save to local storage.
-   */
-  useEffect(() => localStorage.setItem("animate", animate), [animate]);
-
-  /**
    * When the component mounts, get the data for all the active components. Only runs once, on mount.
    */
   useEffect(() => {
@@ -226,9 +300,23 @@ const App = () => {
     return setWidgets(defaultWidgets.slice(0));
   }, []);
 
+  /**
+   * If the animation state changes, save to local storage.
+   */
+  useEffect(() => localStorage.setItem("animate", animate), [animate]);
+
+  /**
+   * If the key press state (down/up) of the editing key changes, toggle the editing state.
+   */
+  useEffect(() => {
+    if (editKeyDown === true) toggleEdit();
+  }, [editKeyDown]);
+
   return (
     <Container>
-      <EditIcon onClick={toggleEdit}>✎</EditIcon>
+      {!editing && screenSaver.show ? (
+        <VideoOverlay src={screenSaver.url} handleEnded={unshowScreenSaver} />
+      ) : null}
       <Toolbar style={{ width: editing ? "11rem" : "0rem" }}>
         <Headline value="Toolbar" fontSize={1.5} />
         <Checkbox
@@ -283,16 +371,4 @@ const Toolbar = styled.div`
   flex-direction: column;
   overflow-x: hidden;
   box-shadow: inset -3px 0px 3px 0px black;
-`;
-
-const EditIcon = styled.div`
-  width: 1.5rem;
-  height: 1.5rem;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  cursor: pointer;
-  color: var(--accent-colour);
-  z-index: 99;
-  user-select: none;
 `;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FitText from "react-fittext";
 import styled from "styled-components";
-import { useInterval } from "../useInterval";
+import { useInterval } from "../customHooks";
 import PropTypes from "prop-types";
 
 /**
@@ -26,7 +26,7 @@ const DateTime = ({ unixStart }) => {
     setUnix(unixStart);
   }, [unixStart]);
 
-  const date = new Date();
+  const date = new Date(unix * 1000);
 
   return (
     <Container>

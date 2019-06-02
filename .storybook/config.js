@@ -13,7 +13,7 @@ setConsoleOptions({
  * Define some global styles.
  */
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+  @import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Roboto+Mono');
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
   :root {
     --primary-colour: rgb(61, 61, 61);
@@ -28,7 +28,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-size: calc(14px + 0.2vw);
+    font-size: calc(12px + 0.2vw);
   }
   * {
     box-sizing:border-box;

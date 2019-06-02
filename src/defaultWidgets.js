@@ -3,6 +3,7 @@ import CurrentWeather from "./widgets/CurrentWeather";
 import BusTimes from "./widgets/BusTimes";
 import StudioMessages from "./widgets/StudioMessages";
 import LastPlayed from "./widgets/LastPlayed";
+import Schedule from "./widgets/Schedule";
 import Marketing from "./widgets/Marketing";
 import Webcams from "./widgets/Webcams";
 
@@ -62,6 +63,16 @@ export const defaultWidgets = [
     component: LastPlayed,
     dataURL: "/api/lastplayed",
     refreshInterval: 46,
+    props: {
+      err: null,
+      data: null
+    }
+  },
+  {
+    name: "Schedule",
+    component: Schedule,
+    dataURL: "/api/schedule",
+    refreshInterval: 300,
     props: {
       err: null,
       data: null

@@ -2,6 +2,9 @@ const koaRouter = require("koa-router");
 const axios = require("axios");
 const config = require("../config");
 
+const parseXML = require("xml2js").parseString;
+const crypto = require("crypto");
+
 const api = new koaRouter();
 
 const endpoints = {
@@ -9,7 +12,8 @@ const endpoints = {
   bus: "https://my.warwick.ac.uk/api/tiles/content/bus",
   messages: "https://digiplay.radio.warwick.ac.uk/api/message",
   lastplayed: "https://digiplay.radio.warwick.ac.uk/api/log",
-  schedule: "",
+  schedule:
+    "https://space.radio.warwick.ac.uk/services/public/schedule.php?date=1&period=now/next",
   equipment: ""
 };
 
@@ -235,7 +239,70 @@ api.get("/lastplayed", async ctx => {
  * TODO - implement when endpoint becomes avaliable.
  */
 api.get("/schedule", async ctx => {
-  ctx.body = { success: true, schedule: null };
+  /**
+   * Visits the schedule endpoint and gets some shows!
+   */
+  const response = await axios.get(endpoints.schedule);
+
+  /**
+   * Converts a string representation of the time into UNIX format, using today's date for the year, month and day.
+   * It uses the hour and minute of the passed string to - wait for it - define the hour and minute.
+   *
+   * @param {string} timeString - A string representing the current time (ignores seconds), format: HH:MM:SS
+   */
+  const unixFromTimeString = timeString => {
+    const parts = timeString.split(":");
+    const today = new Date();
+    return (
+      new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDay(),
+        parts[0],
+        parts[1],
+        0
+      ).getTime() / 1000
+    );
+  };
+
+  const idFromImageURL = imageURL => {
+    const parts = imageURL.split("/");
+    return parts[parts.length - 1].split(".")[0];
+  };
+
+  /**
+   * Ugly. Disgusting. Bad.
+   *
+   * Whilst these may sound like words that describe the Author, they infact refer to the below function.
+   *
+   * It parses an XML response (urgh) using a callback style, instead of the much nicer async/await style
+   * of the rest of this document. It then extracts useful data from the (badly structured) result.
+   *
+   * The ID of each show is just a MD5 hash of the entire JSON result. Not cool, bro.
+   *
+   * The UNIX start/stop is built from the returned hour.
+   */
+  parseXML(response.data, (err, result) => {
+    const schedule = result.shows.show.map(slot => {
+      return {
+        id:
+          "sh_" +
+          crypto
+            .createHash("md5")
+            .update(JSON.stringify(slot))
+            .digest("hex"),
+        title: slot.name[0],
+        unixStart: unixFromTimeString(slot.start[0]),
+        unixFinish: unixFromTimeString(slot.end[0]),
+        imageURL:
+          config.MEDIA_URL +
+          "/static/shows/" +
+          idFromImageURL(slot.images[0].large[0])
+      };
+    });
+
+    ctx.body = { success: true, schedule: schedule };
+  });
 });
 
 /**

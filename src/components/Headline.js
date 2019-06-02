@@ -33,7 +33,7 @@ const Container = styled.div`
 
   font-family: var(--font-heading);
   color: var(--secondary-colour);
-  font-size: ${props => (props.fontSize ? props.fontSize : "1.5")}rem;
+  font-size: ${props => (props.fontSize ? props.fontSize : "1.7")}rem;
 
   hr {
     margin-top: 0.2em;

@@ -40,7 +40,7 @@ const App = () => {
   const [screenSaver, setScreenSaver] = useState({
     show: false,
     url: "https://media.radio.warwick.ac.uk/video/timelapse.mp4",
-    minuteOfHour: 52
+    minuteOfHour: 30
   });
 
   /**

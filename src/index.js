@@ -4,7 +4,7 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Roboto+Mono');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 :root {
   --primary-colour: rgb(61, 61, 61);
@@ -20,7 +20,7 @@ body, html {
   padding: 0;
   overflow-x: hidden;
   background-color: var(--background-colour);
-  font-size: calc(14px + 0.2vw);
+  font-size: calc(12px + 0.2vw);
 }
 * {
   box-sizing:border-box;

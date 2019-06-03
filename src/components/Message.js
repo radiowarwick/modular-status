@@ -99,7 +99,7 @@ const HeadSubject = styled.div`
 `;
 
 const Body = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   padding: 0.8rem;
   line-height: 1.2;
   white-space: pre-line;

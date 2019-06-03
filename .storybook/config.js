@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-size: calc(12px + 0.2vw);
+    font-size: calc(14px + 0.2vw);
   }
   * {
     box-sizing:border-box;

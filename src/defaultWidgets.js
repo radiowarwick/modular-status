@@ -6,6 +6,7 @@ import LastPlayed from "./widgets/LastPlayed";
 import Schedule from "./widgets/Schedule";
 import Marketing from "./widgets/Marketing";
 import Webcams from "./widgets/Webcams";
+import Equipment from "./widgets/Equipment";
 
 /**
  * defaultWidgets.js - An array of default widgets, that defines and describes each widget.
@@ -78,6 +79,7 @@ export const defaultWidgets = [
       data: null
     }
   },
+
   {
     name: "Marketing",
     component: Marketing,
@@ -98,7 +100,7 @@ export const defaultWidgets = [
       data: {
         success: true,
         webcam: {
-          name: "Studio One",
+          name: "Studio 1",
           code: "st1",
           images: [
             {
@@ -124,7 +126,7 @@ export const defaultWidgets = [
       data: {
         success: true,
         webcam: {
-          name: "Studio Two",
+          name: "Studio 2",
           code: "st2",
           images: [
             {
@@ -138,6 +140,46 @@ export const defaultWidgets = [
           ]
         }
       }
+    }
+  },
+  {
+    name: "ST2 Bookings",
+    component: Equipment,
+    dataURL: "/api/equipment/Studio%202",
+    refreshInterval: 300,
+    props: {
+      err: null,
+      data: null
+    }
+  },
+  {
+    name: "TC1 Bookings",
+    component: Equipment,
+    dataURL: "/api/equipment/Tascam%201",
+    refreshInterval: 300,
+    props: {
+      err: null,
+      data: null
+    }
+  },
+  {
+    name: "TC2 Bookings",
+    component: Equipment,
+    dataURL: "/api/equipment/Tascam%202",
+    refreshInterval: 300,
+    props: {
+      err: null,
+      data: null
+    }
+  },
+  {
+    name: "TC3 Bookings",
+    component: Equipment,
+    dataURL: "/api/equipment/Tascam%203",
+    refreshInterval: 300,
+    props: {
+      err: null,
+      data: null
     }
   }
 ];

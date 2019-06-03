@@ -4,6 +4,8 @@ const config = require("../config");
 
 const parseXML = require("xml2js").parseString;
 const crypto = require("crypto");
+const cheerio = require("cheerio");
+const cheerioTableparser = require("cheerio-tableparser");
 
 const api = new koaRouter();
 
@@ -14,8 +16,35 @@ const endpoints = {
   lastplayed: "https://digiplay.radio.warwick.ac.uk/api/log",
   schedule:
     "https://space.radio.warwick.ac.uk/services/public/schedule.php?date=1&period=now/next",
-  equipment: ""
+  equipment: "https://space.radio.warwick.ac.uk/space/equipment/"
 };
+
+/**
+ * Converts a string representation of the time into UNIX format, using today's date for the year, month and day.
+ * It uses the hour and minute of the passed string to - wait for it - define the hour and minute.
+ *
+ * @param {string} timeString - A string representing the current time (ignores seconds), format: HH:MM:SS
+ */
+const unixFromTimeString = timeString => {
+  const parts = timeString.split(":");
+  const today = new Date();
+  return (
+    new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate(),
+      parts[0],
+      parts[1],
+      0
+    ).getTime() / 1000
+  );
+};
+
+const getHash = string =>
+  crypto
+    .createHash("md5")
+    .update(string)
+    .digest("hex");
 
 /**
  * Returns the next busses to depart.
@@ -244,27 +273,6 @@ api.get("/schedule", async ctx => {
    */
   const response = await axios.get(endpoints.schedule);
 
-  /**
-   * Converts a string representation of the time into UNIX format, using today's date for the year, month and day.
-   * It uses the hour and minute of the passed string to - wait for it - define the hour and minute.
-   *
-   * @param {string} timeString - A string representing the current time (ignores seconds), format: HH:MM:SS
-   */
-  const unixFromTimeString = timeString => {
-    const parts = timeString.split(":");
-    const today = new Date();
-    return (
-      new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDay(),
-        parts[0],
-        parts[1],
-        0
-      ).getTime() / 1000
-    );
-  };
-
   const idFromImageURL = imageURL => {
     const parts = imageURL.split("/");
     return parts[parts.length - 1].split(".")[0];
@@ -285,12 +293,7 @@ api.get("/schedule", async ctx => {
   parseXML(response.data, (err, result) => {
     const schedule = result.shows.show.map(slot => {
       return {
-        id:
-          "sh_" +
-          crypto
-            .createHash("md5")
-            .update(JSON.stringify(slot))
-            .digest("hex"),
+        id: "sh_" + getHash(JSON.stringify(slot)),
         title: slot.name[0],
         unixStart: unixFromTimeString(slot.start[0]),
         unixFinish: unixFromTimeString(slot.end[0]),
@@ -310,8 +313,55 @@ api.get("/schedule", async ctx => {
  *
  * TODO - implement when endpoint becomes avaliable.
  */
-api.get("/equipment", async ctx => {
-  ctx.body = { success: true, equipment: null };
+api.get("/equipment/:name", async ctx => {
+  /**
+   * Visits the equipment endpoint and gets some equipment bookings!
+   */
+  const response = await axios.get(endpoints.equipment);
+
+  const name = ctx.params.name;
+
+  const dom = cheerio.load(response.data);
+
+  cheerioTableparser(dom);
+
+  const data = dom("#content .card .table").parsetable();
+
+  const timeSlots = data[0].slice(1, data[0].length).map(time => {
+    const timeParts = time.split(" ");
+    const hoursMins = timeParts[0].split(":").map(string => parseInt(string));
+
+    if (timeParts[1] === "pm" && hoursMins[0] !== 12) hoursMins[0] += 12;
+
+    return unixFromTimeString(hoursMins.join(":"));
+  });
+
+  const equipmentIndex = data
+    .map(column => column[0].toLowerCase())
+    .slice(1, data.length)
+    .indexOf(name.toLowerCase());
+
+  let bookings = [];
+
+  if (equipmentIndex !== -1) {
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    for (let i = 0; i < timeSlots.length; i++) {
+      const member = data[equipmentIndex + 1][i + 1];
+
+      if (timeSlots[i] > currentTime - 3600) {
+        bookings.push({
+          id: "eq_" + getHash(timeSlots[i] + member),
+          unixTime: timeSlots[i],
+          member: member === "&#xA0;" ? null : member
+        });
+      }
+    }
+  }
+
+  const equipment = { name: name, bookings: bookings };
+
+  ctx.body = { success: true, equipment: equipment };
 });
 
 /**

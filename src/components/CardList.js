@@ -65,6 +65,7 @@ const CardList = ({ cards }) => {
               data={item.data}
               slim={item.slim}
               colourful={item.colourful}
+              dark={item.dark}
             />
           </animated.div>
         ))}

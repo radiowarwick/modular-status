@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
 
   --font-heading: "Lato", sans-serif;
   --font-main: "Raleway", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
 }
 body, html {
   margin: 0;

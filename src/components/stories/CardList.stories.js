@@ -13,6 +13,7 @@ export const cardListDefault = {
       id: "bs_0",
       slim: false,
       colourful: false,
+      dark: false,
       data: {
         tag: "12X",
         title: "20:12",
@@ -23,6 +24,7 @@ export const cardListDefault = {
       id: "oa_0",
       slim: false,
       colourful: false,
+      dark: false,
       data: {
         imageURL: "https://media2.radio.warwick.ac.uk/static/shows/5010",
         title: "Psychademics",
@@ -33,6 +35,7 @@ export const cardListDefault = {
       id: "lp_0",
       slim: false,
       colourful: false,
+      dark: false,
       data: {
         imageURL:
           "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/Feels%20Like%20We%20Only%20Go%20Backwards",
@@ -52,6 +55,7 @@ export const cardListSlim = {
       id: "bs_1",
       slim: true,
       colourful: false,
+      dark: false,
       data: {
         tag: "U1",
         title: "19:25",
@@ -62,6 +66,7 @@ export const cardListSlim = {
       id: "oa_1",
       slim: true,
       colourful: false,
+      dark: false,
       data: {
         imageURL: "https://media2.radio.warwick.ac.uk/static/shows/5163",
         title: "ReggaetÓN",
@@ -72,6 +77,7 @@ export const cardListSlim = {
       id: "lp_1",
       slim: true,
       colourful: false,
+      dark: false,
       data: {
         imageURL:
           "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/patience",
@@ -91,6 +97,7 @@ export const cardListColourful = {
       id: "bs_1.5",
       slim: false,
       colourful: true,
+      dark: false,
       data: {
         tag: "U1",
         title: "19:25",
@@ -101,6 +108,7 @@ export const cardListColourful = {
       id: "oa_1.5",
       slim: false,
       colourful: true,
+      dark: false,
       data: {
         imageURL: "https://media2.radio.warwick.ac.uk/static/shows/5299",
         title: "Farrardise",
@@ -111,6 +119,49 @@ export const cardListColourful = {
       id: "lp_1.5",
       slim: false,
       colourful: true,
+      dark: false,
+      data: {
+        imageURL:
+          "https://media2.radio.warwick.ac.uk/music/track/still%20woozy/habit",
+        title: "Habit",
+        subtitle: "Still Woozy"
+      }
+    }
+  ]
+};
+
+/**
+ * A slim list of cards. Many different types of card appear here.
+ */
+export const cardListDark = {
+  cards: [
+    {
+      id: "bs_1.55",
+      slim: false,
+      colourful: false,
+      dark: true,
+      data: {
+        tag: "U1",
+        title: "19:25",
+        subtitle: "Towards Coventry"
+      }
+    },
+    {
+      id: "oa_1.55",
+      slim: false,
+      colourful: false,
+      dark: true,
+      data: {
+        imageURL: "https://media2.radio.warwick.ac.uk/static/shows/5299",
+        title: "Farrardise",
+        subtitle: "15:00 - 17:00"
+      }
+    },
+    {
+      id: "lp_1.55",
+      slim: false,
+      colourful: false,
+      dark: true,
       data: {
         imageURL:
           "https://media2.radio.warwick.ac.uk/music/track/still%20woozy/habit",
@@ -130,6 +181,7 @@ export const cardListMixed = {
       id: "bs_2",
       slim: false,
       colourful: false,
+      dark: false,
       data: {
         tag: "12X",
         title: "17:02",
@@ -140,6 +192,7 @@ export const cardListMixed = {
       id: "oa_2",
       slim: true,
       colourful: false,
+      dark: false,
       data: {
         imageURL: "https://media2.radio.warwick.ac.uk/static/shows/5100",
         title: "The Italian Football Show",
@@ -150,6 +203,7 @@ export const cardListMixed = {
       id: "lp_2",
       slim: true,
       colourful: true,
+      dark: false,
       data: {
         imageURL:
           "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/borderline",
@@ -176,5 +230,6 @@ storiesOf("Composite/CardList", module)
   ))
   .add("Slim", () => <CardList cards={cardListSlim.cards} />)
   .add("Colourful", () => <CardList cards={cardListColourful.cards} />)
+  .add("Dark", () => <CardList cards={cardListDark.cards} />)
   .add("Mixed", () => <CardList cards={cardListMixed.cards} />)
   .add("Empty", () => <CardList cards={cardListEmpty.cards} />);

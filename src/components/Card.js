@@ -11,7 +11,7 @@ import { GlobalAnimateContext } from "../App";
  * @param {bool} slim - Define if the card should be slim. Or not.
  * @param {bool} colourful - Define if the card should use the image to make a dynamic background.
  */
-const Card = ({ data, slim, colourful }) => {
+const Card = ({ data, slim, colourful, dark }) => {
   /**
    * Extract a boolean value from the global animation context.
    */
@@ -24,10 +24,14 @@ const Card = ({ data, slim, colourful }) => {
     }),
     hero: useSpring({
       width: slim ? "6rem" : "8rem",
+      backgroundColor: dark
+        ? "var(--background-colour)"
+        : "var(--accent-colour)",
       immediate: !globalAnimate
     }),
     tag: useSpring({
       fontSize: slim ? "2.75rem" : "3.75rem",
+      color: dark ? "var(--accent-colour)" : "var(--primary-colour)",
       immediate: !globalAnimate
     }),
     content: useSpring({
@@ -62,6 +66,7 @@ const Card = ({ data, slim, colourful }) => {
 Card.propTypes = {
   slim: PropTypes.bool.isRequired,
   colourful: PropTypes.bool.isRequired,
+  dark: PropTypes.bool.isRequired,
   data: PropTypes.shape({
     tag: PropTypes.string,
     imageURL: PropTypes.string,
@@ -170,11 +175,11 @@ const HeroTag = styled(animated.div)`
 `;
 
 const Title = styled.div`
-  font-size: 2.5em;
+  font-size: 2.4em;
 `;
 
 const Subtitle = styled.div`
   font-family: var(--font-main);
   color: var(--accent-colour);
-  font-size: 2em;
+  font-size: 1.9em;
 `;

@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
+    "cheerio-tableparser": "^1.0.1",
     "dotenv": "^7.0.0",
     "flexlayout-react": "^0.3.3",
     "fs-extra": "^7.0.1",

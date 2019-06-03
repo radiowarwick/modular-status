@@ -21,7 +21,7 @@ body, html {
   padding: 0;
   overflow-x: hidden;
   background-color: var(--background-colour);
-  font-size: calc(14px + 0.2vw);
+  font-size: calc(13px + 0.2vw);
 }
 * {
   box-sizing:border-box;

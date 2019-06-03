@@ -73,7 +73,7 @@ export const defaultWidgets = [
     name: "Schedule",
     component: Schedule,
     dataURL: "/api/schedule",
-    refreshInterval: 300,
+    refreshInterval: 62,
     props: {
       err: null,
       data: null

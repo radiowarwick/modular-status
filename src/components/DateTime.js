@@ -57,7 +57,7 @@ export default DateTime;
  * Styles, giving a monospace font to prevent movement of text between updates.
  */
 const Container = styled.div`
-  font-family: monospace;
+  font-family: var(--font-mono);
   color: var(--accent-colour);
   text-align: center;
   user-select: none;

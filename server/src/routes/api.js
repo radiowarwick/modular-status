@@ -2,6 +2,11 @@ const koaRouter = require("koa-router");
 const axios = require("axios");
 const config = require("../config");
 
+const parseXML = require("xml2js").parseString;
+const crypto = require("crypto");
+const cheerio = require("cheerio");
+const cheerioTableparser = require("cheerio-tableparser");
+
 const api = new koaRouter();
 
 const endpoints = {
@@ -9,9 +14,37 @@ const endpoints = {
   bus: "https://my.warwick.ac.uk/api/tiles/content/bus",
   messages: "https://digiplay.radio.warwick.ac.uk/api/message",
   lastplayed: "https://digiplay.radio.warwick.ac.uk/api/log",
-  schedule: "",
-  equipment: ""
+  schedule:
+    "https://space.radio.warwick.ac.uk/services/public/schedule.php?date=1&period=now/next",
+  equipment: "https://space.radio.warwick.ac.uk/space/equipment/"
 };
+
+/**
+ * Converts a string representation of the time into UNIX format, using today's date for the year, month and day.
+ * It uses the hour and minute of the passed string to - wait for it - define the hour and minute.
+ *
+ * @param {string} timeString - A string representing the current time (ignores seconds), format: HH:MM:SS
+ */
+const unixFromTimeString = timeString => {
+  const parts = timeString.split(":");
+  const today = new Date();
+  return (
+    new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate(),
+      parts[0],
+      parts[1],
+      0
+    ).getTime() / 1000
+  );
+};
+
+const getHash = string =>
+  crypto
+    .createHash("md5")
+    .update(string)
+    .digest("hex");
 
 /**
  * Returns the next busses to depart.
@@ -235,16 +268,169 @@ api.get("/lastplayed", async ctx => {
  * TODO - implement when endpoint becomes avaliable.
  */
 api.get("/schedule", async ctx => {
-  ctx.body = { success: true, schedule: null };
+  /**
+   * Visits the schedule endpoint and gets some shows!
+   */
+  const response = await axios.get(endpoints.schedule);
+
+  const idFromImageURL = imageURL => {
+    const parts = imageURL.split("/");
+    return parts[parts.length - 1].split(".")[0];
+  };
+
+  /**
+   * Ugly. Disgusting. Bad.
+   *
+   * Whilst these may sound like words that describe the Author, they infact refer to the below function.
+   *
+   * It parses an XML response (urgh) using a callback style, instead of the much nicer async/await style
+   * of the rest of this document. It then extracts useful data from the (badly structured) result.
+   *
+   * The ID of each show is just a MD5 hash of the entire JSON result. Not cool, bro.
+   *
+   * The UNIX start/stop is built from the returned hour.
+   */
+  parseXML(response.data, (err, result) => {
+    const schedule = result.shows.show.map(slot => {
+      return {
+        id: "sh_" + getHash(JSON.stringify(slot)),
+        title: slot.name[0],
+        unixStart: unixFromTimeString(slot.start[0]),
+        unixFinish: unixFromTimeString(slot.end[0]),
+        imageURL:
+          config.MEDIA_URL +
+          "/static/shows/" +
+          idFromImageURL(slot.images[0].large[0])
+      };
+    });
+
+    ctx.body = { success: true, schedule: schedule };
+  });
 });
 
 /**
- * Gets the equipment bookings.
+ * Gets the equipment bookings, for any equipment.
  *
- * TODO - implement when endpoint becomes avaliable.
+ * NOTE: This is a bit of a quirky implementation. It pulls data from a public facing HTML page,
+ * and parses it into usable data. Because of this, there are lots of array operations and searching
+ * to extract the right data.
+ *
+ * But it works pretty well. Just be aware that if the HTML changes, this may have to be tweaked.
  */
-api.get("/equipment", async ctx => {
-  ctx.body = { success: true, equipment: null };
+api.get("/equipment/:name", async ctx => {
+  /**
+   * Extract the equipment name from the request.
+   */
+  const name = ctx.params.name;
+
+  /**
+   * Visits the equipment endpoint and gets some equipment bookings!
+   */
+  const response = await axios.get(endpoints.equipment);
+
+  /**
+   * Loads the HTML into a traversable DOM we can explore.
+   */
+  const dom = cheerio.load(response.data);
+
+  /**
+   * Wrap the table parser around our DOM representation.
+   */
+  cheerioTableparser(dom);
+
+  /**
+   * Extract the data from the bookings table based some IDs and classes.
+   */
+  const data = dom("#content .card .table").parsetable();
+
+  /**
+   * Extract the time slots of the equipment bookings. The first part of each column is the header,
+   * so we slice that out. Then, we map the 12HR format into a 24HR Unix format, and return.
+   */
+  const timeSlots = data[0].slice(1, data[0].length).map(time => {
+    /**
+     * Split the time string by the space after the time. Expects `HH:MM am` or `HH:MM pm`,
+     * converting to an array of `HH:MM` and `am` or `pm`.
+     */
+    const stringParts = time.split(" ");
+
+    /**
+     * Split the `HH:MM` time part into the parts of the time. Expects `HH:MM`, converting to an
+     * integer array of `HH` and `MM`.
+     */
+    const timeParts = stringParts[0].split(":").map(string => parseInt(string));
+
+    /**
+     * If the last part of the time string is after midday, and the hour is not midday or midnight itself, then
+     * add 12 hours onto the hour's part of the time string. Converts to 24hr time.
+     */
+    if (stringParts[1] === "pm" && timeParts[0] !== 12 && timeParts[0] !== 0)
+      timeParts[0] += 12;
+
+    /**
+     * Join the time parts together in the format that the unix conversion function expects (`HH:MM`).
+     * Then, return the UNIX time of the time slot.
+     */
+    return unixFromTimeString(timeParts.join(":"));
+  });
+
+  /**
+   * By looking at all the columns of the parsed table, find the 'column' index which holds the
+   * data for the given equipment name (lower case for matching purposes).
+   */
+  const equipmentIndex = data
+    .map(column => column[0].toLowerCase())
+    .slice(1, data.length)
+    .indexOf(name.toLowerCase());
+
+  /**
+   * Define an empty array of bookings.
+   */
+  let bookings = [];
+
+  /**
+   * If the equipment is present as a column of data, extract and build the bookings.
+   */
+  if (equipmentIndex !== -1) {
+    /**
+     * Gets the current UNIX time.
+     */
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    /**
+     * Loop through each timeslot through the day.
+     */
+    for (let i = 0; i < timeSlots.length; i++) {
+      /**
+       * If the slot is equal to or later than the current hour (hence minus 3600 seconds),
+       * then add an entry to the booking array.
+       */
+      if (timeSlots[i] > currentTime - 3600) {
+        /**
+         * Extract the member from the table data (+1 to remove first row and column).
+         */
+        const member = data[equipmentIndex + 1][i + 1];
+
+        /**
+         * Push a entry to the bookings array. The ID is a hash of member and unix time.
+         *
+         * If the member is a HTML code for a space, then return null for member.
+         */
+        bookings.push({
+          id: "eq_" + getHash(timeSlots[i] + member),
+          unixTime: timeSlots[i],
+          member: member === "&#xA0;" ? null : member
+        });
+      }
+    }
+  }
+
+  /**
+   * Build and return a response.
+   */
+  const equipment = { name: name, bookings: bookings };
+
+  ctx.body = { success: true, equipment: equipment };
 });
 
 /**

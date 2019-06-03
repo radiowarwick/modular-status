@@ -11,6 +11,7 @@ const cardDefault = {
   key: "bs_0",
   slim: false,
   colourful: false,
+  dark: false,
   data: {
     tag: "12X",
     imageURL: "",
@@ -69,7 +70,7 @@ const cardLong = {
   colourful: false,
   data: {
     imageURL:
-      "https://media2.radio.warwick.ac.uk/lastfm/track/tame%20impala/Feels%20Like%20We%20Only%20Go%20Backwards",
+      "https://media2.radio.warwick.ac.uk/music/track/tame%20impala/Feels%20Like%20We%20Only%20Go%20Backwards",
     title: "Feels Like We Only Go Backwards (Special Edition)",
     subtitle: "Tame Impala"
   }
@@ -84,9 +85,23 @@ const cardColourful = {
   colourful: true,
   data: {
     imageURL:
-      "https://media2.radio.warwick.ac.uk/lastfm/track/tops/superstition%20future",
+      "https://media2.radio.warwick.ac.uk/music/track/tops/superstition%20future",
     title: "Superstition Future",
     subtitle: "TOPS"
+  }
+};
+
+/**
+ * A dark card
+ */
+const cardDark = {
+  key: "lk_0",
+  slim: true,
+  colourful: false,
+  dark: true,
+  data: {
+    tag: "19",
+    title: "Joe Bloggs"
   }
 };
 
@@ -99,6 +114,7 @@ storiesOf("Simple/Card", module)
       data={object("data", cardDefault.data)}
       slim={boolean("slim", cardDefault.slim)}
       colourful={boolean("colourful", cardDefault.colourful)}
+      dark={boolean("dark", cardDefault.dark)}
     />
   ))
   .add("Slim", () => (
@@ -139,5 +155,14 @@ storiesOf("Simple/Card", module)
       data={cardColourful.data}
       slim={cardColourful.slim}
       colourful={cardColourful.colourful}
+    />
+  ))
+  .add("Low Key", () => (
+    <Card
+      key={cardDark.key}
+      data={cardDark.data}
+      slim={cardDark.slim}
+      colourful={cardDark.colourful}
+      dark={cardDark.dark}
     />
   ));

@@ -50,7 +50,7 @@ const BusTimes = ({ err, data }) => {
       {!err && data ? (
         <div>
           <Headline value="Bus Departures" />
-          <CardList cards={cards} highlighted={false} />
+          <CardList cards={cards} />
         </div>
       ) : null}
     </>

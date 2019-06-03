@@ -10,6 +10,7 @@ import { GlobalAnimateContext } from "../App";
  * @param {object} data - An object which defines the data to display in the card.
  * @param {bool} slim - Define if the card should be slim. Or not.
  * @param {bool} colourful - Define if the card should use the image to make a dynamic background.
+ * @param {bool} dark - Defines if the card should take on a 'darkened' apperance.
  */
 const Card = ({ data, slim, colourful, dark }) => {
   /**

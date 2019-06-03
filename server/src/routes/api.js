@@ -309,47 +309,113 @@ api.get("/schedule", async ctx => {
 });
 
 /**
- * Gets the equipment bookings.
+ * Gets the equipment bookings, for any equipment.
  *
- * TODO - implement when endpoint becomes avaliable.
+ * NOTE: This is a bit of a quirky implementation. It pulls data from a public facing HTML page,
+ * and parses it into usable data. Because of this, there are lots of array operations and searching
+ * to extract the right data.
+ *
+ * But it works pretty well. Just be aware that if the HTML changes, this may have to be tweaked.
  */
 api.get("/equipment/:name", async ctx => {
+  /**
+   * Extract the equipment name from the request.
+   */
+  const name = ctx.params.name;
+
   /**
    * Visits the equipment endpoint and gets some equipment bookings!
    */
   const response = await axios.get(endpoints.equipment);
 
-  const name = ctx.params.name;
-
+  /**
+   * Loads the HTML into a traversable DOM we can explore.
+   */
   const dom = cheerio.load(response.data);
 
+  /**
+   * Wrap the table parser around our DOM representation.
+   */
   cheerioTableparser(dom);
 
+  /**
+   * Extract the data from the bookings table based some IDs and classes.
+   */
   const data = dom("#content .card .table").parsetable();
 
+  /**
+   * Extract the time slots of the equipment bookings. The first part of each column is the header,
+   * so we slice that out. Then, we map the 12HR format into a 24HR Unix format, and return.
+   */
   const timeSlots = data[0].slice(1, data[0].length).map(time => {
-    const timeParts = time.split(" ");
-    const hoursMins = timeParts[0].split(":").map(string => parseInt(string));
+    /**
+     * Split the time string by the space after the time. Expects `HH:MM am` or `HH:MM pm`,
+     * converting to an array of `HH:MM` and `am` or `pm`.
+     */
+    const stringParts = time.split(" ");
 
-    if (timeParts[1] === "pm" && hoursMins[0] !== 12) hoursMins[0] += 12;
+    /**
+     * Split the `HH:MM` time part into the parts of the time. Expects `HH:MM`, converting to an
+     * integer array of `HH` and `MM`.
+     */
+    const timeParts = stringParts[0].split(":").map(string => parseInt(string));
 
-    return unixFromTimeString(hoursMins.join(":"));
+    /**
+     * If the last part of the time string is after midday, and the hour is not midday or midnight itself, then
+     * add 12 hours onto the hour's part of the time string. Converts to 24hr time.
+     */
+    if (stringParts[1] === "pm" && timeParts[0] !== 12 && timeParts[0] !== 0)
+      timeParts[0] += 12;
+
+    /**
+     * Join the time parts together in the format that the unix conversion function expects (`HH:MM`).
+     * Then, return the UNIX time of the time slot.
+     */
+    return unixFromTimeString(timeParts.join(":"));
   });
 
+  /**
+   * By looking at all the columns of the parsed table, find the 'column' index which holds the
+   * data for the given equipment name (lower case for matching purposes).
+   */
   const equipmentIndex = data
     .map(column => column[0].toLowerCase())
     .slice(1, data.length)
     .indexOf(name.toLowerCase());
 
+  /**
+   * Define an empty array of bookings.
+   */
   let bookings = [];
 
+  /**
+   * If the equipment is present as a column of data, extract and build the bookings.
+   */
   if (equipmentIndex !== -1) {
+    /**
+     * Gets the current UNIX time.
+     */
     const currentTime = Math.floor(Date.now() / 1000);
 
+    /**
+     * Loop through each timeslot through the day.
+     */
     for (let i = 0; i < timeSlots.length; i++) {
-      const member = data[equipmentIndex + 1][i + 1];
-
+      /**
+       * If the slot is equal to or later than the current hour (hence minus 3600 seconds),
+       * then add an entry to the booking array.
+       */
       if (timeSlots[i] > currentTime - 3600) {
+        /**
+         * Extract the member from the table data (+1 to remove first row and column).
+         */
+        const member = data[equipmentIndex + 1][i + 1];
+
+        /**
+         * Push a entry to the bookings array. The ID is a hash of member and unix time.
+         *
+         * If the member is a HTML code for a space, then return null for member.
+         */
         bookings.push({
           id: "eq_" + getHash(timeSlots[i] + member),
           unixTime: timeSlots[i],
@@ -359,6 +425,9 @@ api.get("/equipment/:name", async ctx => {
     }
   }
 
+  /**
+   * Build and return a response.
+   */
   const equipment = { name: name, bookings: bookings };
 
   ctx.body = { success: true, equipment: equipment };

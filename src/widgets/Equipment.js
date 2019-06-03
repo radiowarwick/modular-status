@@ -6,7 +6,7 @@ import Headline from "../components/Headline";
 import CardList from "../components/CardList";
 
 /**
- * Equipment.js -
+ * Equipment.js - Returns the equipment bookings for any equipment source.
  *
  * @param {bool} err - Defines if the component should be in an error state. Error state if true.
  * @param {object} data - Defines the data to the transformed by the widget. Loading state if null.
@@ -15,6 +15,12 @@ const Equipment = ({ err, data }) => {
   let cards = [];
   /**
    * If not error, and data is present, transform data.
+   *
+   * The first card is thicc, the rest are slim.
+   *
+   * Any free slots are dark theme, and the text is written as subtitle instead of title.
+   *
+   * The tag displays the hour of booking for each slot.
    */
   if (!err && data) {
     cards = data.equipment.bookings.map((booking, index) => {
@@ -33,7 +39,9 @@ const Equipment = ({ err, data }) => {
   }
 
   /**
-   * TODO: describe.
+   * Returns a cardlist, with the headline based on the equipment name specified
+   * in the request URL (see `defaultWidgets.js`)
+   *
    * Else, widget overlay handles errors and loading.
    */
   return (

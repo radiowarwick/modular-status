@@ -4,7 +4,7 @@ import { withKnobs, object } from "@storybook/addon-knobs";
 import Equipment from "../Equipment";
 
 /**
- * A default set of last played tracks.
+ * A default set of equipment bookings.
  */
 export const equipmentDefault = {
   err: null,

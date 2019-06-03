@@ -79,6 +79,7 @@ CardList.propTypes = {
     PropTypes.shape({
       slim: PropTypes.bool.isRequired,
       colourful: PropTypes.bool.isRequired,
+      dark: PropTypes.bool.isRequired,
       data: PropTypes.shape({
         tag: PropTypes.string,
         imageURL: PropTypes.string,

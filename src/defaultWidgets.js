@@ -63,7 +63,7 @@ export const defaultWidgets = [
     name: "Last Played",
     component: LastPlayed,
     dataURL: "/api/lastplayed",
-    refreshInterval: 46,
+    refreshInterval: 9,
     props: {
       err: null,
       data: null

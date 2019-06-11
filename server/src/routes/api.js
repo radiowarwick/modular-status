@@ -241,20 +241,22 @@ api.get("/lastplayed", async ctx => {
    *
    * Note, the imageURL is generated dynamically based on artist and title of track.
    */
-  const lastplayed = response.data.map(logRow => {
-    return {
-      id: "lp_" + logRow.id,
-      time: logRow.datetime,
-      title: logRow.title,
-      artist: logRow.artist,
-      imageURL:
-        config.MEDIA_URL +
-        "/music/track/" +
-        encodeURIComponent(logRow.artist) +
-        "/" +
-        encodeURIComponent(logRow.title)
-    };
-  });
+  const lastplayed = response.data
+    .filter(logRow => logRow.location === 1)
+    .map(logRow => {
+      return {
+        id: "lp_" + logRow.id,
+        time: logRow.datetime,
+        title: logRow.title,
+        artist: logRow.artist,
+        imageURL:
+          config.MEDIA_URL +
+          "/music/track/" +
+          encodeURIComponent(logRow.artist) +
+          "/" +
+          encodeURIComponent(logRow.title)
+      };
+    });
 
   /**
    * Set the body.

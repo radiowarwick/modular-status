@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 
 import RFB from "@novnc/novnc";
 
-const VNCViewer = ({ url }) => {
+const VNCViewer = ({ wsURL }) => {
   const screenRef = useRef();
 
-  const handleDisconnect = e => console.log("Disconnected!");
+  const handleDisconnect = e =>
+    console.log("Disconnected! Clean: " + e.detail.clean);
 
   const handleConnect = () => console.log("Connected!");
 
   useEffect(() => {
-    const rfb = new RFB(screenRef.current, url);
+    const rfb = new RFB(screenRef.current, wsURL);
     rfb.addEventListener("disconnect", handleDisconnect);
     rfb.addEventListener("connect", handleConnect);
     return () => {
@@ -19,13 +20,13 @@ const VNCViewer = ({ url }) => {
       rfb.removeEventListener("disconnect", handleDisconnect);
       rfb.removeEventListener("connect", handleConnect);
     };
-  }, [url]);
+  }, [wsURL]);
 
   return <div ref={screenRef} />;
 };
 
 VNCViewer.propTypes = {
-  url: PropTypes.string.isRequired
+  wsURL: PropTypes.string.isRequired
 };
 
 export default VNCViewer;

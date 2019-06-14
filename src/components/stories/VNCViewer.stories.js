@@ -13,6 +13,7 @@ export const vncViewerDefault = {
 
 storiesOf("Composite/VNCViewer", module)
   .addDecorator(withKnobs)
+  .addDecorator(story => <div style={{ height: "100vh" }}>{story()}</div>)
   .add("Default", () => (
     <VNCViewer wsURL={text("url", vncViewerDefault.wsURL)} />
   ));

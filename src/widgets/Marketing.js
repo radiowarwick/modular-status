@@ -25,14 +25,14 @@ const Marketing = ({ err, data }) => {
    * Else, widget overlay handles errors and loading.
    */
   return (
-    <div>
+    <>
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
           <ImageCylce interval={20000} animate={true} images={images} />
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

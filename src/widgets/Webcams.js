@@ -25,7 +25,7 @@ const Webcams = ({ err, data }) => {
    * Else, widget overlay handles errors and loading.
    */
   return (
-    <div>
+    <>
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
@@ -38,7 +38,7 @@ const Webcams = ({ err, data }) => {
           />
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

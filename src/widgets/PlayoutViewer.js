@@ -28,7 +28,7 @@ const PlayoutViewer = ({ err, data }) => {
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
-        <div style={{ height: "100%" }}>
+        <div style={{ height: "calc(100% - 4.8rem)" }}>
           <Headline value={data.playout.name} />
           <VNCViewer wsURL={wsURL} />
         </div>

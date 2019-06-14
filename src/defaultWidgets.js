@@ -198,5 +198,21 @@ export const defaultWidgets = [
         }
       }
     }
+  },
+  {
+    name: "Playout 2",
+    component: PlayoutViewer,
+    dataURL: null,
+    refreshInterval: null,
+    props: {
+      err: null,
+      data: {
+        success: true,
+        playout: {
+          name: "Playout 2",
+          token: "playout2"
+        }
+      }
+    }
   }
 ];

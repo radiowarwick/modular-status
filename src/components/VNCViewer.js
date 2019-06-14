@@ -40,6 +40,7 @@ const VNCViewer = ({ wsURL }) => {
     rfb.addEventListener("disconnect", handleDisconnected);
     rfb.addEventListener("credentialsrequired", handleCredsRequired);
     rfb.addEventListener("securityfailure", handleSecurityFailure);
+
     return () => {
       rfb.disconnect();
       rfb.removeEventListener("connect", handleConnected);
@@ -60,13 +61,12 @@ VNCViewer.propTypes = {
 export default VNCViewer;
 
 const Screen = styled.div`
-  height: calc(100% - 5.6rem);
+  height: 100%;
   width: calc(100% - 1.6rem);
   margin: 0 0.8rem;
 
   canvas {
-    height: 100% !important;
-    width: 100% !important;
+    max-height: 100% !important;
     border-color: var(--accent-colour);
     border-style: solid;
     border-radius: 0.9rem;

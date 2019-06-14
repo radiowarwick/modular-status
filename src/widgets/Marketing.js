@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import WidgetOverlay from "../components/WidgetOverlay";
 import ImageCylce from "../components/ImageCycle";
+import Headline from "../components/Headline";
 
 /**
  * Marketing.js - Returns a constant cycle of marketing images.
@@ -29,6 +30,7 @@ const Marketing = ({ err, data }) => {
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
+          <Headline value="What's On" />
           <ImageCylce interval={20000} animate={true} images={images} />
         </div>
       ) : null}

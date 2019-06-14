@@ -1,28 +1,56 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useInterval } from "../customHooks";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import RFB from "@novnc/novnc";
 
 const VNCViewer = ({ wsURL }) => {
+  const [error, setError] = useState();
+  const [reconnectAttempts, setReconnectAttempts] = useState(0);
+
   const screenRef = useRef();
 
-  const handleDisconnect = e =>
-    console.log("Disconnected! Clean: " + e.detail.clean);
+  const handleError = message => setError({ message: message });
 
-  const handleConnect = () => console.log("Connected!");
+  const handleConnected = () => setError(null);
+
+  const handleDisconnected = e => {
+    if (!e.detail.clean) handleError("Could not connect to VNC server.");
+  };
+
+  const handleCredsRequired = () =>
+    handleError("VNC server requires credentials.");
+
+  const handleSecurityFailure = () =>
+    handleError("Security failure during connection to VNC server.");
+
+  useInterval(
+    () => setReconnectAttempts(reconnectAttempts + 1),
+    error ? 30000 : null
+  );
 
   useEffect(() => {
-    const rfb = new RFB(screenRef.current, wsURL);
-    rfb.addEventListener("disconnect", handleDisconnect);
-    rfb.addEventListener("connect", handleConnect);
+    let rfb = new RFB(screenRef.current, wsURL);
+    rfb.background = "rgba(0, 0, 0, 0)";
+    rfb.scaleViewport = true;
+    rfb.clipViewport = true;
+    rfb.viewOnly = true;
+    rfb.addEventListener("connect", handleConnected);
+    rfb.addEventListener("disconnect", handleDisconnected);
+    rfb.addEventListener("credentialsrequired", handleCredsRequired);
+    rfb.addEventListener("securityfailure", handleSecurityFailure);
     return () => {
       rfb.disconnect();
-      rfb.removeEventListener("disconnect", handleDisconnect);
-      rfb.removeEventListener("connect", handleConnect);
+      rfb.removeEventListener("connect", handleConnected);
+      rfb.removeEventListener("disconnect", handleDisconnected);
+      rfb.removeEventListener("credentialsrequired", handleCredsRequired);
+      rfb.removeEventListener("securityfailure", handleSecurityFailure);
+      rfb = null;
     };
-  }, [wsURL]);
+  }, [wsURL, reconnectAttempts]);
 
-  return <div ref={screenRef} />;
+  return <Screen ref={screenRef} />;
 };
 
 VNCViewer.propTypes = {
@@ -30,3 +58,19 @@ VNCViewer.propTypes = {
 };
 
 export default VNCViewer;
+
+const Screen = styled.div`
+  height: calc(100% - 5.6rem);
+  width: calc(100% - 1.6rem);
+  margin: 0 0.8rem;
+
+  canvas {
+    height: 100% !important;
+    width: 100% !important;
+    border-color: var(--accent-colour);
+    border-style: solid;
+    border-radius: 0.9rem;
+
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+  }
+`;

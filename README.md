@@ -29,7 +29,7 @@ To get started:
 1. `sudo apt-get update`
 2. `sudo apt-get install websockify`
 
-Then launch websockify, specifying a port to run the websocket server from, and the address and port of an existing vnc server instance. The standard VNC port is `5900 + n`, where `n` is the desktop index.
+Then launch websockify, specifying a port to run the websocket server from, and the address and port of an existing VNC server instance. The standard VNC port is `5900 + n`, where `n` is the desktop index.
 
 3. `websockify [websocket_port] [vnc_address]:[vnc_port]`
 

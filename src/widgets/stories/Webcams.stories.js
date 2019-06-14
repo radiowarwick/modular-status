@@ -13,14 +13,15 @@ export const webcamsDefault = {
     success: true,
     webcam: {
       name: "Studio One",
+      code: "ST1",
       images: [
         {
           id: "st1_dj",
-          url: "https://webcams.radio.warwick.ac.uk/st1-dj.jpg"
+          url: "http://cctv/st1-dj.jpg"
         },
         {
           id: "st1_guest",
-          url: "https://webcams.radio.warwick.ac.uk/st1-guest.jpg"
+          url: "http://cctv/st1-guest.jpg"
         }
       ]
     }
@@ -36,14 +37,15 @@ export const webcamsStudio2 = {
     success: true,
     webcam: {
       name: "Studio Two",
+      code: "ST2",
       images: [
         {
           id: "st2_dj",
-          url: "https://webcams.radio.warwick.ac.uk/st2-dj.jpg"
+          url: "http://cctv/st2-dj.jpg"
         },
         {
           id: "st2_guest",
-          url: "https://webcams.radio.warwick.ac.uk/st2-guest.jpg"
+          url: "http://cctv/st2-guest.jpg"
         }
       ]
     }

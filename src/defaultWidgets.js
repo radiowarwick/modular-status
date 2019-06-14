@@ -7,6 +7,7 @@ import Schedule from "./widgets/Schedule";
 import Marketing from "./widgets/Marketing";
 import Webcams from "./widgets/Webcams";
 import Equipment from "./widgets/Equipment";
+import PlayoutViewer from "./widgets/PlayoutViewer";
 
 /**
  * defaultWidgets.js - An array of default widgets, that defines and describes each widget.
@@ -105,11 +106,11 @@ export const defaultWidgets = [
           images: [
             {
               id: "st1_dj",
-              url: "https://webcams.radio.warwick.ac.uk/st1-dj.jpg"
+              url: "http://cctv/st1-dj.jpg"
             },
             {
               id: "st1_guest",
-              url: "https://webcams.radio.warwick.ac.uk/st1-guest.jpg"
+              url: "http://cctv/st1-guest.jpg"
             }
           ]
         }
@@ -131,11 +132,11 @@ export const defaultWidgets = [
           images: [
             {
               id: "st1_dj",
-              url: "https://webcams.radio.warwick.ac.uk/st2-dj.jpg"
+              url: "http://cctv/st2-dj.jpg"
             },
             {
               id: "st1_guest",
-              url: "https://webcams.radio.warwick.ac.uk/st2-guest.jpg"
+              url: "http://cctv/st2-guest.jpg"
             }
           ]
         }
@@ -180,6 +181,38 @@ export const defaultWidgets = [
     props: {
       err: null,
       data: null
+    }
+  },
+  {
+    name: "Playout 1",
+    component: PlayoutViewer,
+    dataURL: null,
+    refreshInterval: null,
+    props: {
+      err: null,
+      data: {
+        success: true,
+        playout: {
+          name: "Playout 1",
+          token: "playout1"
+        }
+      }
+    }
+  },
+  {
+    name: "Playout 2",
+    component: PlayoutViewer,
+    dataURL: null,
+    refreshInterval: null,
+    props: {
+      err: null,
+      data: {
+        success: true,
+        playout: {
+          name: "Playout 2",
+          token: "playout2"
+        }
+      }
     }
   }
 ];

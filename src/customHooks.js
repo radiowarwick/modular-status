@@ -38,9 +38,20 @@ export function useInterval(callback, delay) {
   }, [delay]);
 }
 
+/**
+ * Custom hook to determine if a key is being pressed down.
+ *
+ * @param {char} target - The target key to check for.
+ */
 export function useKeyPress(target) {
+  /**
+   * Hold the state of the key press in state.
+   */
   const [keyDown, setKeyDown] = useState(false);
 
+  /**
+   * Toggle the key down and up states.
+   */
   const handleDown = ({ key }) => {
     if (key === target) setKeyDown(true);
   };
@@ -49,6 +60,9 @@ export function useKeyPress(target) {
     if (key === target) setKeyDown(false);
   };
 
+  /**
+   * Define the keypress events with a suitable cleanup function.
+   */
   useEffect(() => {
     window.addEventListener("keydown", handleDown);
     window.addEventListener("keyup", handleUp);

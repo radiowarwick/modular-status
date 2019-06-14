@@ -3,20 +3,21 @@ import PropTypes from "prop-types";
 
 import WidgetOverlay from "../components/WidgetOverlay";
 import Headline from "../components/Headline";
+import VNCViewer from "../components/VNCViewer";
 
 /**
- * Template.js - a default widget.
+ * PlayoutViewer.js -
  *
  * @param {bool} err - Defines if the component should be in an error state. Error state if true.
  * @param {object} data - Defines the data to the transformed by the widget. Loading state if null.
  */
-const Template = ({ err, data }) => {
-
+const PlayoutViewer = ({ err, data }) => {
+  let wsURL = "ws://status:3000?token=";
   /**
    * If not error, and data is present, transform data.
    */
   if (!err && data) {
-
+    wsURL += data.playout.token;
   }
 
   /**
@@ -27,17 +28,18 @@ const Template = ({ err, data }) => {
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
-        <div>
-          <Headline value="Template Title" />
+        <div style={{ height: "calc(100% - 4.8rem)" }}>
+          <Headline value={data.playout.name} />
+          <VNCViewer wsURL={wsURL} />
         </div>
       ) : null}
     </>
   );
 };
 
-Template.propTypes = {
+PlayoutViewer.propTypes = {
   err: PropTypes.object,
   data: PropTypes.object
 };
 
-export default Template;
+export default PlayoutViewer;

@@ -8,7 +8,7 @@ import ErrorBox from "./ErrorBox";
 /**
  * WidgetOverlay.js - Returns an overlay for all widgets. Can be in an error or loading state (or neither, but not both).
  *
- * The widget gradually fades out (`HideBar`) towards the bottom to cope with overflow nicely.
+ * The widget can be set to gradually fades out (`HideBar`) towards the bottom to cope with overflow nicely.
  *
  * @params {object} error - Defines if the widget is in an error state.
  * @params {bool} loading - Defines if the widget is in a loading state.

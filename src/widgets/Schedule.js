@@ -55,7 +55,7 @@ const Template = ({ err, data }) => {
    * Else, widget overlay handles errors and loading.
    */
   return (
-    <div>
+    <>
       <WidgetOverlay error={err} loading={data ? false : true} />
       {!err && data ? (
         <div>
@@ -63,7 +63,7 @@ const Template = ({ err, data }) => {
           <CardList cards={cards} />
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

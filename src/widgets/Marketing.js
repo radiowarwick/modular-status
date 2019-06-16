@@ -28,11 +28,9 @@ const Marketing = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
+      <Headline value="What's On" />
       {!err && data ? (
-        <div>
-          <Headline value="What's On" />
-          <ImageCylce interval={20000} animate={true} images={images} />
-        </div>
+        <ImageCylce interval={20000} animate={true} images={images} />
       ) : null}
     </>
   );

@@ -83,12 +83,8 @@ const CurrentWeather = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
-      {!err && data ? (
-        <div>
-          <Headline value="Weather" />
-          <CardList cards={[card]} highlighted={false} />
-        </div>
-      ) : null}
+      <Headline value="Weather" />
+      {!err && data ? <CardList cards={[card]} /> : null}
     </>
   );
 };

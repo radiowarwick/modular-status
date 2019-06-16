@@ -47,12 +47,8 @@ const BusTimes = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
-      {!err && data ? (
-        <div>
-          <Headline value="Bus Departures" />
-          <CardList cards={cards} />
-        </div>
-      ) : null}
+      <Headline value="Bus Departures" />
+      {!err && data ? <CardList cards={cards} /> : null}
     </>
   );
 };

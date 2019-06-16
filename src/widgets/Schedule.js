@@ -57,12 +57,8 @@ const Template = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
-      {!err && data ? (
-        <div>
-          <Headline value="On Air" />
-          <CardList cards={cards} />
-        </div>
-      ) : null}
+      <Headline value="On Air" />
+      {!err && data ? <CardList cards={cards} /> : null}
     </>
   );
 };

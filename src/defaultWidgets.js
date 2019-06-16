@@ -189,12 +189,11 @@ export const defaultWidgets = [
     dataURL: null,
     refreshInterval: null,
     props: {
-      err: null,
       data: {
         success: true,
         playout: {
           name: "Playout 1",
-          token: "playout1"
+          wsURL: "ws://status:3000?token=playout1"
         }
       }
     }
@@ -205,12 +204,11 @@ export const defaultWidgets = [
     dataURL: null,
     refreshInterval: null,
     props: {
-      err: null,
       data: {
         success: true,
         playout: {
           name: "Playout 2",
-          token: "playout2"
+          wsURL: "ws://status:3000?token=playout2"
         }
       }
     }

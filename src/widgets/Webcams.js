@@ -27,16 +27,14 @@ const Webcams = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
+      <Headline value={data ? data.webcam.name : "Loading Webcam..."} />
       {!err && data ? (
-        <div>
-          <Headline value={data.webcam.name} />
-          <ImageCylce
-            interval={10000}
-            animate={false}
-            forceFetch={true}
-            images={images}
-          />
-        </div>
+        <ImageCylce
+          interval={10000}
+          animate={false}
+          forceFetch={true}
+          images={images}
+        />
       ) : null}
     </>
   );

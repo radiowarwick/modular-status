@@ -28,11 +28,9 @@ const StudioMessages = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
+      <Headline value="Studio Messages" />
       {!err && data ? (
-        <div>
-          <Headline value="Studio Messages" />
-          <MessageCycle interval={20000} animate={true} messages={messages} />
-        </div>
+        <MessageCycle interval={20000} animate={true} messages={messages} />
       ) : null}
     </>
   );

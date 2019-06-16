@@ -5,18 +5,26 @@ import PropTypes from "prop-types";
 
 import RFB from "@novnc/novnc";
 
-const VNCViewer = ({ wsURL }) => {
-  const [error, setError] = useState();
+/**
+ * VNCViewer.js - Returns a canvas with a live mirror of a defined system's desktop using VNC.
+ *
+ * @param {string} wsURL -
+ * @param {bool} isError -
+ * @param {func} onError -
+ * @param {func} onReady -
+ */
+const VNCViewer = ({ wsURL, isError, onError, onReady }) => {
   const [reconnectAttempts, setReconnectAttempts] = useState(0);
 
   const screenRef = useRef();
 
-  const handleError = message => setError({ message: message });
+  const handleConnected = () => onReady();
 
-  const handleConnected = () => setError(null);
+  const handleError = message => onError({ message: message });
 
   const handleDisconnected = e => {
     if (!e.detail.clean) handleError("Could not connect to VNC server.");
+    else handleError("Disconnected from VNC server.");
   };
 
   const handleCredsRequired = () =>
@@ -27,7 +35,7 @@ const VNCViewer = ({ wsURL }) => {
 
   useInterval(
     () => setReconnectAttempts(reconnectAttempts + 1),
-    error ? 30000 : null
+    isError ? 30000 : null
   );
 
   useEffect(() => {
@@ -55,7 +63,10 @@ const VNCViewer = ({ wsURL }) => {
 };
 
 VNCViewer.propTypes = {
-  wsURL: PropTypes.string.isRequired
+  wsURL: PropTypes.string.isRequired,
+  isError: PropTypes.bool.isRequired,
+  onReady: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired
 };
 
 export default VNCViewer;

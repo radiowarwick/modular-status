@@ -50,12 +50,12 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
   });
 
   return transitions.map(({ item, props, key }) => (
-    <Image
-      key={key}
-      src={item.url + (forceFetch ? "?force_fetch=" + Date.now() : "")}
-      alt="Nothing to show..."
-      style={props}
-    />
+    <Container key={key} style={props}>
+      <Image
+        src={item.url + (forceFetch ? "?force_fetch=" + Date.now() : "")}
+        alt="Nothing to show..."
+      />
+    </Container>
   ));
 };
 
@@ -75,16 +75,35 @@ ImageCycle.defaultProps = {
 export default ImageCycle;
 
 /**
- *  Define a styled image.
+ * Define a container to hold any image at a fixed 16:9 aspect ratio.
+ *
+ * The padding-top rule gives the div artificial fixed height based of the component's width.
  */
-const Image = styled(animated.img)`
+const Container = styled(animated.div)`
   width: calc(100% - 1.6rem);
+
+  padding-top: 54%;
   margin: 0 0.8rem;
+
   position: absolute;
+  overflow: hidden;
 
   border-color: var(--accent-colour);
   border-style: solid;
   border-radius: 0.9rem;
 
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+`;
+
+/**
+ *  Define a styled image.
+ *
+ *  The image is positioned centrally within the parent div, and fills it's width.
+ */
+const Image = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
 `;

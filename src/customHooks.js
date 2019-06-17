@@ -74,3 +74,26 @@ export function useKeyPress(target) {
 
   return keyDown;
 }
+
+/**
+ * Returns an object from an array of objects, cycling through them over time
+ * defined by a given interval.
+ */
+export function useCycle(objArray, objDefault, interval) {
+  /**
+   * Define index to hold a reference to the current object.
+   */
+  const [index, setIndex] = useState(0);
+
+  /**
+   * Update the index over time.
+   */
+  useInterval(() => {
+    setIndex(objArray.length > 0 ? (index + 1) % objArray.length : 0);
+  }, interval);
+
+  /**
+   * Return the object of index in the array, else the default object if the array is empty.
+   */
+  return objArray.length > 0 ? objArray[index] : objDefault;
+}

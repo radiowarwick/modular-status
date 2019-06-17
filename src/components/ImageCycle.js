@@ -73,7 +73,7 @@ export default ImageCycle;
 const Container = styled(animated.div)`
   width: calc(100% - 1.6rem);
 
-  padding-top: 54%;
+  padding-top: calc(57.15% - 1.6rem);
   margin: 0 0.8rem;
 
   position: absolute;

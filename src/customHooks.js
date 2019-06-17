@@ -10,7 +10,7 @@ export function useInterval(callback, delay) {
   const savedCallback = useRef();
 
   /**
-   * Set the callack ref to callback function of each render.
+   * Set the callback ref to callback function of each render.
    *
    * The callback function will be redefined each render,
    * but we have captured the callback when this component mounts.

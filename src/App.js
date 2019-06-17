@@ -19,13 +19,16 @@ export const GlobalAnimateContext = React.createContext(true);
 
 const App = () => {
   /**
-   * Define references (mutable persistant "boxes" to hold data).
+   * *********************************************
+   * Section 1 - Variable and Constant definitions
+   * *********************************************
+   */
+
+  /**
+   * Define references (mutable persistent "boxes" to hold data).
    */
   const layoutRef = useRef(null);
   const secondsElapsed = useRef(new Date().getSeconds());
-  const unixStart = useRef(
-    Math.floor(Date.now() / 1000) - secondsElapsed.current
-  );
 
   /**
    * UI Control variables to define how the UI should look in different states.
@@ -87,6 +90,32 @@ const App = () => {
   });
 
   /**
+   * ********************************
+   * Section 2 - Widget Control Logic
+   * ********************************
+   */
+
+  /**
+   * Every second, check to see if the active widgets need to be refreshed with new data, or if the screensaver
+   * needs to be played.
+   */
+  useInterval(() => {
+    activeWidgetIndices.forEach(widgetIndex => {
+      /**
+       * If the `refreshInterval` is null, then the widget doesn't need to be refreshed (static).
+       * If a suitable number of seconds have elapsed (based on `refreshInterval`), then refresh the widget.
+       */
+      if (
+        widgets[widgetIndex].refreshInterval &&
+        secondsElapsed.current % widgets[widgetIndex].refreshInterval === 0
+      )
+        refreshWidgetByIndex(widgetIndex);
+    });
+
+    secondsElapsed.current++;
+  }, 1000);
+
+  /**
    * Fetch and refresh the data for a widget in the widgets array (held in state).
    *
    * @param {number} widgetIndex - The index of the widget to be refreshed.
@@ -102,7 +131,7 @@ const App = () => {
      *
      * If all goes well, then set the `nextWidgets` array (index of widget) to hold the new data.
      *
-     * If an error occours, then set `nextWidgets` array (index of widget) to an error state.
+     * If an error occurs, then set `nextWidgets` array (index of widget) to an error state.
      *
      * No matter what happens, set the widgets array (held in state) to the new widgets.
      */
@@ -128,7 +157,7 @@ const App = () => {
    *
    * The node's component property holds the index of a widget in the widgets array (held in state).
    *
-   * The widget is then built dynamically, using a refence to the actual react component function (Widget.ref),
+   * The widget is then built dynamically, using a reference to the actual react component function (Widget.ref),
    * and with the current props (Widget.props).
    *
    * @param {object} node - A node in the flexlayout model that will be converted to a widget (react component).
@@ -152,6 +181,12 @@ const App = () => {
 
     return <Widget.component {...Widget.props} />;
   };
+
+  /**
+   * **************************************
+   * Section 3 - Layout model control logic
+   * **************************************
+   */
 
   /**
    * Triggers an add tab event, providing a draggable box to position the new tab.
@@ -186,94 +221,6 @@ const App = () => {
     localStorage.setItem("flexLayoutJSON", JSON.stringify(model.toJson()));
 
   /**
-   * Toggle editing mode.
-   * If the screensaver is running, it will be hidden.
-   */
-  const toggleEdit = () => {
-    setEditing(!editing);
-    if (screenSaver.show === true) unshowScreenSaver();
-  };
-
-  /**
-   * Unshow the screen saver.
-   */
-  const unshowScreenSaver = () =>
-    setScreenSaver({ ...screenSaver, show: false });
-
-  /**
-   * Fetch the remote config for the screensaver.
-   * If an error occours, don't do anything, and hold on the the previous screensaver config.
-   */
-  const updateScreenSaver = () => {
-    axios.get("/api/screensaver").then(response => {
-      /**
-       * Only if the returned values exist and are valid should the config be overwritten in state.
-       */
-      if (
-        response.data.screensaver.url &&
-        response.data.screensaver.minuteOfHour &&
-        !isNaN(response.data.screensaver.minuteOfHour)
-      )
-        setScreenSaver({
-          ...screenSaver,
-          url: response.data.screensaver.url,
-          minuteOfHour: response.data.screensaver.minuteOfHour
-        });
-    });
-  };
-
-  /**
-   * Every second, check to see if the active widgets need to be refreshed with new data, or if the screensaver
-   * needs to be played.
-   */
-  useInterval(() => {
-    /**
-     * Define the current date based on how many seconds have elapsed from the start time.
-     *
-     * This may not reflect the precise date, but it will be instantiated for each second independant of the
-     * time it takes for one update cycle to complete.
-     */
-    const currentDate = new Date(
-      (unixStart.current + secondsElapsed.current) * 1000
-    );
-
-    activeWidgetIndices.forEach(widgetIndex => {
-      /**
-       * If the `refreshInterval` is null, then the widget doesn't need to be refreshed (static).
-       * If a suitable number of seconds have elapsed (based on `refreshInterval`), then refresh the widget.
-       */
-      if (
-        widgets[widgetIndex].refreshInterval &&
-        secondsElapsed.current % widgets[widgetIndex].refreshInterval === 0
-      )
-        refreshWidgetByIndex(widgetIndex);
-    });
-
-    /**
-     * If the current miniute matches the minuite that the screensaver should be shown,
-     * and it is the first second of the minite, then reveal the screensaver.
-     */
-    if (
-      currentDate.getMinutes() === screenSaver.minuteOfHour &&
-      currentDate.getSeconds() === 0 &&
-      !screenSaver.show
-    )
-      setScreenSaver({ ...screenSaver, show: true });
-
-    /**
-     * If the current minuite is 30 minuites before the scheduled display of the screensaver,
-     * update the screensaver config to get any new videos or new minuite of hour for display.
-     */
-    if (
-      currentDate.getMinutes() === screenSaver.minuteOfHour - 30 &&
-      currentDate.getSeconds() === 0
-    )
-      updateScreenSaver();
-
-    secondsElapsed.current++;
-  }, 1000);
-
-  /**
    * If the editing mode changes, then update the model's global attributes to reflect the change.
    * Effectively removes all headings and splitters when not editing to allow for seamless display.
    */
@@ -299,6 +246,21 @@ const App = () => {
   }, []);
 
   /**
+   * ***************************************
+   * Section 4 - Editing and options control
+   * ***************************************
+   */
+
+  /**
+   * Toggle editing mode.
+   * If the screensaver is running, it will be hidden.
+   */
+  const toggleEdit = () => {
+    setEditing(!editing);
+    if (screenSaver.show === true) unshowScreenSaver();
+  };
+
+  /**
    * If the animation state changes, save to local storage.
    */
   useEffect(() => localStorage.setItem("animate", animate), [animate]);
@@ -309,6 +271,103 @@ const App = () => {
   useEffect(() => {
     if (editKeyDown === true) toggleEdit();
   }, [editKeyDown]);
+
+  /**
+   * *************************************
+   * Section 5 - ScreenSaver control logic
+   * *************************************
+   */
+
+  /**
+   * Returns the number of milliseconds until the next occurrence of a minute in an hour.
+   *
+   * @param {integer} minOfHour - The minute of the hour to calculate for
+   */
+  const msToMinOfHour = minOfHour => {
+    /**
+     * Holds the current date and time.
+     */
+    const current = new Date();
+
+    /**
+     * A boolean which defines wether the minute specified has already elapsed for the current hour.
+     */
+    const elapsedInCurrentHour =
+      minOfHour > current.getMinutes() ? false : true;
+
+    /**
+     * Holds the date and time of the next occurrence of the given minute in an hour.
+     */
+    const next = new Date().setHours(
+      elapsedInCurrentHour ? current.getHours() + 1 : current.getHours(),
+      minOfHour,
+      0
+    );
+
+    /**
+     * Return the difference in ms between the next occurrence and the current date/time.
+     */
+    return next - current.getTime();
+  };
+
+  /**
+   * Unshow the screen saver.
+   */
+  const unshowScreenSaver = () =>
+    setScreenSaver({ ...screenSaver, show: false });
+
+  /**
+   * Fetch the remote config for the screensaver.
+   * If an error occurs, don't do anything, and hold on the the previous screensaver config.
+   *
+   * No matter what, show the screensaver.
+   */
+  const updateAndShowScreenSaver = () => {
+    /**
+     * Create a copy of the current screensaver, and set it to 'show'.
+     */
+    const nextScreenSaver = { ...screenSaver, show: true };
+
+    /**
+     * Visit remote endpoint to get screensaver config.
+     */
+    axios
+      .get("/api/screensaver")
+      .then(response => {
+        /**
+         * Only if the returned values exist and are valid should the config be overwritten in state.
+         */
+        if (
+          response.data.screensaver.url &&
+          response.data.screensaver.minuteOfHour &&
+          !isNaN(response.data.screensaver.minuteOfHour)
+        ) {
+          /**
+           * Assign the returned values only if super valid.
+           */
+          nextScreenSaver.url = response.data.screensaver.url;
+          nextScreenSaver.minuteOfHour = response.data.screensaver.minuteOfHour;
+        }
+      })
+      .finally(() => {
+        /**
+         * Always set the next screensaver parameters, finally showing the (potentially updated) screensaver.
+         * This `finally` block runs independently of the success of the above axios request.
+         */
+        setScreenSaver(nextScreenSaver);
+      });
+  };
+
+  useInterval(
+    () => updateAndShowScreenSaver(),
+    msToMinOfHour(screenSaver.minuteOfHour)
+  );
+
+  /**
+   * **********************************
+   * Section 6 - Returned JSX structure
+   * **********************************
+   */
 
   return (
     <Container>
@@ -350,7 +409,7 @@ export default App;
 /**
  * Main Styles.
  *
- * NOTE - The `flexlayout` styles are provided as a seperate stylesheet by the makers of the package.
+ * NOTE - The `flexlayout` styles are provided as a separate stylesheet by the makers of the package.
  */
 const Container = styled.div`
   display: flex;

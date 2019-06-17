@@ -42,12 +42,8 @@ const LastPlayed = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
-      {!err && data ? (
-        <div>
-          <Headline value="Last Played" />
-          <CardList cards={cards} />
-        </div>
-      ) : null}
+      <Headline value="Last Played" />
+      {!err && data ? <CardList cards={cards} /> : null}
     </>
   );
 };

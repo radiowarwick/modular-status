@@ -26,10 +26,9 @@ const Template = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
+      <Headline value="Template Title" />
       {!err && data ? (
-        <div>
-          <Headline value="Template Title" />
-        </div>
+        <!-- Insert Component(s) Here -->
       ) : null}
     </>
   );

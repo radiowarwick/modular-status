@@ -47,12 +47,8 @@ const Equipment = ({ err, data }) => {
   return (
     <>
       <WidgetOverlay error={err} loading={data ? false : true} />
-      {!err && data ? (
-        <div>
-          <Headline value={data.equipment.name + " Bookings"} />
-          <CardList cards={cards} />
-        </div>
-      ) : null}
+      <Headline value={data ? data.equipment.name + " Bookings" : "Bookings"} />
+      {!err && data ? <CardList cards={cards} /> : null}
     </>
   );
 };

@@ -13,7 +13,7 @@ export const playoutDefault = {
     success: true,
     playout: {
       name: "Playout 1",
-      token: "playout1"
+      wsURL: "ws://status:3000?token=playout1"
     }
   }
 };
@@ -27,7 +27,7 @@ export const playoutStudio2 = {
     success: true,
     playout: {
       name: "Playout 2",
-      token: "playout2"
+      wsURL: "ws://status:3000?token=playout2"
     }
   }
 };

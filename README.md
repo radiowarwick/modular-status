@@ -4,12 +4,11 @@ A modular system to construct and display data from various sources.
 
 [//]: # "Begin badges section"
 
-[![create-react-app](https://img.shields.io/badge/npm-create--react--app-brightgreen.svg)](https://www.npmjs.com/package/create-react-app)
+[![create-react-app](https://img.shields.io/badge/npm-create--react--app-brightgreen.svg?colorB=a30308)](https://www.npmjs.com/package/create-react-app)
+[![axios](https://img.shields.io/badge/npm-axios-brightgreen.svg?colorB=a30308)](https://www.npmjs.com/package/axios)
+[![koa](https://img.shields.io/badge/npm-koa-brightgreen.svg?colorB=a30308)](https://www.npmjs.com/package/koa)
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://storybook.js.org/)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
-[![axios](https://img.shields.io/badge/npm-axios-brightgreen.svg)](https://www.npmjs.com/package/axios)
-[![koa](https://img.shields.io/badge/npm-koa-brightgreen.svg)](https://www.npmjs.com/package/koa)
-[![@novnc/novnc](https://img.shields.io/badge/npm-%40novnc%2Fnovnc-brightgreen.svg)](https://www.npmjs.com/package/@novnc/novnc)
 
 [//]: # "End badges section"
 

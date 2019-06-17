@@ -61,13 +61,9 @@
   opacity: 0.9;
   text-align: center;
 
-  display: -webkit-flex;
-
   display: flex;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
   padding: 10px;
   word-wrap: break-word;
@@ -176,6 +172,16 @@
 }
 
 .flexlayout__tabset-selected {
+  background-image: -webkit-gradient(
+    linear,
+    left top, left bottom,
+    from(var(--background-colour)),
+    to(var(--accent-colour))
+  );
+  background-image: -webkit-linear-gradient(
+    var(--background-colour),
+    var(--accent-colour)
+  );
   background-image: linear-gradient(
     var(--background-colour),
     var(--accent-colour)
@@ -183,17 +189,16 @@
 }
 
 .flexlayout__tabset-maximized {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
+  background-image: -webkit-linear-gradient(#666, #333);
   background-image: linear-gradient(#666, #333);
 }
 
 .flexlayout__tab_toolbar {
   position: absolute;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-align-items: center;
-          align-items: center;
+  flex-direction: row-reverse;
+  align-items: center;
   top: 0;
   bottom: 0;
   right: 0;
@@ -260,7 +265,6 @@
 }
 
 .flexlayout__border_inner_bottom {
-  display: -webkit-flex;
   display: flex;
 }
 
@@ -334,12 +338,9 @@
 
 .flexlayout__border_toolbar_left {
   position: absolute;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: column-reverse;
-          flex-direction: column-reverse;
-  -webkit-align-items: center;
-          align-items: center;
+  flex-direction: column-reverse;
+  align-items: center;
   bottom: 0;
   left: 0;
   right: 0;
@@ -347,12 +348,9 @@
 
 .flexlayout__border_toolbar_right {
   position: absolute;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: column-reverse;
-          flex-direction: column-reverse;
-  -webkit-align-items: center;
-          align-items: center;
+  flex-direction: column-reverse;
+  align-items: center;
   bottom: 0;
   left: 0;
   right: 0;
@@ -360,12 +358,9 @@
 
 .flexlayout__border_toolbar_top {
   position: absolute;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-align-items: center;
-          align-items: center;
+  flex-direction: row-reverse;
+  align-items: center;
   top: 0;
   bottom: 0;
   right: 0;
@@ -373,12 +368,9 @@
 
 .flexlayout__border_toolbar_bottom {
   position: absolute;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-align-items: center;
-          align-items: center;
+  flex-direction: row-reverse;
+  align-items: center;
   top: 0;
   bottom: 0;
   right: 0;

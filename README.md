@@ -2,11 +2,20 @@
 
 A modular system to construct and display data from various sources.
 
+[//]: # "Begin badges section"
+
+[![create-react-app](https://img.shields.io/badge/npm-create--react--app-brightgreen.svg)](https://www.npmjs.com/package/create-react-app)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://storybook.js.org/)
+[![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
+[![axios](https://img.shields.io/badge/npm-axios-brightgreen.svg)](https://www.npmjs.com/package/axios)
+[![koa](https://img.shields.io/badge/npm-koa-brightgreen.svg)](https://www.npmjs.com/package/koa)
+[![@novnc/novnc](https://img.shields.io/badge/npm-%40novnc%2Fnovnc-brightgreen.svg)](https://www.npmjs.com/package/@novnc/novnc)
+
+[//]: # "End badges section"
+
 _Work In Progress_
 
 View the [Storybook](https://willthevideoman.github.io/raw-modular-status/).
-
-Built with `create-react-app`
 
 ### Development
 
@@ -18,7 +27,7 @@ Built with `create-react-app`
 
 ### VNC Server Requirements
 
-`src/components/VNCViewer.js` accepts a `wsURL` property which defines a websocket connection. noVNC (a package used in this project) then uses this websocket connection to communicate with the remote machine.
+`src/components/VNCViewer.js` accepts a `wsURL` property which defines a websocket connection that noVNC (a package used in this project) then uses communicate with the remote machine running a VNC server.
 
 Some VNC servers [have websocket support built in](https://github.com/novnc/noVNC#server-requirements). However, some VNC servers do not. If your VNC server does not support websockets directly, then you must setup a websocket proxy server to tranform and proxy requests over TCP to a downstream VNC server.
 

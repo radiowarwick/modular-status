@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
-import { useInterval } from "../customHooks";
+import { useCycle } from "../customHooks";
 import { GlobalAnimateContext } from "../App";
+import image_error from "../images/image_error.jpg";
 
 /**
  * ImageCycle.js - Returns an infinite cycle of images, that can animate if you like.
@@ -20,22 +21,9 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
   const globalAnimate = useContext(GlobalAnimateContext);
 
   /**
-   * Define index to hold a reference to the currently displayed image.
+   * Selects the current image based on a cycling hook.
    */
-  const [index, setIndex] = useState(0);
-
-  /**
-   * Update the index over time.
-   * If there are no images to display, then set index to be zero, triggering a re-render and halting the cycle.
-   */
-  useInterval(() => {
-    setIndex(images.length > 0 ? (index + 1) % images.length : 0);
-  }, interval);
-
-  /**
-   * Set the current image to display, falling back to a default if there are no images to show.
-   */
-  const currentImage = images.length > 0 ? images[index] : { id: "", url: "" };
+  const currentImage = useCycle(images, { id: "", url: "" }, interval);
 
   /**
    * Define the initial animations. Start small and transparent, then full-size and opaque.
@@ -54,6 +42,9 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
       <Image
         src={item.url + (forceFetch ? "?force_fetch=" + Date.now() : "")}
         alt="Nothing to show..."
+        onError={e =>
+          e.target.src !== image_error ? (e.target.src = image_error) : null
+        }
       />
     </Container>
   ));
@@ -82,7 +73,7 @@ export default ImageCycle;
 const Container = styled(animated.div)`
   width: calc(100% - 1.6rem);
 
-  padding-top: 54%;
+  padding-top: calc(57.15% - 1.6rem);
   margin: 0 0.8rem;
 
   position: absolute;

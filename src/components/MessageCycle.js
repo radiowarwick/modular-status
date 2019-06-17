@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useTransition, animated } from "react-spring";
-import { useInterval } from "../customHooks";
+import { useCycle } from "../customHooks";
 import { GlobalAnimateContext } from "../App";
 
 import Message from "./Message";
@@ -20,39 +20,26 @@ const MessageCycle = ({ interval, animate, messages }) => {
   const globalAnimate = useContext(GlobalAnimateContext);
 
   /**
-   * Define index to hold a reference to the currently displayed message.
+   * Selects the current message based on a cycling hook.
    */
-  const [index, setIndex] = useState(0);
-
-  /**
-   * Update the index over time.
-   */
-  useInterval(() => {
-    setIndex(messages.length > 0 ? (index + 1) % messages.length : 0);
-  }, interval);
-
-  const currentMessage =
-    messages.length > 0
-      ? messages[index]
-      : {
-          id: "msg_0",
-          origin: "web",
-          sender: "Empty",
-          subject: "Nothing to show...",
-          body: ":)",
-          datetime: 0
-        };
-
+  const currentMessage = useCycle(
+    messages,
+    {
+      id: "msg_0",
+      origin: "web",
+      sender: "Empty",
+      subject: "Nothing to show...",
+      body: ":)",
+      datetime: 0
+    },
+    interval
+  );
   /**
    * Define the initial animations. Start small and transparent, then full-size and opaque.
    * Will not animate if `animate` is false.
    */
   const transitions = useTransition(currentMessage, currentMessage.id, {
-    from: {
-      opacity: 0,
-      transform: index % 2 === 0 ? "translateX(8rem)" : "translateX(-8rem)",
-      height: 0
-    },
+    from: { opacity: 0, transform: "translateX(8rem)", height: 0 },
     enter: { opacity: 1, transform: "translateX(0rem)", height: "auto" },
     leave: { opacity: 0, transform: "translateX(-8rem)", height: 0 },
     config: { mass: 3, tension: 85, friction: 18 },

@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, number, object, boolean } from "@storybook/addon-knobs";
 
 import MessageCycle from "../MessageCycle";
+import messageCycleNotes from "../notes/MessageCycle.md";
 
 /**
  * A Default message cycle.
@@ -43,10 +44,14 @@ const messageCycleDefault = {
 
 storiesOf("Composite/MessageCycle", module)
   .addDecorator(withKnobs)
-  .add("Default", () => (
-    <MessageCycle
-      interval={number("interval", messageCycleDefault.interval)}
-      animate={boolean("animate", messageCycleDefault.animate)}
-      messages={object("messages", messageCycleDefault.messages)}
-    />
-  ));
+  .add(
+    "Default",
+    () => (
+      <MessageCycle
+        interval={number("interval", messageCycleDefault.interval)}
+        animate={boolean("animate", messageCycleDefault.animate)}
+        messages={object("messages", messageCycleDefault.messages)}
+      />
+    ),
+    { notes: { markdown: messageCycleNotes } }
+  );

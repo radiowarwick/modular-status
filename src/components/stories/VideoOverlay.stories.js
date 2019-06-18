@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, text } from "@storybook/addon-knobs";
 
 import VideoOverlay from "../VideoOverlay";
+import videoOverlayNotes from "../notes/VideoOverlay.md";
 
 /**
  * Default story with
@@ -15,9 +16,13 @@ export const videoOverlayDefault = {
 storiesOf("Composite/VideoOverlay", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ height: "100vh" }}>{story()}</div>)
-  .add("Default", () => (
-    <VideoOverlay
-      src={text("src", videoOverlayDefault.src)}
-      handleEnded={videoOverlayDefault.handleEnded}
-    />
-  ));
+  .add(
+    "Default",
+    () => (
+      <VideoOverlay
+        src={text("src", videoOverlayDefault.src)}
+        handleEnded={videoOverlayDefault.handleEnded}
+      />
+    ),
+    { notes: { markdown: videoOverlayNotes } }
+  );

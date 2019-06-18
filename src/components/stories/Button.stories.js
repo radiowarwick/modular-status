@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
 import Button from "../Button";
+import buttonNotes from "../notes/Button.md";
 
 /**
  * An active button with some text.
@@ -45,14 +46,18 @@ export const actions = {
 
 storiesOf("Composite/Button", module)
   .addDecorator(withKnobs)
-  .add("Default", () => (
-    <Button
-      value={text("value", buttonDefault.value)}
-      loading={boolean("loading", buttonDefault.loading)}
-      disabled={boolean("disabled", buttonDefault.disabled)}
-      handleClick={actions.handleClick}
-    />
-  ))
+  .add(
+    "Default",
+    () => (
+      <Button
+        value={text("value", buttonDefault.value)}
+        loading={boolean("loading", buttonDefault.loading)}
+        disabled={boolean("disabled", buttonDefault.disabled)}
+        handleClick={actions.handleClick}
+      />
+    ),
+    { notes: { markdown: buttonNotes } }
+  )
   .add("Loading", () => (
     <Button loading={buttonLoading.loading} handleClick={actions.handleClick} />
   ))

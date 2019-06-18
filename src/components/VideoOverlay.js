@@ -21,7 +21,7 @@ const VideoOverlay = ({ src, handleEnded }) => {
   const [error, setError] = useState(false);
 
   /**
-   * If an error occours before or during playback, set the overlay to an error state.
+   * If an error occurs before or during playback, set the overlay to an error state.
    * After 30 seconds, invoke the handleEnded event. In this way, the component will always
    * call the function, despite errors.
    */
@@ -60,11 +60,13 @@ export default VideoOverlay;
 
 /**
  * Define styles. Position content in the center of an opaque background.
- * Scale the video to fit the screen in all dimensions. No cropping.
+ * Scale the video to fit the parent in all dimensions. No cropping.
  */
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;

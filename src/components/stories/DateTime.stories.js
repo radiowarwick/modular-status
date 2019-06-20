@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, number } from "@storybook/addon-knobs";
 
 import DateTime from "../DateTime";
+import dateTimeNotes from "../notes/DateTime.md";
 
 export const dateTimeDefault = {
   unixStart: 0
@@ -10,6 +11,10 @@ export const dateTimeDefault = {
 
 storiesOf("Simple/DateTime", module)
   .addDecorator(withKnobs)
-  .add("Default", () => (
-    <DateTime unixStart={number("unixStart", dateTimeDefault.unixStart)} />
-  ));
+  .add(
+    "Default",
+    () => (
+      <DateTime unixStart={number("unixStart", dateTimeDefault.unixStart)} />
+    ),
+    { notes: { markdown: dateTimeNotes } }
+  );

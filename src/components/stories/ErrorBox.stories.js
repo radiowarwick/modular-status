@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, text } from "@storybook/addon-knobs";
 
 import ErrorBox from "../ErrorBox";
+import errorBoxNotes from "../notes/ErrorBox.md";
 
 /**
  * Default story with an error message.
@@ -13,6 +14,8 @@ export const errorBoxDefault = {
 
 storiesOf("Simple/ErrorBox", module)
   .addDecorator(withKnobs)
-  .add("Default", () => (
-    <ErrorBox message={text("message", errorBoxDefault.message)} />
-  ));
+  .add(
+    "Default",
+    () => <ErrorBox message={text("message", errorBoxDefault.message)} />,
+    { notes: { markdown: errorBoxNotes } }
+  );

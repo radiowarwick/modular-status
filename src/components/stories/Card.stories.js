@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, object, boolean } from "@storybook/addon-knobs";
 
 import Card from "../Card";
+import cardNotes from "../notes/Card.md";
 
 /**
  * A card with a tag only.
@@ -108,15 +109,19 @@ const cardDark = {
 storiesOf("Simple/Card", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ marginTop: "1rem" }}>{story()}</div>)
-  .add("Default", () => (
-    <Card
-      key={cardDefault.key}
-      data={object("data", cardDefault.data)}
-      slim={boolean("slim", cardDefault.slim)}
-      colourful={boolean("colourful", cardDefault.colourful)}
-      dark={boolean("dark", cardDefault.dark)}
-    />
-  ))
+  .add(
+    "Default",
+    () => (
+      <Card
+        key={cardDefault.key}
+        data={object("data", cardDefault.data)}
+        slim={boolean("slim", cardDefault.slim)}
+        colourful={boolean("colourful", cardDefault.colourful)}
+        dark={boolean("dark", cardDefault.dark)}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  )
   .add("Slim", () => (
     <Card
       key={cardSlim.key}
@@ -157,7 +162,7 @@ storiesOf("Simple/Card", module)
       colourful={cardColourful.colourful}
     />
   ))
-  .add("Low Key", () => (
+  .add("Dark", () => (
     <Card
       key={cardDark.key}
       data={cardDark.data}

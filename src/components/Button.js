@@ -55,10 +55,10 @@ const Button = ({ handleClick, value, icon, loading, disabled }) => {
       {loading ? (
         <Loader size={0.5} />
       ) : (
-        <div>
+        <Body>
           {value ? <Text>{value}</Text> : null}
           {icon ? <Icon>{icon}</Icon> : null}
-        </div>
+        </Body>
       )}
     </Container>
   );
@@ -99,11 +99,16 @@ const Container = styled(animated.div)`
   align-items:center;
 `;
 
+const Body = styled.div`
+  display: flex;
+`;
+
 const Text = styled.div`
   font-family: var(--font-main);
   font-size: 1.25em;
   white-space: nowrap;
   text-overflow: clip;
+  flex: 1;
 `;
 
 const Icon = styled.i`
@@ -112,4 +117,5 @@ const Icon = styled.i`
   font-style: normal;
   font-size: 1.5em;
   line-height: 1;
+  flex: 1;
 `;

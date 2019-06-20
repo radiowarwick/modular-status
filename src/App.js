@@ -43,11 +43,12 @@ const App = () => {
   const [screenSaver, setScreenSaver] = useState({
     show: false,
     url: "https://media.radio.warwick.ac.uk/video/timelapse.mp4",
-    minuteOfHour: 30
+    minuteOfHour: 30,
+    interval: null
   });
 
   /**
-   * Define whether components should animate or not.
+   * Define whether components should animate or not, derived from localStorage.
    * This is an application-wide parameter.
    */
   const [animate, setAnimate] = useState(() => {
@@ -96,8 +97,7 @@ const App = () => {
    */
 
   /**
-   * Every second, check to see if the active widgets need to be refreshed with new data, or if the screensaver
-   * needs to be played.
+   * Every second, check to see if the active widgets need to be refreshed with new data.
    */
   useInterval(() => {
     activeWidgetIndices.forEach(widgetIndex => {
@@ -235,17 +235,6 @@ const App = () => {
   }, [editing]);
 
   /**
-   * When the component mounts, get the data for all the active components. Only runs once, on mount.
-   */
-  useEffect(() => {
-    activeWidgetIndices.forEach(widgetIndex => {
-      if (widgets[widgetIndex].refreshInterval)
-        refreshWidgetByIndex(widgetIndex);
-    });
-    return setWidgets(defaultWidgets.slice(0));
-  }, []);
-
-  /**
    * ***************************************
    * Section 4 - Editing and options control
    * ***************************************
@@ -257,7 +246,7 @@ const App = () => {
    */
   const toggleEdit = () => {
     setEditing(!editing);
-    if (screenSaver.show === true) unshowScreenSaver();
+    if (screenSaver.show === true) hideScreenSaver();
   };
 
   /**
@@ -283,7 +272,7 @@ const App = () => {
    *
    * @param {integer} minOfHour - The minute of the hour to calculate for
    */
-  const msToMinOfHour = minOfHour => {
+  const getMsToMinOfHour = minOfHour => {
     /**
      * Holds the current date and time.
      */
@@ -296,13 +285,16 @@ const App = () => {
       minOfHour > current.getMinutes() ? false : true;
 
     /**
-     * Holds the date and time of the next occurrence of the given minute in an hour.
+     * Set the date and time of the next occurrence of the given minute in an hour, at the 0th second and millisecond.
      */
     const next = new Date().setHours(
       elapsedInCurrentHour ? current.getHours() + 1 : current.getHours(),
       minOfHour,
+      0,
       0
     );
+
+    console.log(next - current.getTime());
 
     /**
      * Return the difference in ms between the next occurrence and the current date/time.
@@ -311,10 +303,15 @@ const App = () => {
   };
 
   /**
-   * Unshow the screen saver.
+   * Hide the screen saver. Calculate the number of ms until the next min of hour.
+   * This will subtly tweak the useInterval to prevent massive drift over time.
    */
-  const unshowScreenSaver = () =>
-    setScreenSaver({ ...screenSaver, show: false });
+  const hideScreenSaver = () =>
+    setScreenSaver({
+      ...screenSaver,
+      show: false,
+      interval: getMsToMinOfHour(screenSaver.minuteOfHour)
+    });
 
   /**
    * Fetch the remote config for the screensaver.
@@ -358,21 +355,51 @@ const App = () => {
       });
   };
 
-  useInterval(
-    () => updateAndShowScreenSaver(),
-    msToMinOfHour(screenSaver.minuteOfHour)
-  );
+  useInterval(() => updateAndShowScreenSaver(), screenSaver.interval);
+
+  /**
+   * ****************************************
+   * Section 6 - Mounting & Un-mounting Logic
+   * ****************************************
+   */
+
+  /**
+   * When the component mounts, do some things to prepare th app for action!
+   *
+   * Effect invoked only once, on mount.
+   */
+  useEffect(() => {
+    /**
+     * Fetch the data for all the active components
+     */
+    activeWidgetIndices.forEach(widgetIndex => {
+      if (widgets[widgetIndex].refreshInterval)
+        refreshWidgetByIndex(widgetIndex);
+    });
+    /**
+     * Set the initial screensaver interval.
+     */
+    setScreenSaver({
+      ...screenSaver,
+      interval: getMsToMinOfHour(screenSaver.minuteOfHour)
+    });
+
+    /**
+     * Clean-up by re-setting to the default widgets.
+     */
+    return setWidgets(defaultWidgets.slice(0));
+  }, []);
 
   /**
    * **********************************
-   * Section 6 - Returned JSX structure
+   * Section 7 - Returned JSX structure
    * **********************************
    */
 
   return (
     <Container>
       {!editing && screenSaver.show ? (
-        <VideoOverlay src={screenSaver.url} handleEnded={unshowScreenSaver} />
+        <VideoOverlay src={screenSaver.url} handleEnded={hideScreenSaver} />
       ) : null}
       <Toolbar style={{ width: editing ? "11rem" : "0rem" }}>
         <Headline value="Toolbar" fontSize={1.5} />

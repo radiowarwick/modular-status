@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, number, object, boolean } from "@storybook/addon-knobs";
 
 import ImageCycle from "../ImageCycle";
+import imageCycleNotes from "../notes/ImageCycle.md";
 
 /**
  * A Default image cycle with three images.
@@ -48,15 +49,18 @@ const imageCycleNoAnim = {
 
 storiesOf("Composite/ImageCycle", module)
   .addDecorator(withKnobs)
-  .add("Default", () => (
-    <ImageCycle
-      interval={number("interval", imageCycleDefault.interval)}
-      animate={boolean("animate", imageCycleDefault.animate)}
-      forceFetch={boolean("forceFetch", imageCycleDefault.forceFetch)}
-      images={object("images", imageCycleDefault.images)}
-    />
-  ))
-
+  .add(
+    "Default",
+    () => (
+      <ImageCycle
+        interval={number("interval", imageCycleDefault.interval)}
+        animate={boolean("animate", imageCycleDefault.animate)}
+        forceFetch={boolean("forceFetch", imageCycleDefault.forceFetch)}
+        images={object("images", imageCycleDefault.images)}
+      />
+    ),
+    { notes: { markdown: imageCycleNotes } }
+  )
   .add("No Animation", () => (
     <ImageCycle
       interval={imageCycleNoAnim.interval}

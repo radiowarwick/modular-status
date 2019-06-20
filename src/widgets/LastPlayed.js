@@ -61,7 +61,7 @@ LastPlayed.propTypes = {
         imageURL: PropTypes.string.isRequired
       })
     ).isRequired
-  }).isRequired
+  })
 };
 
 export default LastPlayed;

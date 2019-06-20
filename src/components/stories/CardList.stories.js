@@ -1,8 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs";
+import { withKnobs, object } from "@storybook/addon-knobs";
 
 import CardList from "../CardList";
+import cardListNotes from "../notes/CardList.md";
 
 /**
  * A default list of cards. Many different types of card appear here.
@@ -225,9 +226,11 @@ export const cardListEmpty = {
 storiesOf("Composite/CardList", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ marginTop: "1rem" }}>{story()}</div>)
-  .add("Default", () => (
-    <CardList cards={object("cards", cardListDefault.cards)} />
-  ))
+  .add(
+    "Default",
+    () => <CardList cards={object("cards", cardListDefault.cards)} />,
+    { notes: { markdown: cardListNotes } }
+  )
   .add("Slim", () => <CardList cards={cardListSlim.cards} />)
   .add("Colourful", () => <CardList cards={cardListColourful.cards} />)
   .add("Dark", () => <CardList cards={cardListDark.cards} />)

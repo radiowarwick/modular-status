@@ -61,11 +61,15 @@ storiesOf("Composite/ImageCycle", module)
     ),
     { notes: { markdown: imageCycleNotes } }
   )
-  .add("No Animation", () => (
-    <ImageCycle
-      interval={imageCycleNoAnim.interval}
-      animate={imageCycleNoAnim.animate}
-      forceFetch={imageCycleNoAnim.forceFetch}
-      images={imageCycleNoAnim.images}
-    />
-  ));
+  .add(
+    "No Animation",
+    () => (
+      <ImageCycle
+        interval={imageCycleNoAnim.interval}
+        animate={imageCycleNoAnim.animate}
+        forceFetch={imageCycleNoAnim.forceFetch}
+        images={imageCycleNoAnim.images}
+      />
+    ),
+    { notes: { markdown: imageCycleNotes } }
+  );

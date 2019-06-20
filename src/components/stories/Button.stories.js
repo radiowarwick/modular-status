@@ -58,23 +58,40 @@ storiesOf("Composite/Button", module)
     ),
     { notes: { markdown: buttonNotes } }
   )
-  .add("Loading", () => (
-    <Button loading={buttonLoading.loading} handleClick={actions.handleClick} />
-  ))
-  .add("Disabled", () => (
-    <Button
-      value={buttonDisabled.value}
-      handleClick={actions.handleClick}
-      disabled={buttonDisabled.disabled}
-    />
-  ))
-  .add("With Icon", () => (
-    <Button icon={buttonIcon.icon} handleClick={actions.handleClick} />
-  ))
-  .add("With Icon & Text", () => (
-    <Button
-      value={buttonDefault.value}
-      icon={buttonIcon.icon}
-      handleClick={actions.handleClick}
-    />
-  ));
+  .add(
+    "Loading",
+    () => (
+      <Button
+        loading={buttonLoading.loading}
+        handleClick={actions.handleClick}
+      />
+    ),
+    { notes: { markdown: buttonNotes } }
+  )
+  .add(
+    "Disabled",
+    () => (
+      <Button
+        value={buttonDisabled.value}
+        handleClick={actions.handleClick}
+        disabled={buttonDisabled.disabled}
+      />
+    ),
+    { notes: { markdown: buttonNotes } }
+  )
+  .add(
+    "With Icon",
+    () => <Button icon={buttonIcon.icon} handleClick={actions.handleClick} />,
+    { notes: { markdown: buttonNotes } }
+  )
+  .add(
+    "With Icon & Text",
+    () => (
+      <Button
+        value={buttonDefault.value}
+        icon={buttonIcon.icon}
+        handleClick={actions.handleClick}
+      />
+    ),
+    { notes: { markdown: buttonNotes } }
+  );

@@ -34,6 +34,8 @@ storiesOf("Composite/WidgetOverlay", module)
     ),
     { notes: { markdown: widgetOverlayNotes } }
   )
-  .add("Loading", () => (
-    <WidgetOverlay loading={widgetOverlayLoading.loading} />
-  ));
+  .add(
+    "Loading",
+    () => <WidgetOverlay loading={widgetOverlayLoading.loading} />,
+    { notes: { markdown: widgetOverlayNotes } }
+  );

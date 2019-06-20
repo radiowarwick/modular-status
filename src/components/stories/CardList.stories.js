@@ -231,8 +231,18 @@ storiesOf("Composite/CardList", module)
     () => <CardList cards={object("cards", cardListDefault.cards)} />,
     { notes: { markdown: cardListNotes } }
   )
-  .add("Slim", () => <CardList cards={cardListSlim.cards} />)
-  .add("Colourful", () => <CardList cards={cardListColourful.cards} />)
-  .add("Dark", () => <CardList cards={cardListDark.cards} />)
-  .add("Mixed", () => <CardList cards={cardListMixed.cards} />)
-  .add("Empty", () => <CardList cards={cardListEmpty.cards} />);
+  .add("Slim", () => <CardList cards={cardListSlim.cards} />, {
+    notes: { markdown: cardListNotes }
+  })
+  .add("Colourful", () => <CardList cards={cardListColourful.cards} />, {
+    notes: { markdown: cardListNotes }
+  })
+  .add("Dark", () => <CardList cards={cardListDark.cards} />, {
+    notes: { markdown: cardListNotes }
+  })
+  .add("Mixed", () => <CardList cards={cardListMixed.cards} />, {
+    notes: { markdown: cardListNotes }
+  })
+  .add("Empty", () => <CardList cards={cardListEmpty.cards} />, {
+    notes: { markdown: cardListNotes }
+  });

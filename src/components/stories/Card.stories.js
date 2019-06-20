@@ -122,52 +122,76 @@ storiesOf("Simple/Card", module)
     ),
     { notes: { markdown: cardNotes } }
   )
-  .add("Slim", () => (
-    <Card
-      key={cardSlim.key}
-      data={cardSlim.data}
-      slim={cardSlim.slim}
-      colourful={cardSlim.colourful}
-    />
-  ))
-  .add("With Image", () => (
-    <Card
-      key={cardImage.key}
-      data={cardImage.data}
-      slim={cardImage.slim}
-      colourful={cardImage.colourful}
-    />
-  ))
-  .add("No Hero", () => (
-    <Card
-      key={cardNoHero.key}
-      data={cardNoHero.data}
-      slim={cardNoHero.slim}
-      colourful={cardNoHero.colourful}
-    />
-  ))
-  .add("With Long Text", () => (
-    <Card
-      key={cardLong.key}
-      data={cardLong.data}
-      slim={cardLong.slim}
-      colourful={cardLong.colourful}
-    />
-  ))
-  .add("Colourful", () => (
-    <Card
-      key={cardColourful.key}
-      data={cardColourful.data}
-      slim={cardColourful.slim}
-      colourful={cardColourful.colourful}
-    />
-  ))
-  .add("Dark", () => (
-    <Card
-      key={cardDark.key}
-      data={cardDark.data}
-      slim={cardDark.slim}
-      colourful={cardDark.colourful}
-      dark={cardDark.dark}
-    />
-  ));
+  .add(
+    "Slim",
+    () => (
+      <Card
+        key={cardSlim.key}
+        data={cardSlim.data}
+        slim={cardSlim.slim}
+        colourful={cardSlim.colourful}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  )
+  .add(
+    "With Image",
+    () => (
+      <Card
+        key={cardImage.key}
+        data={cardImage.data}
+        slim={cardImage.slim}
+        colourful={cardImage.colourful}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  )
+  .add(
+    "No Hero",
+    () => (
+      <Card
+        key={cardNoHero.key}
+        data={cardNoHero.data}
+        slim={cardNoHero.slim}
+        colourful={cardNoHero.colourful}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  )
+  .add(
+    "With Long Text",
+    () => (
+      <Card
+        key={cardLong.key}
+        data={cardLong.data}
+        slim={cardLong.slim}
+        colourful={cardLong.colourful}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  )
+  .add(
+    "Colourful",
+    () => (
+      <Card
+        key={cardColourful.key}
+        data={cardColourful.data}
+        slim={cardColourful.slim}
+        colourful={cardColourful.colourful}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  )
+  .add(
+    "Dark",
+    () => (
+      <Card
+        key={cardDark.key}
+        data={cardDark.data}
+        slim={cardDark.slim}
+        colourful={cardDark.colourful}
+        dark={cardDark.dark}
+      />
+    ),
+    { notes: { markdown: cardNotes } }
+  );

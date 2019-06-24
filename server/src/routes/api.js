@@ -40,6 +40,11 @@ const unixFromTimeString = timeString => {
   );
 };
 
+/**
+ * Creates a MD5 hash with hex encoding for a given string.
+ *
+ * @param {string} string - The string to be hashed.
+ */
 const getHash = string =>
   crypto
     .createHash("md5")
@@ -237,12 +242,55 @@ api.get("/lastplayed", async ctx => {
   });
 
   /**
-   * For each track that was played, build a last played object.
-   *
-   * Note, the imageURL is generated dynamically based on artist and title of track.
+   * Holds the UNIX time that SUE log entries should be re-introduced into the last-played array.
    */
-  const lastplayed = response.data
-    .filter(logRow => logRow.location === 1)
+  let sueResumeTime = 0;
+
+  /**
+   * The array of last-played songs, initialized empty.
+   */
+  let lastplayed = [];
+
+  /**
+   * Construct an array of last-played songs from the Digiplay song log, logging SUE songs after
+   * an hour of no studio(s) logging activity.
+   */
+  lastplayed = response.data
+    /**
+     * First, reverse the log array to get the oldest song played in the array head.
+     */
+    .reverse()
+    /**
+     * Filter out any SUE log entries that occur within one hour (3600 seconds) of the last non-SUE entry.
+     *
+     * This allows for dynamic switching between SUE and studio(s) output in any log data. Since each show is
+     * one-hour long, we can safely say that after one hour without any studio(s) log entries that SUE is playing on air.
+     */
+    .filter(logRow => {
+      /**
+       * If the location is anything but SUE, then it is important and will set a new SUE resume time,
+       * which is one hour in the future from the non-SUE location's log time. Include this non-SUE log in
+       * the last-played log.
+       *
+       * Else, if the location is SUE, make sure the SUE resume time has been exceeded before re-introducing SUE
+       * to the last-played log.
+       *
+       * Else, do not include the log entry in the last-played log.
+       */
+      if (logRow.location !== 0) {
+        sueResumeTime = logRow.datetime + 3600;
+        return true;
+      } else if (logRow.datetime > sueResumeTime) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    /**
+     * For each track that was played, build a last played object.
+     *
+     * Note, the imageURL is generated dynamically based on artist and title of track.
+     */
     .map(logRow => {
       return {
         id: "lp_" + logRow.id,
@@ -256,7 +304,11 @@ api.get("/lastplayed", async ctx => {
           "/" +
           encodeURIComponent(logRow.title)
       };
-    });
+    })
+    /**
+     * Re-reverse the log array to get the most recent song played in the array head.
+     */
+    .reverse();
 
   /**
    * Set the body.
@@ -266,8 +318,6 @@ api.get("/lastplayed", async ctx => {
 
 /**
  * Gets the schedule of programming.
- *
- * TODO - implement when endpoint becomes avaliable.
  */
 api.get("/schedule", async ctx => {
   /**
@@ -436,9 +486,7 @@ api.get("/equipment/:name", async ctx => {
 });
 
 /**
- * Returns the URL of the ScreenSaver video and the minuite of the hour the video should be played.
- *
- * TODO - implement when endpoint becomes avaliable.
+ * Returns the URL of the ScreenSaver video and the minute of the hour the video should be played.
  */
 api.get("/screensaver", async ctx => {
   ctx.body = {

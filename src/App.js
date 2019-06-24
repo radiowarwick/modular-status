@@ -294,8 +294,6 @@ const App = () => {
       0
     );
 
-    console.log(next - current.getTime());
-
     /**
      * Return the difference in ms between the next occurrence and the current date/time.
      */

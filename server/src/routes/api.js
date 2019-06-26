@@ -302,7 +302,7 @@ api.get("/lastplayed", async ctx => {
           "/music/track/" +
           encodeURIComponent(logRow.artist) +
           "/" +
-          encodeURIComponent(logRow.title)
+          encodeURIComponent(logRow.title) + ".jpg"
       };
     })
     /**
@@ -352,7 +352,7 @@ api.get("/schedule", async ctx => {
         imageURL:
           config.MEDIA_URL +
           "/static/shows/" +
-          idFromImageURL(slot.images[0].large[0])
+          idFromImageURL(slot.images[0].large[0]) + ".jpg"
       };
     });
 
@@ -492,7 +492,7 @@ api.get("/screensaver", async ctx => {
   ctx.body = {
     success: true,
     screensaver: {
-      url: "https://media.radio.warwick.ac.uk/video/timelapse.mp4",
+      url: "https://media2.radio.warwick.ac.uk/static/video/your_student_radio_station.mp4",
       minuteOfHour: 30
     }
   };

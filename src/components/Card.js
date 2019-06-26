@@ -3,6 +3,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useSpring, animated } from "react-spring";
 import { GlobalAnimateContext } from "../App";
+import image_error from "../images/raw_logo.jpg";
+import ReactImageFallback from "react-image-fallback";
 
 /**
  * Card.js: A component which returns an 'information' card, with either an image or a text `tag` (limited to three characters) or both.
@@ -10,7 +12,7 @@ import { GlobalAnimateContext } from "../App";
  * @param {object} data - An object which defines the data to display in the card.
  * @param {bool} slim - Define if the card should be slim. Or not.
  * @param {bool} colourful - Define if the card should use the image to make a dynamic background.
- * @param {bool} dark - Defines if the card should take on a 'darkened' apperance.
+ * @param {bool} dark - Defines if the card should take on a 'darkened' appearance.
  */
 const Card = ({ data, slim, colourful, dark }) => {
   /**
@@ -36,7 +38,7 @@ const Card = ({ data, slim, colourful, dark }) => {
       immediate: !globalAnimate
     }),
     content: useSpring({
-      lineHeight: slim ? "1" : "1.25",
+      lineHeight: slim ? "1.1" : "1.25",
       immediate: !globalAnimate
     })
   };
@@ -46,7 +48,13 @@ const Card = ({ data, slim, colourful, dark }) => {
       {!data.imageURL && !data.tag ? null : (
         <Hero style={props.hero}>
           {data.imageURL ? (
-            <HeroImage src={data.imageURL} alt={data.title} />
+            <HeroImage>
+              <ReactImageFallback
+                src={data.imageURL}
+                fallbackImage={[image_error, <div />]}
+                alt={data.title}
+              />
+            </HeroImage>
           ) : null}
           {data.tag ? (
             <HeroTag style={props.tag}>{data.tag.substring(0, 3)}</HeroTag>
@@ -120,10 +128,15 @@ const Hero = styled(animated.div)`
 /**
  * Ensure the hero image fills the full hero parent.
  */
-const HeroImage = styled.img`
+const HeroImage = styled.div`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  img:first-of-type {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 /**

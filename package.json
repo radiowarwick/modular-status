@@ -18,6 +18,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-fittext": "^1.0.0",
+    "react-image-fallback": "^8.0.0",
     "react-scripts": "2.1.8",
     "react-spring": "^8.0.25",
     "styled-components": "^4.3.1",

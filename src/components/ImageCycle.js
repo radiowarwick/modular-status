@@ -5,6 +5,8 @@ import { useTransition, animated } from "react-spring";
 import { useCycle } from "../customHooks";
 import { GlobalAnimateContext } from "../App";
 import image_error from "../images/image_error.jpg";
+import ReactImageFallback from "react-image-fallback";
+import Loader from "./Loader";
 
 /**
  * ImageCycle.js - Returns an infinite cycle of images, that can animate if you like.
@@ -39,12 +41,10 @@ const ImageCycle = ({ interval, animate, forceFetch, images }) => {
 
   return transitions.map(({ item, props, key }) => (
     <Container key={key} style={props}>
-      <Image
+      <ReactImageFallback
         src={item.url + (forceFetch ? "?force_fetch=" + Date.now() : "")}
+        fallbackImage={[image_error, <div />]}
         alt="Nothing to show..."
-        onError={e =>
-          e.target.src !== image_error ? (e.target.src = image_error) : null
-        }
       />
     </Container>
   ));
@@ -84,6 +84,14 @@ const Container = styled(animated.div)`
   border-radius: 0.9rem;
 
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.75);
+
+  img:first-of-type {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 /**
@@ -91,10 +99,4 @@ const Container = styled(animated.div)`
  *
  *  The image is positioned centrally within the parent div, and fills it's width.
  */
-const Image = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  transform: translate(-50%, -50%);
-`;
+const Image = styled.img``;

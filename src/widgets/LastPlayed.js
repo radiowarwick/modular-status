@@ -17,14 +17,14 @@ const LastPlayed = ({ err, data }) => {
   /**
    * If not error, and data is present, transform data.
    *
-   * Generate an array of cards, which are all colourful and not slim.
+   * Generate an array of cards, which are not colourful and not slim.
    */
   if (!err && data) {
     cards = data.lastplayed.map((track, index) => {
       return {
         id: track.id,
         slim: index === 0 ? false : true,
-        colourful: true,
+        colourful: false,
         data: {
           title: track.title,
           subtitle: track.artist,

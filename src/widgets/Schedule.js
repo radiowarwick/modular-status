@@ -37,7 +37,7 @@ const Template = ({ err, data }) => {
       return {
         id: slot.id,
         slim: index === 0 ? false : true,
-        colourful: true,
+        colourful: false,
         data: {
           title: slot.title,
           subtitle:

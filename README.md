@@ -25,7 +25,7 @@ View the [Storybook](https://willthevideoman.github.io/raw-modular-status/).
 5. Browse to `http://localhost:3000`
 
 ## Setting up a Raspberry Pi in Kiosk Mode
-If you are setting up a new screen, or re-building an existing screen, then it might make sense to use a Raspberry Pi as a client. However, it might not be the best idea to simply setup an OS with a fullGUI, install Google Chrome, and type in the URL. What happens if the Pi reboots? How do you remove the cursor? 
+If you are setting up a new screen, or re-building an existing screen, then it might make sense to use a Raspberry Pi as a client. However, it might not be the best idea to simply setup an OS with a full GUI, install Google Chrome, and type in the URL. What happens if the Pi reboots? How do you remove the cursor? 
 
 This guide outlines how to setup a pi in kiosk mode, a lightweight way of running this web app by installing only the most crucial parts of a GUI.
 

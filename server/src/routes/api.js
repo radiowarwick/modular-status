@@ -302,7 +302,8 @@ api.get("/lastplayed", async ctx => {
           "/music/track/" +
           encodeURIComponent(logRow.artist) +
           "/" +
-          encodeURIComponent(logRow.title) + ".jpg"
+          encodeURIComponent(logRow.title) +
+          ".jpg"
       };
     })
     /**
@@ -325,34 +326,27 @@ api.get("/schedule", async ctx => {
    */
   const response = await axios.get(endpoints.schedule);
 
-  const idFromImageURL = imageURL => {
-    const parts = imageURL.split("/");
-    return parts[parts.length - 1].split(".")[0];
-  };
-
   /**
-   * Ugly. Disgusting. Bad.
+   * The following function falls outside the codebase style in order to support XML processing in
+   * a non async/await paradigm.
    *
-   * Whilst these may sound like words that describe the Author, they infact refer to the below function.
+   * It extracts and maps the XML show data into a useful schedule object.
    *
-   * It parses an XML response (urgh) using a callback style, instead of the much nicer async/await style
-   * of the rest of this document. It then extracts useful data from the (badly structured) result.
+   * It parses an XML response using a callback style. It then extracts useful data from the result.
    *
-   * The ID of each show is just a MD5 hash of the entire JSON result. Not cool, bro.
+   * The ID of each show is an MD5 hash of show ID with the show start time, since no singular show can
+   * ever have the same start time more than once.
    *
    * The UNIX start/stop is built from the returned hour.
    */
   parseXML(response.data, (err, result) => {
     const schedule = result.shows.show.map(slot => {
       return {
-        id: "sh_" + getHash(JSON.stringify(slot)),
+        id: "sh_" + getHash(slot.id + slot.start[0]),
         title: slot.name[0],
         unixStart: unixFromTimeString(slot.start[0]),
         unixFinish: unixFromTimeString(slot.end[0]),
-        imageURL:
-          config.MEDIA_URL +
-          "/static/shows/" +
-          idFromImageURL(slot.images[0].large[0]) + ".jpg"
+        imageURL: config.MEDIA_URL + "/static/shows/" + slot.id + ".jpg"
       };
     });
 
@@ -492,7 +486,8 @@ api.get("/screensaver", async ctx => {
   ctx.body = {
     success: true,
     screensaver: {
-      url: "https://media2.radio.warwick.ac.uk/static/video/your_student_radio_station.mp4",
+      url:
+        "https://media2.radio.warwick.ac.uk/static/video/your_student_radio_station.mp4",
       minuteOfHour: 30
     }
   };

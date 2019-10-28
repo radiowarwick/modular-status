@@ -29,7 +29,7 @@ const Template = ({ err, data }) => {
   /**
    * If not error, and data is present, transform data.
    *
-   * The first card will be thicc, the rest slim. Not colourful. The subtitle gives the time,
+   * The first card will be thicc, the rest slim. All colourful. The subtitle gives the time,
    * which is based on the UNIX start/stop times, and a dash in the middle. The image is the image.
    */
   if (!err && data) {
@@ -37,7 +37,7 @@ const Template = ({ err, data }) => {
       return {
         id: slot.id,
         slim: index === 0 ? false : true,
-        colourful: false,
+        colourful: true,
         data: {
           title: slot.title,
           subtitle:

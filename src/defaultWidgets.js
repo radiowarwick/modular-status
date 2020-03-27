@@ -106,11 +106,11 @@ export const defaultWidgets = [
           images: [
             {
               id: "st1_dj",
-              url: "http://cctv/st1-dj.jpg"
+              url: "http://cctv.medianet/st1-dj.jpg"
             },
             {
               id: "st1_guest",
-              url: "http://cctv/st1-guest.jpg"
+              url: "http://cctv.medianet/st1-guest.jpg"
             }
           ]
         }
@@ -132,11 +132,11 @@ export const defaultWidgets = [
           images: [
             {
               id: "st1_dj",
-              url: "http://cctv/st2-dj.jpg"
+              url: "http://cctv.medianet/st2-dj.jpg"
             },
             {
               id: "st1_guest",
-              url: "http://cctv/st2-guest.jpg"
+              url: "http://cctv.medianet/st2-guest.jpg"
             }
           ]
         }
@@ -193,7 +193,7 @@ export const defaultWidgets = [
         success: true,
         playout: {
           name: "Playout 1",
-          wsURL: "ws://status:3000?token=playout1"
+          wsURL: "ws://status.medianet:3000?token=playout1"
         }
       }
     }
@@ -208,7 +208,37 @@ export const defaultWidgets = [
         success: true,
         playout: {
           name: "Playout 2",
-          wsURL: "ws://status:3000?token=playout2"
+          wsURL: "ws://status.medianet:3000?token=playout2"
+        }
+      }
+    }
+  },
+  {
+    name: "Onair 1",
+    component: PlayoutViewer,
+    dataURL: null,
+    refreshInterval: null,
+    props: {
+      data: {
+        success: true,
+        playout: {
+          name: "Onair 1",
+          wsURL: "ws://status.medianet:3000?token=onair1"
+        }
+      }
+    }
+  },
+  {
+    name: "Onair 2",
+    component: PlayoutViewer,
+    dataURL: null,
+    refreshInterval: null,
+    props: {
+      data: {
+        success: true,
+        playout: {
+          name: "Onair 2",
+          wsURL: "ws://status.medianet:3000?token=onair2"
         }
       }
     }

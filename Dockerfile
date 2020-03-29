@@ -14,6 +14,5 @@ RUN npm run-script build
 ENV PORT 8080
 EXPOSE 8080
 
-# Must be run from the server directory
-WORKDIR /www/server
-CMD ["node", "index.js"]
+# Start the Koa production server.
+CMD ["npm", "run", "start-server"]
